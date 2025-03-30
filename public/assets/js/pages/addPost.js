@@ -7,15 +7,25 @@ import {
     sendPostRequest
 } from '../modules/postCore.js';
 
+import{
+    getUserLocation,
+    getAddress
+} from '../modules/location.js';
+
 // File tracker to maintain state between carousel and form data
 let fileTracker = {};
 
 document.addEventListener('DOMContentLoaded', function() {    
     // Set up file upload functionality
     setupFileUploadHandling();
-});
 
-document.getElementById('newPostForm').addEventListener('submit', handlePostSubmission);
+    // Submit post event listener
+    document.getElementById('newPostForm').addEventListener('submit', handlePostSubmission);
+
+    // Location
+    document.getElementById('current-location-btn').addEventListener('click', handleCurrentLocation);
+
+});
 
 /**
  * Set up file upload event listeners and handling
@@ -123,3 +133,28 @@ async function handlePostSubmission(event) {
         window.location.pathname = window.location.pathname.replace("/addPost", "/home");
     }
 }
+
+async function handleCurrentLocation(event) {
+    try {
+        let position = await getUserLocation();
+        if(position.coords.latitude){
+            console.log("Latitude:", position.coords.latitude);
+            document.getElementById('latitude').value = position.coords.latitude
+        }
+        if(position.coords.longitude){
+            console.log("Longitude:", position.coords.longitude);
+            document.getElementById('longitude').value = position.coords.longitude
+        }
+        let address = await getAddress(position.coords.latitude, position.coords.longitude);
+        if(address){
+            document.getElementById('location').value = address
+        }else{
+            alert('Current location not found')
+        }
+    } catch (error) {
+        alert(error.message)
+        console.error("Error getting location:", error);
+        return null;
+    }
+}
+

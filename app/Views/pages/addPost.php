@@ -17,10 +17,12 @@ AssetManager::addScript('addPost-script', '/socialMedia/public/assets/js/pages/a
             <form id="newPostForm">
                 <div class="mb-3">
                     <div class="input-group">
-                        <span class="input-group-text">
+                        <button id="current-location-btn" title="use current location" type="button" class="input-group-text btn btn-primary">
                             <i class="bi bi-geo-alt"></i>
-                        </span>
+                        </button>
                         <input type="text" class="form-control" id="location" name="location" placeholder="Add location...">
+                        <input type="text" class="form-control" id="latitude" name="latitude" style="display:none">
+                        <input type="text" class="form-control" id="longitude" name="longitude" style="display:none">
                     </div>
                 </div>
                 
