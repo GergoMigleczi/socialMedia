@@ -116,12 +116,7 @@ class FriendController extends Controller
                 'isFriend' => $isFriend
             ]);
         }catch(\Exception $e) {
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Internal server error'
-            ]);
+            $this->sendInternalServerError();
         }
     }
 

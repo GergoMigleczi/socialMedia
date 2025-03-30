@@ -95,6 +95,20 @@ class Chat extends Model
         }
     }
 
+    /**
+     * Retrieves messages for a specific chat with pagination support
+     * 
+     * This method fetches messages from the database for the given chat ID,
+     * ordered by creation time. It caches participant profiles to improve performance
+     * when constructing message DTOs. The method supports pagination through
+     * limit and offset parameters.
+     * 
+     * @param int $chatId The ID of the chat to retrieve messages for
+     * @param int $limit Maximum number of messages to return (default: 50)
+     * @param int $offset Number of messages to skip for pagination (default: 0)
+     * @return array An array of MessageDTO objects containing message data with sender profiles
+     * @throws \Exception If database operations fail
+     */
     public function getMessagesForChat(int $chatId, int $limit = 50, int $offset = 0): array
     {
         try {
@@ -166,45 +180,50 @@ class Chat extends Model
      */
     public function getChatParticipants(int $chatId, ?int $excludeProfileId = null): array
     {
-        $sql = "SELECT 
-                    p.id,
-                    p.full_name,
-                    p.profile_picture
-                FROM PROFILES_IN_CHAT pic
-                JOIN PROFILES p ON pic.profile_id = p.id
-                WHERE pic.chat_id = :chatId";
-        
-        // Add condition to exclude a specific profile if needed
-        if ($excludeProfileId !== null) {
-            $sql .= " AND pic.profile_id != :excludeProfileId";
+        try{
+            $sql = "SELECT 
+                        p.id,
+                        p.full_name,
+                        p.profile_picture
+                    FROM PROFILES_IN_CHAT pic
+                    JOIN PROFILES p ON pic.profile_id = p.id
+                    WHERE pic.chat_id = :chatId";
+            
+            // Add condition to exclude a specific profile if needed
+            if ($excludeProfileId !== null) {
+                $sql .= " AND pic.profile_id != :excludeProfileId";
+            }
+            
+            $this->db->query($sql);
+            $this->db->bind(':chatId', $chatId);
+            
+            if ($excludeProfileId !== null) {
+                $this->db->bind(':excludeProfileId', $excludeProfileId);
+            }
+            
+            $participants = $this->db->resultSetObj();
+            
+            $profileDTOs = [];
+            
+            foreach ($participants as $participant) {
+                $profileDTOs[$participant->id] = new ProfileDTO(
+                    $participant->id,
+                    $participant->full_name,
+                    $participant->profile_picture
+                );
+            }
+            
+            // If we excluded a profile but need it for fallback, add it
+            if (empty($profileDTOs) && $excludeProfileId !== null) {
+                $profileModel = new Profile($this->logFile);
+                $profileDTOs[$excludeProfileId] = $profileModel->getProfileInfo($excludeProfileId);
+            }
+            
+            return $profileDTOs;
+        } catch (\Exception $e) {
+            $this->logger->error('Failed to get chat participants: ' . $e->getMessage());
+            throw $e;
         }
-        
-        $this->db->query($sql);
-        $this->db->bind(':chatId', $chatId);
-        
-        if ($excludeProfileId !== null) {
-            $this->db->bind(':excludeProfileId', $excludeProfileId);
-        }
-        
-        $participants = $this->db->resultSetObj();
-        
-        $profileDTOs = [];
-        
-        foreach ($participants as $participant) {
-            $profileDTOs[$participant->id] = new ProfileDTO(
-                $participant->id,
-                $participant->full_name,
-                $participant->profile_picture
-            );
-        }
-        
-        // If we excluded a profile but need it for fallback, add it
-        if (empty($profileDTOs) && $excludeProfileId !== null) {
-            $profileModel = new Profile($this->logFile);
-            $profileDTOs[$excludeProfileId] = $profileModel->getProfileInfo($excludeProfileId);
-        }
-        
-        return $profileDTOs;
     }
 
     /**

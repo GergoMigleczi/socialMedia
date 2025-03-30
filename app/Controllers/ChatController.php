@@ -2,34 +2,53 @@
 namespace Controllers;
 use Core\Controller;
 use Core\View;
+use Exception;
 use Models\Chat;
 use Components\MessageComponent;
 use DTOs\MessageDTO;
 use Models\Friend;
 use Models\ProfileBlocking;
 
+/**
+ * ChatController handles all chat-related functionality including displaying chats,
+ * managing messages, and creating private conversations between users.
+ */
 class ChatController extends Controller
 {
     private $logFile = 'chat.log';
     private $chatModel;
     private $profileBlockingModel;
+    private $friendModel;
+    
+    /**
+     * Initialize controller with required models and parent setup
+     */
     public function __construct()
     {
       // Call parent constructor with specific log file
       parent::__construct($this->logFile);
       $this->chatModel = new Chat($this->logFile);
       $this->profileBlockingModel = new ProfileBlocking($this->logFile);
+      $this->friendModel = new Friend($this->logFile);
     }
+    
+    /**
+     * Display all chats associated with the logged-in user
+     * Requires authentication
+     */
     public function showChats()
     {
       $this->requireAuth(true);
 
+      // Fetch all chats for the current logged-in profile
       $chats = $this->chatModel->getChatsForProfile($this->session->getProfileId());
 
+      // Log each chat for debugging purposes
       foreach ($chats as $chat) {
         $this->logger->debug($chat->__toString());
       }
-      // Render the login view
+      
+      // Render the chats list view
       View::render(
         'pages/chats',
         [
@@ -39,22 +58,35 @@ class ChatController extends Controller
       );
     }
 
+    /**
+     * Display a specific chat and its messages
+     * Requires authentication and validates user participation in the chat
+     * 
+     * @param int $chatId The ID of the chat to display
+     */
     public function showChat($chatId)
     {
       $this->requireAuth(true);
 
       $loggedInProfileId = $this->session->getProfileId();
+      
+      // Get all messages for this chat
       $messages = $this->chatModel->getMessagesForChat($chatId);
+      
+      // Validate that logged-in user is a participant and get the other participant
       $validation = $this->chatModel->validateAndGetOtherParticipant($chatId, $loggedInProfileId);
       if ($validation['isParticipant']) {
         $profile = $validation['otherParticipant'];
       } else {
+        // User is not authorized to view this chat
         $this->denyAccess();
       }
-      $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked( $loggedInProfileId, $profile->id);
-      $iLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked(  $profile->id, $loggedInProfileId); 
+      
+      // Check blocking status in both directions
+      $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profile->id);
+      $iLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profile->id, $loggedInProfileId); 
 
-      // Render the login view
+      // Render the chat view with all necessary data
       View::render(
         'pages/chat',
         [
@@ -68,10 +100,16 @@ class ChatController extends Controller
       );
     }
 
+    /**
+     * API endpoint to create a new message in a chat
+     * Validates permissions, blocking status, and content before saving
+     * 
+     * @param int $chatId The ID of the chat to add a message to
+     */
     function createMessage($chatId){
       $this->logger->debug("Controllers/ChatController->createMessage($chatId)");
 
-      // Verify user is authenticated
+      // Verify user is authenticated for API access
       $loggedInProfileId = $this->apiAuthLoggedInProfile();
 
       // Validate chat ID
@@ -85,7 +123,8 @@ class ChatController extends Controller
         exit;
       }
 
-      if (!$this->chatModel->isProfileInChat($chatId,$loggedInProfileId)) {
+      // Verify user is a participant in this chat
+      if (!$this->chatModel->isProfileInChat($chatId, $loggedInProfileId)) {
         http_response_code(401); // Unauthorized
         echo json_encode([
           'success' => false,
@@ -94,30 +133,41 @@ class ChatController extends Controller
         exit;
       }
 
-      $otherParticipants = $this->chatModel->getChatParticipants($chatId, $loggedInProfileId);
-      $otherParticipant = $this->chatModel->getOtherParticipant($otherParticipants, $loggedInProfileId);
-      //Is blocked by target profile
-      if($this->profileBlockingModel->isProfileBlocked($otherParticipant->id, $loggedInProfileId)){
-        http_response_code(500);
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false,
-        'message' => "Failed to send message. You are blocked by this user."]);
-        exit;
+      try{
+        // Get the other participant to check blocking status
+        $otherParticipants = $this->chatModel->getChatParticipants($chatId, $loggedInProfileId);
+        $otherParticipant = $this->chatModel->getOtherParticipant($otherParticipants, $loggedInProfileId);
+        
+        // Check if logged-in user is blocked by the other user
+        if($this->profileBlockingModel->isProfileBlocked($otherParticipant->id, $loggedInProfileId)){
+          http_response_code(500);
+          header('Content-Type: application/json');
+          echo json_encode(['success' => false,
+          'message' => "Failed to send message. You are blocked by this user."]);
+          exit;
+        }
+        
+        // Check if logged-in user is blocking the other user
+        if($this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $otherParticipant->id)){
+          http_response_code(500);
+          header('Content-Type: application/json');
+          echo json_encode(['success' => false,
+          'message' => "Failed to send message. You are blocking this user."]);
+          exit;
+        }
+      }catch(Exception $e){
+        $this->logger->error("Controllers/ChatController->createMessage(): Failed to get block status between the profiles: " . $e->getMessage());
+        $this->sendInternalServerError("Failed to get block status between the profiles: " . $e->getMessage());
       }
-      if($this->profileBlockingModel->isProfileBlocked( $loggedInProfileId, $otherParticipant->id)){
-        http_response_code(500);
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false,
-        'message' => "Failed to send message. You are blocking this user."]);
-        exit;
-      }
-
-      // Verify content type
+      
+      // Verify content type and extract input
       $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
       $input = $this->extractInput($contentType);
-      // Get POST body data
+      
+      // Get message content from POST data
       $content = $input['content'] ?? '';
 
+      // Validate message content
       if (!$content) {
         http_response_code(400);
         header('Content-Type: application/json');
@@ -128,42 +178,55 @@ class ChatController extends Controller
         exit;
       }
 
-      // Get format from query string
+      // Get requested return format (html or json)
       $format = $input['returnFormat'] ?? 'json';
 
-      // Save comment to database and get the saved comment with ID
-      $messageDTO = $this->chatModel->saveMessage($chatId, $loggedInProfileId, $content);
+      try{
+        // Save message to database and get the new message DTO
+        $messageDTO = $this->chatModel->saveMessage($chatId, $loggedInProfileId, $content);
 
-      if ($format === 'html') {
-        $html = '';
-        $html = $this->getMessageHtml($messageDTO, $loggedInProfileId);
-        // Return html
-        http_response_code(201);
-        header('Content-Type: text/html');
-        echo $html;
-        exit;
-      } else {
-        // Return as JSON (default)
-        http_response_code(201);
-        header('Content-Type: application/json');
-        echo json_encode([
-          'success' => true,
-          'message' => json_encode($messageDTO)
-        ]);
-        exit;
+        if ($format === 'html') {
+          // Generate HTML for the new message
+          $html = '';
+          $html = $this->getMessageHtml($messageDTO, $loggedInProfileId);
+          // Return HTML response
+          http_response_code(201);
+          header('Content-Type: text/html');
+          echo $html;
+          exit;
+        } else {
+          // Return JSON response (default)
+          http_response_code(201);
+          header('Content-Type: application/json');
+          echo json_encode([
+            'success' => true,
+            'message' => json_encode($messageDTO)
+          ]);
+          exit;
+        }
+      }catch(Exception $e){
+        $this->logger->error("Controllers/ChatController->createMessage(): Failed to get block status between the profiles: " . $e->getMessage());
+        $this->sendInternalServerError();
       }
     }
 
+    /**
+     * Generate HTML representation of a message
+     * 
+     * @param MessageDTO $message The message data
+     * @param int $profileId The current user's profile ID
+     * @return string HTML content for the message
+     */
     public function getMessageHtml(MessageDTO $message, int $profileId){
       // Capture the output of the include
       ob_start();
-      // User data is available to these included files
+      // Render the message component
       MessageComponent::render($message, $profileId); // Template that includes profilePicture.php and profileName.php
       return ob_get_clean();
-  }
+    }
 
-  /**
-     * Get existing private chat between two profiles
+    /**
+     * API endpoint to get an existing private chat between two profiles
      * 
      * @param int $profileId Profile ID of the target user
      * @return void
@@ -173,7 +236,7 @@ class ChatController extends Controller
         // Get current logged-in user's profile ID
         $currentProfileId = $this->apiAuthLoggedInProfile();
 
-        // Validate input
+        // Validate input profile ID
         $profileId = intval($profileId);
         if (!$profileId) {
             http_response_code(400);
@@ -187,12 +250,12 @@ class ChatController extends Controller
 
         $this->logger->debug("Controllers/ChatController->getPrivateChat(): profileId: $profileId, currentProfileId: $currentProfileId");
         try {
-            // Check for existing private chat
+            // Check for existing private chat between the two users
             $chatId = $this->chatModel->getPrivateChatId($currentProfileId, $profileId);
             $this->logger->debug("Controllers/ChatController->getPrivateChat(): chatId: $chatId");
 
             if ($chatId) {
-                // Existing chat found
+                // Existing chat found - return its ID
                 http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -200,32 +263,26 @@ class ChatController extends Controller
                     'chatId' => $chatId
                 ]);
                 exit;
+            }else{
+              // No existing chat found between these users
+              http_response_code(200);
+              header('Content-Type: application/json');
+              echo json_encode([
+                  'success' => false,
+                  'chatId' => null,
+                  'message' => 'No existing chat found'
+              ]);
+              exit;
             }
-
-            // No existing chat
-            http_response_code(200);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'chatId' => null,
-                'error' => 'No existing chat found'
-            ]);
-            exit;
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error('Error getting private chat: ' . $e->getMessage());
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'error' => 'Internal server error'
-            ]);
-            exit;
+            $this->sendInternalServerError();
         }
     }
 
     /**
-     * Create a new private chat between two profiles
+     * API endpoint to create a new private chat between two profiles
+     * Validates friendship status before creating
      * 
      * @return void
      */
@@ -234,14 +291,14 @@ class ChatController extends Controller
         // Get current logged-in user's profile ID
         $currentProfileId = $this->apiAuthLoggedInProfile();
         
-        // Verify content type
+        // Verify content type and extract input
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
         $input = $this->extractInput($contentType);
 
-        // Get POST body data
+        // Get target profile ID from POST data
         $profileId = $input['profileId'] ?? '';
 
-        // Validate input
+        // Validate target profile ID
         $profileId = intval($profileId);
         if (!$profileId) {
             http_response_code(400);
@@ -252,23 +309,24 @@ class ChatController extends Controller
             exit;
         }
 
-        $friendModel = new Friend();
-        if(!$friendModel->isFriend($profileId, $currentProfileId)){
-            http_response_code(401);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Not friends, cannot open chat'
-            ]);
-            exit;
-        }
-
         try {
-            // Check if chat already exists (double-check)
+            // Verify users are friends (required to start a chat)
+            $isFriend = $this->friendModel->isFriend($profileId, $currentProfileId);
+            if(!$isFriend){
+                http_response_code(401);
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Not friends, cannot open chat'
+                ]);
+                exit;
+            }
+            
+            // Check if chat already exists (prevent duplicates)
             $existingChatId = $this->chatModel->getPrivateChatId($currentProfileId, $profileId);
             
             if ($existingChatId) {
-                // Chat already exists
+                // Chat already exists - return existing ID
                 http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -279,7 +337,7 @@ class ChatController extends Controller
                 exit;
             }
 
-            // Create new private chat
+            // Create new private chat between the two users
             $newChatId = $this->chatModel->createPrivateChat($currentProfileId, $profileId);
 
             // Respond with new chat ID
@@ -291,15 +349,9 @@ class ChatController extends Controller
             ]);
             exit;
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error('Error creating private chat: ' . $e->getMessage());
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Internal server error'
-            ]);
-            exit;
+            $this->sendInternalServerError();
         }
     }
 }
