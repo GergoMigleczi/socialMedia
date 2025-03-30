@@ -15,7 +15,7 @@ class PostController extends Controller
         parent::__construct($this->logFile);
         $this->postModel = new Post($this->logFile);
     }   
-    public function showAddPost()
+    public function showAddPost(): void
     {
         $this->requireAuth(true);
         
@@ -27,31 +27,22 @@ class PostController extends Controller
         ]);
     }
 
-    public function createPost()
+    public function createPost(): void
     {
-        header('Content-Type: application/json');
-        
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            echo json_encode(['success' => false, 'message' => 'Method Not Allowed']);
-            return;
-        }
+        $this->enforceRequestMethod('POST');
 
         $profileId = $this->session->getProfileId() ?? null;
         if (!$profileId) {
             http_response_code(401);
+            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'Unauthorized']);
             return;
         }
         
         // Verify content type
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
-        if (strpos($contentType, 'multipart/form-data') === false) {
-            http_response_code(415); // Unsupported Media Type
-            echo json_encode(['success' => false, 'message' => 'Unsupported Content-Type.']);
-            exit;
-        }
-
+        $this->enforceContentType($contentType, 'multipart/form-data');
+        
         // get POST body data
         $content = $_POST['postContent'] ?? '';
         $visibility = $_POST['visibility'] ?? 'public';
@@ -63,24 +54,31 @@ class PostController extends Controller
         // Debugging $_POST data
         $this->logger->debug("Controllers/PostController->createPost(): POST Data: " . json_encode($_POST, JSON_PRETTY_PRINT));
         
-        // Save post
-        $postId = $this->postModel->createPost(
-            $profileId, 
-            $content, 
-            $visibility, 
-            $_FILES, 
-            $locationName, 
-            $latitude ? (float) $latitude : null, 
-            $longitude ? (float) $longitude : null, 
-            $isLocationVisible
-        );
-        
-        if ($postId) {
-            http_response_code(201);
-            echo json_encode(['success' => true, 'message' => 'Post created successfully', 'post_id' => $postId]);
-        } else {
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'Failed to create post']);
+        try{
+            // Save post
+            $postId = $this->postModel->createPost(
+                $profileId, 
+                $content, 
+                $visibility, 
+                $_FILES, 
+                $locationName, 
+                $latitude ? (float) $latitude : null, 
+                $longitude ? (float) $longitude : null, 
+                $isLocationVisible
+            );
+
+            if ($postId) {
+                http_response_code(201);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true, 'message' => 'Post created successfully', 'post_id' => $postId]);
+            } else {
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Failed to create post']);
+            }
+        }catch(\Exception $e){
+            $this->logger->error("Controllers/PostController->createPost(): Failed to create post: " . $e->getMessage());
+            $this->sendInternalServerError();
         }
     }
 }

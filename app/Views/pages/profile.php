@@ -36,7 +36,7 @@ ChatButtonComponent::init();
                         <?php FriendButtonComponent::render($profile->id, $friendshipStatus, $displayFriendBtn)?>
                     </span>
                     <button id="block-profile-btn" class="btn <?=$isBlockedByLoggedInProfile ? 'btn-secondary' : 'btn-danger'?> px-4 mx-1" data-profile-id="<?=$profile->id?>"><?=$isBlockedByLoggedInProfile ? 'Unblock' : 'Block'?></button>
-                    <button id="report-profile-btn" class="btn btn-danger px-4 mx-1" data-profile-id="<?=$profile->id?>">Report</button>
+                    <button id="report-profile-btn" class="btn btn-danger px-4 mx-1" data-bs-toggle="modal" data-bs-target="#reportUserModal" data-profile-id="<?=$profile->id?>">Report</button>
                 <?php endif; ?>
             </div>
         </div>
@@ -57,5 +57,43 @@ ChatButtonComponent::init();
         </div>   
     </div>
 </div>
+
+<!-- Report User Modal -->
+<div class="modal fade" id="reportUserModal" tabindex="-1" aria-labelledby="reportUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="reportUserForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportUserModalLabel">Report User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <!-- Hidden input for profileId -->
+                        <input type="hidden" id="profileId" name="profileId" value="<?=$profile->id?>">
+
+                        <div class="mb-3">
+                            <label for="reportReason" class="form-label">Reason</label>
+                            <select class="form-select" id="reportReason"  name="reportReason" required>
+                                <?php foreach ($reportOptions as $option): ?>
+                                    <option value="<?php echo htmlspecialchars($option); ?>">
+                                        <?php echo ucfirst(htmlspecialchars($option)); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportDetails" class="form-label">Additional Details (Optional)</label>
+                            <textarea class="form-control" id="reportDetails"  name="reportDetails" rows="3"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" id="confirmReportBtn">Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 

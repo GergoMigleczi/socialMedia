@@ -14,7 +14,7 @@ class ChatButtonComponent {
     }
     
     private static function registerAssets() {
-        AssetManager::addScript('chatButton-script', '/socialMedia/public/assets/js/pages/chatButton.js');
+        AssetManager::addScript('chatButton-script', '/socialMedia/public/assets/js/components/chatButton.js');
     }
     
     public static function render(int $profileId, bool $displayBool = true) {

@@ -3,7 +3,6 @@
  * @param {int} postId of post
  * @param {HTMLElement} commentsHtml
  */
-// Define the function as async
 export async function fetchCommentsHtml(postId) {
   try {
     // Get comments from api

@@ -1,5 +1,3 @@
-// File: socialMedia/public/assets/js/modules/carouselCore.js
-
 /**
  * Initialize all carousels on the page
  * @returns {NodeList} List of initialized carousels

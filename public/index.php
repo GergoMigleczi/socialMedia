@@ -65,6 +65,7 @@ $router->get('/api/friends/{profileId}/isFriend', 'Controllers\FriendController@
 
 $router->post('/api/profiles/block', 'Controllers\BlockingController@blockProfile');
 $router->post('/api/profiles/unblock', 'Controllers\BlockingController@unblockProfile');
+$router->post('/api/profiles/report', 'Controllers\ProfileReportController@reportProfile');
 
 // Process the request
 $router->dispatch();

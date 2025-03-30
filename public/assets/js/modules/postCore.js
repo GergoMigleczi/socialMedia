@@ -1,6 +1,4 @@
-export async function sendPostRequest(formData) {
-    console.log(formData)
-
+export async function createPost(formData) {
     try {
         const response = await fetch('/socialMedia/public/api/posts', {
             method: 'POST',
@@ -10,12 +8,11 @@ export async function sendPostRequest(formData) {
         try{
             return await response.json();
         }catch (error) {
-            console.error('Error returning respponse.json():', error);
-            return { success: false, message: error.message };
+            console.error('Error returning response.json():', error);
+            throw error
         }
     } catch (error) {
-        alert(error);
         console.error('Error submitting post:', error);
-        return { success: false, message: error.message };
+        throw error;
     }
 }

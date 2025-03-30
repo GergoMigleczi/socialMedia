@@ -1,5 +1,7 @@
 import {handleFriendAction, isFriend} from '../modules/friendCore.js';
 import {blockProfile, unblockProfile}  from '../modules/blockingCore.js';
+import { reportProfile } from '../modules/ProfileReportCore.js';
+import { showFeedbackMessage } from '../modules/feedback.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Friend buttons
@@ -11,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const blockButton = document.getElementById('block-profile-btn');
     if (blockButton) {
         blockButton.addEventListener('click', handleBlockButtonClick);
+    }
+
+    // Report button
+    const reportForm = document.getElementById('reportUserForm');
+    if(reportForm){
+        reportForm.addEventListener('submit', handleReportFormSubmit);
     }
 });
 
@@ -141,3 +149,27 @@ function setFriendButtonVisibility(container, visibility){
         });
     }
 }
+
+async function handleReportFormSubmit(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const profileId = document.getElementById('profileId').value;
+    const reason = document.getElementById('reportReason').value;
+    const details = document.getElementById('reportDetails').value;
+
+    try {
+        const result = await reportProfile(profileId, reason, details);
+        console.log(result)
+        if(result['success']){
+            // Close the modal after successful submission
+            const reportUserModal = bootstrap.Modal.getInstance(document.getElementById('reportUserModal'));
+            reportUserModal.hide();
+            showFeedbackMessage('Profile has been reported','success')
+        }else{
+            throw new Error(result['message']);
+        }
+    } catch (error) {
+        alert('Failed to submit report. Please try again.');
+    }
+}
+

@@ -10,6 +10,11 @@ class AuthController extends Controller
 {  
     private $logFile = 'authentication.log';
     private $userModel;  
+    
+    /**
+     * AuthController constructor.
+     * Initializes the logger and user model.
+     */
     public function __construct()
     {
         // Call parent constructor with specific log file
@@ -18,157 +23,149 @@ class AuthController extends Controller
     }
 
     /**
-     * Display the login page
-    */
+     * Display the login page.
+     */
     public function showLogin()
     {
         // If user is already logged in, redirect to home page
         if ($this->session->exists()) {
-            // User is logged in
             $this->redirect('home');
         }
         
         // Get the current request URI
         $currentPath = trim($_SERVER['REQUEST_URI'], '/');
-
-        // Define the login path
         $loginPath = 'socialMedia/public/login';
 
-        // If not already on the login page, redirect
+        // Redirect if not already on the login page
         if ($currentPath !== $loginPath) {
-            $this->redirect('login');  // Stop execution after redirect
+            $this->redirect('login');
         }
 
         // Render the login view
-        View::render('pages/login',
-        [
-            'title' => 'Login'
-        ],
-        false);
+        View::render('pages/login', ['title' => 'Login'], false);
     }
 
+    /**
+     * Display the registration page.
+     */
     public function showRegister()
     {        
-        // Render the register view
-        View::render('pages/register',
-        [
-            'title' => 'Register'
-        ],
-        false);
+        View::render('pages/register', ['title' => 'Register'], false);
     }
 
+    /**
+     * Display unauthorized access page.
+     */
     public function showUnAuth()
     {        
-        // Render the register view
-        View::render('errors/unAuthAccess',
-        [
-            'title' => 'Unauthorised Access'
-        ],
-        false);
+        View::render('errors/unAuthAccess', ['title' => 'Unauthorised Access'], false);
     }
 
+    /**
+     * Handle user login.
+     * Extracts credentials from request, authenticates user, and starts session.
+     */
     public function login()
     {        
-        // Get input from JSON request body
-        $input = json_decode(file_get_contents('php://input'), true);
+        // Extract input
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+        $input = $this->extractInput($contentType);
+        
         $email = $input['email'] ?? null;
         $password = $input['password'] ?? null;
 
-        $this->logger->debug("Controllers/AuthController->login(): Login attempt: " . $email . " password: " . $password);
+        $this->logger->debug("Controllers/AuthController->login(): Login attempt: " . $email);
         
         // Validate input
         if (!$email || !$password) {
             http_response_code(400);
+            header('Content-Type: application/json');
             echo json_encode(["success" => false, "message" => "Missing credentials"]);
             exit;
         }
         
-        // Attempt authentication
-        $profileDTO = $this->userModel->login($email, $password);
+        try{
+            // Attempt authentication
+            $profileDTO = $this->userModel->login($email, $password);
 
-        $this->logger->debug("Controllers/AuthController->login(): Login successful: " . $profileDTO->id);
-
-        if ($profileDTO && isset($profileDTO->id)) {
-            // Successful login
-            
-            // Create session
-            $this->session->create($profileDTO);
-            
-            // Return success response with user data
-            http_response_code(200);
-            echo json_encode([
-                "success" => true, 
-                "message" => "Login successful"
-            ]);
-        } else {
-            // Failed login
-            $this->logger->debug("Controllers/AuthController->login(): Login failed: " . $email);
-            http_response_code(401);
-            echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+            if ($profileDTO && isset($profileDTO->id)) {
+                // Successful login
+                $this->logger->debug("Controllers/AuthController->login(): Login successful: " . $profileDTO->id);
+                $this->session->create($profileDTO);
+                
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(["success" => true, "message" => "Login successful"]);
+            } else {
+                // Failed login
+                $this->logger->error("Controllers/AuthController->login(): Login failed: " . $email);
+                http_response_code(401);
+                header('Content-Type: application/json');
+                echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+            }
+        }catch(Exception $e){
+            $this->logger->error("Controllers/AuthController->login(): Failed to login: " . $e->getMessage());
+            $this->sendInternalServerError();
         }
-        exit;
     }
 
+    /**
+     * Handle user registration.
+     * Extracts form data, creates a new user, and starts session if successful.
+     */
     public function register()
-    {
-        header('Content-Type: application/json');
-        
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            echo json_encode(['success' => false, 'message' => 'Method Not Allowed']);
-            return;
-        }
+    {        
+        $this->enforceRequestMethod('POST');
         
         // Verify content type
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
-        if (strpos($contentType, 'multipart/form-data') === false) {
-            http_response_code(415); // Unsupported Media Type
-            echo json_encode(['success' => false, 'message' => 'Unsupported Content-Type.']);
-            exit;
-        }
+        $this->enforceContentType($contentType, 'multipart/form-data');
 
-        // get POST body data
+        // Extract form data
         $email = $_POST['email'];
         $password = $_POST['password'];
         $fullName = trim($_POST['firstName']) . ' ' . trim($_POST['lastName']);
         $dateOfBirth = $_POST['dateOfBirth'];
-        if (isset($_FILES['profilePicture'])){
-            $profilePicture = $_FILES['profilePicture'];
-        };
+        $profilePicture = $_FILES['profilePicture'] ?? null;
         
-        // Debugging $_POST data
+        // Debugging logs
         $this->logger->debug("Controllers/AuthController->register(): POST Data: " . json_encode($_POST, JSON_PRETTY_PRINT));
         $this->logger->debug("Controllers/AuthController->register(): FILES Data: " . json_encode($profilePicture, JSON_PRETTY_PRINT));
 
-        // Save post
         try {
+            // Create new user
             $newUser = $this->userModel->createUser(
                 $email, 
                 $password, 
                 $fullName, 
                 $dateOfBirth,
-                $profilePicture ?? null
+                $profilePicture
             );
-        }catch (Exception $e){
-            $this->logger->error("Controllers/AuthController->register(): error: " . $e->getMessage());
-        }
-        
-        if ($newUser && $newUser['success'] && isset($newUser['profileDTO'])) {
-            // Create session
-            $this->session->create($newUser['profileDTO']);
-            echo json_encode(['success' => true, 'message' => 'User and Profile created successfully']);
-        } else {
-            if (isset($newUser['message'])){
-                $message = $newUser['message'];
+
+            if ($newUser && $newUser['success'] && isset($newUser['profileDTO'])) {
+                $this->session->create($newUser['profileDTO']);
+                http_response_code(201);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true, 'message' => 'User and Profile created successfully']);
+            } else {
+                $message = $newUser['message'] ?? 'Failed to register';
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => $message]);
             }
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => $message ?? 'Failed to register']);
+        } catch (Exception $e) {
+            $this->logger->error("Controllers/AuthController->register(): error: " . $e->getMessage());
+            $this->sendInternalServerError();
         }
     }
 
-    public function logout(){
+    /**
+     * Handle user logout.
+     * Terminates session and redirects to login page.
+     */
+    public function logout()
+    {
         if ($this->session->exists()) {
-            // User is logged in
             $this->logger->debug("Controllers/AuthController->logout(): Terminate session for profileId: " . $this->session->getProfileId());
             $this->session->destroy();
         }

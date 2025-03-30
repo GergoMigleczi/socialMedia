@@ -18,9 +18,9 @@ class PostComponent {
         AssetManager::addStyle('carousel-style', '/socialMedia/public/assets/css/carousel.css');
         AssetManager::addStyle('comment-style', '/socialMedia/public/assets/css/comment.css');
 
-        AssetManager::addScript('comment-script', '/socialMedia/public/assets/js/pages/comment.js');
-        AssetManager::addScript('like-script', '/socialMedia/public/assets/js/pages/like.js');
-        AssetManager::addScript('carousel-script', '/socialMedia/public/assets/js/pages/carousel.js');
+        AssetManager::addScript('comment-script', '/socialMedia/public/assets/js/components/comment.js');
+        AssetManager::addScript('like-script', '/socialMedia/public/assets/js/components/like.js');
+        AssetManager::addScript('carousel-script', '/socialMedia/public/assets/js/components/carousel.js');
 
     }
     

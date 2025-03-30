@@ -2,10 +2,7 @@
 namespace Controllers;
 
 use Core\Controller;
-use Core\View;
 use Models\Friend;
-use Models\Post;
-use Models\Profile;
 use Models\ProfileBlocking;
 
 class BlockingController extends Controller

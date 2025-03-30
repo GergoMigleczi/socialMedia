@@ -7,6 +7,7 @@ use Models\Friend;
 use Models\Post;
 use Models\Profile;
 use Models\ProfileBlocking;
+use Models\ProfileReport;
 
 class ProfileController extends Controller
 {        
@@ -15,6 +16,7 @@ class ProfileController extends Controller
     private $postModel;
     private $friendModel;
     private $profileBlockingModel;
+    private $profileReportModel;
     public function __construct()
     {
         parent::__construct($this->logFile);
@@ -22,6 +24,7 @@ class ProfileController extends Controller
         $this->postModel = new Post($this->logFile);
         $this->friendModel = new Friend($this->logFile);
         $this->profileBlockingModel = new ProfileBlocking($this->logFile);
+        $this->profileReportModel = new ProfileReport($this->logFile);
     }  
 
     public function showProfile($profileId)
@@ -54,7 +57,7 @@ class ProfileController extends Controller
         }
         // Get Posts
         $posts = $this->postModel->getProfilesPosts($profileId, $this->session->getProfileId());
-
+        $reportOptions = $this->profileReportModel->getReportOptions();
         
         // Render the login view
         View::render('pages/profile',
@@ -67,7 +70,8 @@ class ProfileController extends Controller
             'displayFriendBtn' => $displayFriendBtn ?? false,
             'isBlockedByLoggedInProfile' => $isBlockedByLoggedInProfile ?? false,
             'isLoggedInProfileBlocked' => $isLoggedInProfileBlocked ?? false,
-            'displayChatBtn' => $displayChatBtn ?? false
+            'displayChatBtn' => $displayChatBtn ?? false,
+            'reportOptions' => $reportOptions
         ]);
     }
 }

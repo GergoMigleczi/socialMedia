@@ -14,7 +14,7 @@ class FriendCardComponent {
     }
     
     private static function registerAssets() {
-        AssetManager::addScript('friendCard-script', '/socialMedia/public/assets/js/pages/friendCard.js');
+        AssetManager::addScript('friendCard-script', '/socialMedia/public/assets/js/components/friendCard.js');
     }
     
     public static function render($friend) {

@@ -4,7 +4,7 @@ import {
 } from '../modules/carouselCore.js';
 
 import {
-    sendPostRequest
+    createPost
 } from '../modules/postCore.js';
 
 import{
@@ -12,12 +12,15 @@ import{
     getAddress
 } from '../modules/location.js';
 
+import { showFeedbackMessage } from '../modules/feedback.js';
+
+
 // File tracker to maintain state between carousel and form data
 let fileTracker = {};
 
 document.addEventListener('DOMContentLoaded', function() {    
     // Set up file upload functionality
-    setupFileUploadHandling();
+    document.getElementById('fileUpload').addEventListener('change', handleFileUpload);
 
     // Submit post event listener
     document.getElementById('newPostForm').addEventListener('submit', handlePostSubmission);
@@ -26,16 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('current-location-btn').addEventListener('click', handleCurrentLocation);
 
 });
-
-/**
- * Set up file upload event listeners and handling
- */
-function setupFileUploadHandling() {
-    const fileUploadInput = document.getElementById('fileUpload');
-    if (!fileUploadInput) return;
-    
-    fileUploadInput.addEventListener('change', handleFileUpload);
-}
 
 /**
  * Handle file upload event
@@ -114,6 +107,10 @@ function handleImageRemoval(slideToRemove) {
     }
 }
 
+/**
+ * Handle post submission event
+ * @param {Event} e - The change event
+ */
 async function handlePostSubmission(event) {
     event.preventDefault();
     
@@ -128,12 +125,26 @@ async function handlePostSubmission(event) {
         formData.append('media[]', file);
     });
     
-    const result = await sendPostRequest(formData);
-    if(result['success']){
-        window.location.pathname = window.location.pathname.replace("/addPost", "/home");
+    try{
+        const result = await createPost(formData);
+        if(result['success']){
+            showFeedbackMessage('Post created', 'succes')
+            setTimeout(() => {
+                window.location.pathname = window.location.pathname.replace("/addPost", "/home");
+            }, 500);
+        }else{
+            throw new Error(result['message'])
+        }
+    }catch(error){
+        showFeedbackMessage(error.message, 'danger')
     }
+    
 }
 
+/**
+ * Handle button click to get current location
+ * @param {Event} e - The change event
+ */
 async function handleCurrentLocation(event) {
     try {
         let position = await getUserLocation();
@@ -149,12 +160,11 @@ async function handleCurrentLocation(event) {
         if(address){
             document.getElementById('location').value = address
         }else{
-            alert('Current location not found')
+            showFeedbackMessage('Current location not found', 'danger')
         }
     } catch (error) {
-        alert(error.message)
+        showFeedbackMessage(error.message, 'danger')
         console.error("Error getting location:", error);
-        return null;
     }
 }
 

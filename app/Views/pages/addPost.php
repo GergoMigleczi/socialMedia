@@ -5,7 +5,7 @@ use Core\AssetManager;
 // Add Page's styles and scripts
 AssetManager::addStyle('carousel-style', '/socialMedia/public/assets/css/carousel.css');
 AssetManager::addStyle('addPost-style', '/socialMedia/public/assets/css/addPost.css');
-AssetManager::addScript('carousel-script', '/socialMedia/public/assets/js/pages/carousel.js');
+AssetManager::addScript('carousel-script', '/socialMedia/public/assets/js/components/carousel.js');
 AssetManager::addScript('addPost-script', '/socialMedia/public/assets/js/pages/addPost.js');
 
 ?>

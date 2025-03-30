@@ -71,11 +71,11 @@ class User extends Model{
         if (!$row) {
             return false;
         }
-        //$this->logger->debug("Models/User(): row: ". $row);
+        $this->logger->debug("Models/User->login: row: ". $row);
         
         // Verify password
         if (password_verify($password, $row->password)) {
-            $this->logger->debug("Models/User()->login($email, $password): login success");
+            $this->logger->debug("Models/User->login($email, $password): login success");
             // Set properties
             $profileDTO = new ProfileDTO(id: $row->profile_id,
                 fullName: $row->full_name,

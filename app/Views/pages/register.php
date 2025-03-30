@@ -26,6 +26,7 @@ AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');
                                     id="email" 
                                     name="email" 
                                     placeholder="Email" 
+                                    autocomplete="email"
                                     required
                                 >
                             </div>
@@ -37,6 +38,7 @@ AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');
                                     id="first-name" 
                                     name="firstName" 
                                     placeholder="First Name" 
+                                    autocomplete="first-name"
                                     required
                                 >
                             </div>
@@ -47,7 +49,8 @@ AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');
                                     class="form-control form-control-lg py-2 px-4" 
                                     id="last-name" 
                                     name="lastName" 
-                                    placeholder="Last Name" 
+                                    placeholder="Last Name"
+                                    autocomplete="last-name" 
                                     required
                                 >
                             </div>
@@ -59,6 +62,7 @@ AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');
                                     id="date-of-birth" 
                                     name="dateOfBirth" 
                                     placeholder="Date of Birth" 
+                                    autocomplete="date-of-birth"
                                     required
                                 >
                             </div>
@@ -69,8 +73,8 @@ AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');
                                     class="form-control form-control-lg py-2 px-4" 
                                     id="password" 
                                     name="password" 
-                                    autocomplete="new-password"
                                     placeholder="Password" 
+                                    autocomplete="new-password"
                                     required
                                 >
                             </div>

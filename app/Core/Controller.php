@@ -93,4 +93,35 @@ class Controller
         }
         return $currentProfileId;
     }
+
+    protected function enforceRequestMethod(string $expectedMethod){
+        if ($_SERVER['REQUEST_METHOD'] !== $expectedMethod) {
+            http_response_code(405);
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => false,
+                'message' => 'Method Not Allowed'
+            ]);
+            exit;
+        }
+    }
+
+    protected function enforceContentType($contentType, $expectedContentType){
+        if (strpos($contentType, $expectedContentType) === false) {
+            http_response_code(415); // Unsupported Media Type
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Unsupported Content-Type.']);
+            exit;
+        }
+    }
+
+    protected function sendInternalServerError($message = ''){
+        http_response_code(500);
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => false,
+            'message' => $message || 'Internal server error'
+        ]);
+        exit;
+    }
 }
