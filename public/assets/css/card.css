@@ -1,0 +1,6 @@
+.card-hover {
+    transition: background-color 0.3s;
+}
+.card-hover:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

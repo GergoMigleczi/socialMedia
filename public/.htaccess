@@ -1,0 +1,46 @@
+# Prevent directory listing
+Options -Indexes
+
+# Enable URL rewriting
+RewriteEngine On
+
+# Base directory - modify if your application is in a subdirectory
+# RewriteBase /socialMedia/public/
+
+# Redirect to index.php if the requested file/directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Add security headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Enable XSS protection in browsers
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Disable access to hidden files and directories
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect sensitive files
+<FilesMatch "^(composer\.json|composer\.lock|\.htaccess)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Proper MIME type for CSS files
+AddType text/css .css
+
+# Proper MIME type for JavaScript files
+AddType application/javascript .js
+
+# If you're using ES modules with import/export
+AddType application/javascript .mjs

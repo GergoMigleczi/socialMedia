@@ -1,0 +1,20 @@
+.small-profile-picture{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;  
+  object-fit: cover;  
+  display: block;
+  overflow: hidden;  
+}
+
+.small-profile-picture:hover{
+    border: 1px solid black;
+}
+
+.profile-name{
+    transition: text-decoration 0.3s;
+}
+
+.profile-name:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,13 @@
+.post-image {
+    max-width: 100%;
+    height: auto;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.post-image i {
+    font-size: 3rem;
+    color: #6c757d;
+}

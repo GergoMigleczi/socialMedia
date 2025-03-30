@@ -1,0 +1,12 @@
+/* Make sure main fills available space but doesn't overflow */
+main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--header-height));
+    overflow: hidden;
+  }
+  
+/* Define header height variable (adjust this value to match your header height) */
+:root {
+  --header-height: 60px; /* Replace with your actual header height */
+}

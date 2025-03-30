@@ -1,0 +1,4 @@
+/* Custom CSS to ensure full height and centered content */
+html, body, main {
+    height: 100%;
+}

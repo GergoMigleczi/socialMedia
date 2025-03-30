@@ -1,0 +1,1593 @@
+[2025-03-24 23:04:44] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-24 23:04:44] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-24 23:04:44] [DEBUG] Models/Friends->getFriendStatus(2, 6)
+[2025-03-24 23:04:44] [DEBUG] Models/Friends->isFriend(2, 6)
+[2025-03-24 23:04:44] [DEBUG] {
+    "status": "declined",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:04:44] [DEBUG] None
+[2025-03-24 23:04:44] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 2
+[2025-03-24 23:07:41] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-24 23:07:41] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-24 23:07:41] [DEBUG] Models/Friends->getFriendStatus(2, 6)
+[2025-03-24 23:07:41] [DEBUG] Models/Friends->isFriend(2, 6)
+[2025-03-24 23:07:41] [DEBUG] {
+    "status": "declined",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:07:41] [DEBUG] None
+[2025-03-24 23:07:41] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 2
+[2025-03-24 23:08:07] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:08:07] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:08:07] [DEBUG] Models/Friends->getFriendStatus(6, 2)
+[2025-03-24 23:08:07] [DEBUG] Models/Friends->isFriend(6, 2)
+[2025-03-24 23:08:07] [DEBUG] {
+    "status": "declined",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:08:07] [DEBUG] None
+[2025-03-24 23:08:07] [DEBUG] Models/Post->getProfilesPosts(6, 2): row: 6
+[2025-03-24 23:12:02] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:12:02] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:12:02] [DEBUG] Models/Friends->getFriendStatus(6, 2)
+[2025-03-24 23:12:02] [DEBUG] Models/Friends->isFriend(6, 2)
+[2025-03-24 23:12:02] [DEBUG] None
+[2025-03-24 23:12:02] [DEBUG] Models/Post->getProfilesPosts(6, 2): row: 6
+[2025-03-24 23:12:19] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:12:19] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:12:19] [DEBUG] Models/Friends->getFriendStatus(6, 2)
+[2025-03-24 23:12:19] [DEBUG] Models/Friends->isFriend(6, 2)
+[2025-03-24 23:12:19] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:12:19] [DEBUG] Sent
+[2025-03-24 23:12:19] [DEBUG] Models/Post->getProfilesPosts(6, 2): row: 6
+[2025-03-24 23:12:33] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-24 23:12:33] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-24 23:12:33] [DEBUG] Models/Friends->getFriendStatus(2, 6)
+[2025-03-24 23:12:33] [DEBUG] Models/Friends->isFriend(2, 6)
+[2025-03-24 23:12:33] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:12:33] [DEBUG] Received
+[2025-03-24 23:12:33] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 2
+[2025-03-24 23:12:46] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:12:46] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:12:46] [DEBUG] Models/Friends->getFriendStatus(6, 2)
+[2025-03-24 23:12:46] [DEBUG] Models/Friends->isFriend(6, 2)
+[2025-03-24 23:12:46] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 6,
+    "receiver_profile_id": 2
+}
+[2025-03-24 23:12:46] [DEBUG] Received
+[2025-03-24 23:12:47] [DEBUG] Models/Post->getProfilesPosts(6, 2): row: 6
+[2025-03-24 23:12:58] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:12:58] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:12:58] [DEBUG] Models/Friends->getFriendStatus(6, 2)
+[2025-03-24 23:12:58] [DEBUG] Models/Friends->isFriend(6, 2)
+[2025-03-24 23:12:58] [DEBUG] Friends
+[2025-03-24 23:12:58] [DEBUG] Models/Post->getProfilesPosts(6, 2): row: 6
+[2025-03-24 23:13:12] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-24 23:13:12] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-24 23:13:12] [DEBUG] Models/Friends->getFriendStatus(2, 6)
+[2025-03-24 23:13:12] [DEBUG] Models/Friends->isFriend(2, 6)
+[2025-03-24 23:13:12] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 6
+}
+[2025-03-24 23:13:12] [DEBUG] Received
+[2025-03-24 23:13:12] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 2
+[2025-03-24 23:13:20] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:13:20] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:13:20] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:13:20] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-24 23:13:24] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:13:24] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:13:24] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:13:24] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-24 23:14:35] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:14:35] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:14:35] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:14:35] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-24 23:14:41] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:14:41] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:14:41] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:14:41] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-24 23:14:44] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-24 23:14:44] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-24 23:14:44] [DEBUG] Models/Friends->getFriendStatus(2, 6)
+[2025-03-24 23:14:44] [DEBUG] Models/Friends->isFriend(2, 6)
+[2025-03-24 23:14:44] [DEBUG] Friends
+[2025-03-24 23:14:44] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 2
+[2025-03-24 23:14:44] [DEBUG] Models/Post->getProfilesPosts(2, 6): row: 8
+[2025-03-24 23:14:46] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:14:46] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:14:46] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:14:46] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-24 23:14:50] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-24 23:14:50] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-24 23:14:50] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 6
+[2025-03-24 23:14:50] [DEBUG] Models/Post->getProfilesPosts(6, 6): row: 12
+[2025-03-26 19:40:40] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 19:40:40] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 19:40:40] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 19:40:40] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 19:40:44] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-26 19:40:44] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-26 19:40:44] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-26 19:40:44] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-26 19:40:44] [DEBUG] Friends
+[2025-03-26 19:40:44] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-26 19:41:09] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 19:41:09] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 19:41:09] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 19:41:09] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:47:28] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:47:28] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:47:28] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:47:28] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:47:34] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:47:34] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:47:34] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:47:34] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:47:40] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:47:40] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:47:40] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:47:40] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:47:45] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-26 20:47:45] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-26 20:47:45] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-26 20:47:45] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-26 20:47:45] [DEBUG] None
+[2025-03-26 20:47:45] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-26 20:49:06] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-26 20:49:06] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-26 20:49:06] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-26 20:49:06] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-26 20:49:06] [DEBUG] None
+[2025-03-26 20:49:06] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-26 20:49:09] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-26 20:49:09] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-26 20:49:09] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-26 20:49:09] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-26 20:49:09] [DEBUG] None
+[2025-03-26 20:49:09] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-26 20:49:17] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-26 20:49:17] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-26 20:49:17] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-26 20:49:17] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-26 20:49:17] [DEBUG] None
+[2025-03-26 20:49:17] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-26 20:49:21] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-26 20:49:21] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-26 20:49:21] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-26 20:49:21] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-26 20:49:21] [DEBUG] None
+[2025-03-26 20:49:21] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-26 20:49:28] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 20:49:28] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 20:49:28] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-26 20:49:28] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-26 20:49:28] [DEBUG] None
+[2025-03-26 20:49:28] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 13
+[2025-03-26 20:49:28] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-26 20:49:31] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:49:31] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:49:31] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:49:31] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:49:42] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:49:42] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:49:42] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-26 20:49:42] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-26 20:49:42] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-26 20:49:42] [DEBUG] Received
+[2025-03-26 20:49:42] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-26 20:49:46] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 20:49:46] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 20:49:46] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 20:49:46] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 20:49:46] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 20:49:50] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 20:49:50] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 20:49:50] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 20:49:50] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 20:49:50] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 20:49:57] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:49:57] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:49:57] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:49:57] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 20:49:59] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 20:49:59] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 20:49:59] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 20:49:59] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:05:38] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:05:38] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:05:38] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:05:38] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:05:38] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:05:38] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:05:38] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:05:38] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:05:44] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:05:44] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:05:44] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:05:44] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:05:47] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:05:47] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:05:47] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:05:47] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:05:49] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:05:49] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:05:49] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-26 21:05:49] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-26 21:05:49] [DEBUG] None
+[2025-03-26 21:05:49] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 13
+[2025-03-26 21:05:49] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-26 21:06:39] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:06:39] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:06:39] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-26 21:06:39] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-26 21:06:39] [DEBUG] None
+[2025-03-26 21:06:39] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 13
+[2025-03-26 21:06:39] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-26 21:07:24] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:07:24] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:07:24] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-26 21:07:24] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-26 21:07:24] [DEBUG] None
+[2025-03-26 21:07:25] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 13
+[2025-03-26 21:07:25] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-26 21:07:30] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:07:30] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:07:30] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:07:30] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:07:32] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:07:32] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:07:32] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 21:07:32] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 21:07:39] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-26 21:07:39] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-26 21:07:39] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-26 21:07:39] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-26 21:07:39] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 3
+}
+[2025-03-26 21:07:39] [DEBUG] Sent
+[2025-03-26 21:07:39] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-26 21:07:43] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:07:43] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:07:43] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-26 21:07:43] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-26 21:07:43] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-26 21:07:43] [DEBUG] Sent
+[2025-03-26 21:07:43] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 13
+[2025-03-26 21:07:43] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-26 21:08:00] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:08:00] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:08:00] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-26 21:08:00] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-26 21:08:00] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-26 21:08:00] [DEBUG] Received
+[2025-03-26 21:08:00] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-26 21:08:03] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:08:03] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:08:03] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 21:08:03] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 21:08:03] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 21:12:14] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:12:14] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:12:14] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 21:12:14] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 21:12:14] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 21:27:35] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 21:27:35] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 21:27:35] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-26 21:27:35] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-26 21:27:35] [DEBUG] Friends
+[2025-03-26 21:27:35] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-26 21:27:35] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 8
+[2025-03-26 21:28:13] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 21:28:13] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 21:28:13] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 21:28:13] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 21:28:13] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 22:02:30] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-26 22:02:30] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-26 22:02:30] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 13
+[2025-03-26 22:02:30] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-26 22:02:30] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-26 23:10:08] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 23:10:08] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 23:10:08] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 23:10:08] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-26 23:11:45] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-26 23:11:45] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-26 23:11:45] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-26 23:11:45] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 19:37:36] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 19:37:36] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 19:37:36] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 19:37:36] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 19:37:42] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 19:37:42] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 19:37:42] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 19:37:42] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 19:37:57] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 19:37:57] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 19:37:57] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 19:37:57] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 19:38:07] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 19:38:07] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 19:38:07] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 19:38:07] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 19:38:07] [DEBUG] Friends
+[2025-03-27 19:38:07] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 19:38:07] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-27 19:56:47] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 19:56:47] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 19:56:47] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 19:56:47] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 22:23:25] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 22:23:25] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 22:23:25] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 22:23:25] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 23:08:27] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 23:08:27] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 23:08:27] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 23:08:27] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 23:08:35] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 23:08:35] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 23:08:35] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 23:08:35] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 23:08:35] [DEBUG] Friends
+[2025-03-27 23:08:35] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 23:08:35] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-27 23:08:50] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-27 23:08:50] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-27 23:08:50] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-27 23:08:50] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-27 23:13:36] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 23:13:36] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 23:13:36] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 23:13:36] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 23:13:36] [DEBUG] Friends
+[2025-03-27 23:13:36] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 23:13:36] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-27 23:13:44] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 23:13:44] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 23:13:44] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 23:13:44] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 23:13:44] [DEBUG] Friends
+[2025-03-27 23:13:44] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 23:13:44] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-27 23:13:53] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-27 23:13:53] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-27 23:13:53] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-27 23:13:53] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-27 23:13:53] [DEBUG] Friends
+[2025-03-27 23:13:53] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-27 23:13:53] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-27 23:13:56] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-27 23:13:56] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-27 23:13:56] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-27 23:13:56] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-27 23:13:56] [DEBUG] Friends
+[2025-03-27 23:13:56] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-27 23:13:56] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-27 23:20:11] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 23:20:11] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 23:20:11] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 23:20:11] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 23:20:11] [DEBUG] Friends
+[2025-03-27 23:20:11] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 23:20:11] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-27 23:20:56] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-27 23:20:56] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-27 23:20:56] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-27 23:20:56] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-27 23:20:56] [DEBUG] Friends
+[2025-03-27 23:20:56] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-27 23:20:56] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-28 20:41:07] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 20:41:07] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 20:41:07] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-28 20:41:07] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-28 20:41:11] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:41:11] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:41:11] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:41:11] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:41:11] [DEBUG] Friends
+[2025-03-28 20:41:11] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 20:41:11] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-28 20:41:32] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:41:32] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:41:32] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:41:32] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:41:32] [DEBUG] Friends
+[2025-03-28 20:41:32] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 20:41:32] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-28 20:42:10] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:42:10] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:42:10] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:42:10] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:42:10] [DEBUG] Friends
+[2025-03-28 20:42:10] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 20:42:10] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-28 20:42:55] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 20:42:55] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 20:42:55] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-28 20:42:55] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-28 20:42:59] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 20:42:59] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 20:42:59] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-28 20:42:59] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-28 20:43:01] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 20:43:01] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 20:43:01] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-28 20:43:01] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-28 20:43:04] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:43:04] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:43:04] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:43:04] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:43:04] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-28 20:43:04] [DEBUG] Sent
+[2025-03-28 20:43:04] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 20:49:43] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:49:43] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:49:43] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:49:43] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:49:43] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-28 20:49:43] [DEBUG] Sent
+[2025-03-28 20:49:43] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 20:52:42] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 20:52:42] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 20:52:42] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 20:52:42] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 20:52:42] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-28 20:52:42] [DEBUG] Sent
+[2025-03-28 20:52:42] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 21:07:44] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 21:07:44] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 21:07:44] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 21:07:44] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 21:07:44] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-28 21:07:44] [DEBUG] Sent
+[2025-03-28 21:07:44] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 21:07:59] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 21:07:59] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 21:07:59] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-28 21:07:59] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-28 21:07:59] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-28 21:07:59] [DEBUG] Sent
+[2025-03-28 21:07:59] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-28 21:08:02] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-28 21:08:02] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-28 21:08:02] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-28 21:08:02] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-28 21:08:02] [DEBUG] Friends
+[2025-03-28 21:08:02] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-28 21:08:02] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 11
+[2025-03-28 21:09:07] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-28 21:09:07] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-28 21:09:07] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-28 21:09:07] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-28 21:09:07] [DEBUG] None
+[2025-03-28 21:09:07] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-28 21:09:09] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-28 21:09:09] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-28 21:09:09] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-28 21:09:09] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-28 21:09:09] [DEBUG] None
+[2025-03-28 21:09:09] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-28 21:15:12] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-28 21:15:12] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-28 21:15:12] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-28 21:15:12] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-28 21:15:12] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 5
+}
+[2025-03-28 21:15:12] [DEBUG] Sent
+[2025-03-28 21:15:12] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-28 21:15:19] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:15:19] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:15:19] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:15:19] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:15:19] [DEBUG] Friends
+[2025-03-28 21:15:19] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:16:50] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:16:50] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:16:50] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:16:50] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:16:50] [DEBUG] Friends
+[2025-03-28 21:16:50] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:17:19] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:17:19] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:17:19] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:17:19] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:17:19] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 3
+}
+[2025-03-28 21:17:19] [DEBUG] Received
+[2025-03-28 21:17:19] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:17:24] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:17:24] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:17:24] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:17:24] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:17:24] [DEBUG] Friends
+[2025-03-28 21:17:24] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:17:24] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 8
+[2025-03-28 21:23:39] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:23:39] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:23:39] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 3
+[2025-03-28 21:23:39] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 9
+[2025-03-28 21:23:48] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:23:48] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:23:48] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:23:48] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:23:48] [DEBUG] None
+[2025-03-28 21:23:48] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:25:40] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:25:40] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:25:40] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:25:40] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:25:40] [DEBUG] None
+[2025-03-28 21:25:40] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:27:17] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:27:17] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:27:17] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:27:17] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:27:17] [DEBUG] None
+[2025-03-28 21:27:17] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:29:22] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:29:22] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:29:22] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:29:22] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:29:22] [DEBUG] None
+[2025-03-28 21:29:22] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:29:55] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:29:55] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:29:55] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:29:55] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:29:55] [DEBUG] None
+[2025-03-28 21:29:55] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:31:36] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:31:36] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:31:36] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:31:36] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:31:36] [DEBUG] None
+[2025-03-28 21:31:36] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:31:46] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-28 21:31:46] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-28 21:31:46] [DEBUG] Models/Friends->getFriendStatus(6, 3)
+[2025-03-28 21:31:46] [DEBUG] Models/Friends->isFriend(6, 3)
+[2025-03-28 21:31:46] [DEBUG] None
+[2025-03-28 21:31:46] [DEBUG] Models/Post->getProfilesPosts(6, 3): row: 6
+[2025-03-28 21:32:04] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:32:04] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:32:04] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:32:04] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:32:04] [DEBUG] Friends
+[2025-03-28 21:32:04] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:32:04] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 8
+[2025-03-28 21:32:07] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:32:07] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:32:07] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:32:07] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:32:07] [DEBUG] Friends
+[2025-03-28 21:32:07] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:32:07] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 8
+[2025-03-28 21:32:22] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:32:22] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:32:22] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:32:22] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:32:22] [DEBUG] Friends
+[2025-03-28 21:32:22] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:32:38] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:32:38] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:32:38] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:32:38] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:32:38] [DEBUG] Friends
+[2025-03-28 21:32:38] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:32:39] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:32:39] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:32:39] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:32:39] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:32:39] [DEBUG] Friends
+[2025-03-28 21:32:39] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:32:49] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:32:49] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:32:49] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-28 21:32:49] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-28 21:32:49] [DEBUG] None
+[2025-03-28 21:32:49] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-28 21:33:08] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:33:08] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:33:08] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:33:08] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:33:08] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 3
+}
+[2025-03-28 21:33:08] [DEBUG] Received
+[2025-03-28 21:33:08] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:33:20] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:33:20] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:33:20] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 3
+[2025-03-28 21:33:20] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 9
+[2025-03-28 21:33:29] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-28 21:33:29] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-28 21:33:29] [DEBUG] Models/Friends->getFriendStatus(2, 3)
+[2025-03-28 21:33:29] [DEBUG] Models/Friends->isFriend(2, 3)
+[2025-03-28 21:33:29] [DEBUG] Friends
+[2025-03-28 21:33:29] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 2
+[2025-03-28 21:33:29] [DEBUG] Models/Post->getProfilesPosts(2, 3): row: 8
+[2025-03-28 21:34:02] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:34:02] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:34:02] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 3
+[2025-03-28 21:34:02] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 9
+[2025-03-28 21:34:10] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-28 21:34:10] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-28 21:34:10] [DEBUG] Models/Friends->getFriendStatus(4, 3)
+[2025-03-28 21:34:10] [DEBUG] Models/Friends->isFriend(4, 3)
+[2025-03-28 21:34:10] [DEBUG] None
+[2025-03-28 21:34:10] [DEBUG] Models/Post->getProfilesPosts(4, 3): row: 4
+[2025-03-28 21:34:55] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-28 21:34:55] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-28 21:34:55] [DEBUG] Models/Friends->getFriendStatus(1, 3)
+[2025-03-28 21:34:55] [DEBUG] Models/Friends->isFriend(1, 3)
+[2025-03-28 21:34:55] [DEBUG] Friends
+[2025-03-28 21:34:55] [DEBUG] Models/Post->getProfilesPosts(1, 3): row: 1
+[2025-03-28 21:34:55] [DEBUG] Models/Post->getProfilesPosts(1, 3): row: 7
+[2025-03-28 21:51:23] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:51:23] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:51:23] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 3
+[2025-03-28 21:51:23] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 9
+[2025-03-28 21:52:40] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-28 21:52:40] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-28 21:52:40] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 3
+[2025-03-28 21:52:40] [DEBUG] Models/Post->getProfilesPosts(3, 3): row: 9
+[2025-03-28 21:52:43] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-28 21:52:43] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-28 21:52:43] [DEBUG] Models/Friends->getFriendStatus(1, 3)
+[2025-03-28 21:52:43] [DEBUG] Models/Friends->isFriend(1, 3)
+[2025-03-28 21:52:43] [DEBUG] Friends
+[2025-03-28 21:52:43] [DEBUG] Models/Post->getProfilesPosts(1, 3): row: 1
+[2025-03-28 21:52:43] [DEBUG] Models/Post->getProfilesPosts(1, 3): row: 7
+[2025-03-29 15:19:04] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 15:19:04] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 15:19:04] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 15:19:04] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 15:19:04] [DEBUG] Friends
+[2025-03-29 15:19:04] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 15:19:04] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 17:24:12] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-29 17:24:12] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-29 17:24:12] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-29 17:24:12] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-29 17:24:12] [DEBUG] Friends
+[2025-03-29 17:24:12] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-29 17:24:12] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 11
+[2025-03-29 17:24:24] [DEBUG] Models/Profile->getProfileInfo(5): Getting profile info for ID: 5
+[2025-03-29 17:24:24] [DEBUG] Models/Profile->getProfileInfo(5): Profile found: Celia Mae
+[2025-03-29 17:24:24] [DEBUG] Models/Friends->getFriendStatus(5, 2)
+[2025-03-29 17:24:24] [DEBUG] Models/Friends->isFriend(5, 2)
+[2025-03-29 17:24:24] [DEBUG] Friends
+[2025-03-29 17:24:24] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 5
+[2025-03-29 17:24:24] [DEBUG] Models/Post->getProfilesPosts(5, 2): row: 11
+[2025-03-29 18:17:29] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 18:17:29] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 18:17:29] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 18:17:29] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 18:19:16] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:19:16] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:19:16] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:19:16] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:19:16] [DEBUG] Friends
+[2025-03-29 18:19:16] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:19:16] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 10
+[2025-03-29 18:25:54] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:25:54] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:25:54] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:25:54] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:25:54] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:25:54] [DEBUG] Sent
+[2025-03-29 18:25:54] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:32:43] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:32:43] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:32:43] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:32:43] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:32:43] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:32:43] [DEBUG] Sent
+[2025-03-29 18:32:43] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:35:09] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:35:09] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:35:09] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:35:09] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:35:09] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:35:09] [DEBUG] Sent
+[2025-03-29 18:35:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 18:35:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: blocked
+[2025-03-29 18:35:09] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:35:10] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:35:10] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:35:10] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:35:10] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:35:10] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:35:10] [DEBUG] Sent
+[2025-03-29 18:35:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 18:35:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: blocked
+[2025-03-29 18:35:10] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:35:25] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:35:25] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:35:25] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:35:25] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:35:25] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:35:25] [DEBUG] Sent
+[2025-03-29 18:35:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 18:35:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 18:35:25] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 18:35:39] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 18:35:39] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 18:35:39] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 18:35:39] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 18:35:39] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 18:35:39] [DEBUG] Sent
+[2025-03-29 18:35:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 18:35:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: blocked
+[2025-03-29 18:35:39] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:14:17] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:14:17] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:14:17] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:14:17] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:14:17] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:14:17] [DEBUG] Sent
+[2025-03-29 19:14:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:14:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: blocked
+[2025-03-29 19:14:17] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:20:59] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:20:59] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:20:59] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:20:59] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:20:59] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:20:59] [DEBUG] Sent
+[2025-03-29 19:20:59] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:20:59] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:20:59] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:20:59] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:20:59] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:22:24] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:22:24] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:22:24] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:22:24] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:22:24] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:22:24] [DEBUG] Sent
+[2025-03-29 19:22:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:22:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:22:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:22:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:22:24] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:22:45] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:22:45] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:22:45] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:22:45] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:22:45] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:22:45] [DEBUG] Sent
+[2025-03-29 19:22:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:22:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:22:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:22:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:22:45] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:22:50] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:22:50] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:22:50] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:22:50] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:22:50] [DEBUG] None
+[2025-03-29 19:22:50] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:22:50] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:22:50] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:22:50] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:22:50] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:22:58] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:22:58] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:22:58] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:22:58] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:22:58] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:22:58] [DEBUG] Sent
+[2025-03-29 19:22:58] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:22:58] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:22:58] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:22:58] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:22:58] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:05] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:05] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:05] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:05] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:05] [DEBUG] None
+[2025-03-29 19:23:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:05] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:12] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:12] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:12] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:12] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:12] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:23:12] [DEBUG] Sent
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:12] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:12] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:12] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:12] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:12] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:12] [DEBUG] None
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:12] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:13] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:13] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:13] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:13] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:13] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:23:13] [DEBUG] Sent
+[2025-03-29 19:23:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:13] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:14] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:14] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:14] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:14] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:14] [DEBUG] None
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:14] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:14] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:14] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:14] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:14] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:14] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:23:14] [DEBUG] Sent
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:14] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:15] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:15] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:15] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:15] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:15] [DEBUG] None
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:15] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:15] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:15] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:15] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:15] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:15] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:23:15] [DEBUG] Sent
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:15] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:16] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:16] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:16] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:16] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:16] [DEBUG] None
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:16] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:16] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:16] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:16] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:16] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:16] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 4
+}
+[2025-03-29 19:23:16] [DEBUG] Sent
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:16] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:23:18] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:23:18] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:23:18] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:23:18] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:23:18] [DEBUG] None
+[2025-03-29 19:23:18] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:23:18] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:23:18] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:23:18] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:23:18] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:24:14] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:24:14] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:24:14] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:24:14] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:24:14] [DEBUG] None
+[2025-03-29 19:24:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:24:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:24:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:24:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:24:14] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:31:44] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:31:44] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:31:44] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:31:44] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:31:44] [DEBUG] None
+[2025-03-29 19:31:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:31:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:31:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:31:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:31:44] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:33:09] [DEBUG] Models/Profile->getProfileInfo(4): Getting profile info for ID: 4
+[2025-03-29 19:33:09] [DEBUG] Models/Profile->getProfileInfo(4): Profile found: Boo
+[2025-03-29 19:33:09] [DEBUG] Models/Friends->getFriendStatus(4, 2)
+[2025-03-29 19:33:09] [DEBUG] Models/Friends->isFriend(4, 2)
+[2025-03-29 19:33:09] [DEBUG] None
+[2025-03-29 19:33:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Checking if profile is blocked
+[2025-03-29 19:33:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 4): Result: not blocked
+[2025-03-29 19:33:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Checking if profile is blocked
+[2025-03-29 19:33:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(4, 2): Result: not blocked
+[2025-03-29 19:33:09] [DEBUG] Models/Post->getProfilesPosts(4, 2): row: 4
+[2025-03-29 19:33:39] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-29 19:33:39] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-29 19:33:39] [DEBUG] Models/Friends->getFriendStatus(3, 2)
+[2025-03-29 19:33:39] [DEBUG] Models/Friends->isFriend(3, 2)
+[2025-03-29 19:33:39] [DEBUG] Friends
+[2025-03-29 19:33:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 3): Checking if profile is blocked
+[2025-03-29 19:33:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 3): Result: not blocked
+[2025-03-29 19:33:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 2): Checking if profile is blocked
+[2025-03-29 19:33:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 2): Result: not blocked
+[2025-03-29 19:33:39] [DEBUG] Models/Post->getProfilesPosts(3, 2): row: 3
+[2025-03-29 19:33:48] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:33:48] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:33:48] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:33:48] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:34:12] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:34:12] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:34:12] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:34:12] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:34:43] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:34:43] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:34:43] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:34:43] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:36:23] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:36:23] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:36:23] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:36:23] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:38:08] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:38:08] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:38:08] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:38:08] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:38:13] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 19:38:13] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 19:38:13] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 2
+[2025-03-29 19:38:13] [DEBUG] Models/Post->getProfilesPosts(2, 2): row: 8
+[2025-03-29 19:38:16] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:38:16] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:38:16] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:38:16] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:38:16] [DEBUG] Friends
+[2025-03-29 19:38:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:38:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:38:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:38:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:38:16] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:38:16] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:38:43] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:38:43] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:38:43] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:38:43] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:38:43] [DEBUG] Friends
+[2025-03-29 19:38:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:38:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:38:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:38:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:38:43] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:38:43] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:41:40] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:41:40] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:41:40] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:41:40] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:41:40] [DEBUG] Friends
+[2025-03-29 19:41:40] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:41:40] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 19:41:40] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:41:40] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:41:40] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:41:40] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:43:07] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:07] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:07] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:07] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:07] [DEBUG] Friends
+[2025-03-29 19:43:07] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:07] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 19:43:07] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:07] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:07] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:07] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:43:08] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:08] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:08] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:08] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:08] [DEBUG] Friends
+[2025-03-29 19:43:08] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:08] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:08] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:08] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:08] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:08] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:43:12] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:12] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:12] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:12] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:12] [DEBUG] Friends
+[2025-03-29 19:43:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 19:43:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:12] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:12] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:43:15] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:15] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:15] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:15] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:15] [DEBUG] Friends
+[2025-03-29 19:43:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:15] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:15] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:15] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 7
+[2025-03-29 19:43:16] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:16] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:16] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:16] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:16] [DEBUG] None
+[2025-03-29 19:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:16] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:17] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:17] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:17] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:17] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:17] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-29 19:43:17] [DEBUG] Sent
+[2025-03-29 19:43:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:17] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:17] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:24] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:24] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:24] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:24] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:24] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-29 19:43:24] [DEBUG] Sent
+[2025-03-29 19:43:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 19:43:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:24] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:24] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:29] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:29] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:29] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:29] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:29] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-29 19:43:29] [DEBUG] Sent
+[2025-03-29 19:43:29] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:29] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:29] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:29] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:29] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:34] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:34] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:34] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:34] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:34] [DEBUG] None
+[2025-03-29 19:43:34] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:34] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:34] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:34] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:34] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:35] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:35] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:35] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:35] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:35] [DEBUG] None
+[2025-03-29 19:43:35] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:35] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 19:43:35] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:35] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:35] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 19:43:44] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 19:43:44] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 19:43:44] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 19:43:44] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 19:43:44] [DEBUG] None
+[2025-03-29 19:43:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 19:43:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 19:43:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 19:43:44] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 19:43:44] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:04:19] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:04:19] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:04:19] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:04:19] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:04:19] [DEBUG] None
+[2025-03-29 20:04:19] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:04:19] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 20:04:19] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:04:19] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:04:19] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:18:10] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:18:10] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:18:10] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:18:10] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:18:10] [DEBUG] None
+[2025-03-29 20:18:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:18:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 20:18:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:18:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:18:10] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:19:10] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:19:10] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:19:10] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:19:10] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:19:10] [DEBUG] None
+[2025-03-29 20:19:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:19:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 20:19:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:19:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:19:10] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:20:01] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 20:20:01] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 20:20:01] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 20:20:01] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 20:20:01] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-29 20:20:01] [DEBUG] Received
+[2025-03-29 20:20:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:20:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:20:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:20:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 20:20:01] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 20:21:56] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:21:56] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:21:56] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:21:56] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:21:56] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 2,
+    "receiver_profile_id": 1
+}
+[2025-03-29 20:21:56] [DEBUG] Sent
+[2025-03-29 20:21:56] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:21:56] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 20:21:56] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:21:56] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:21:56] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:22:39] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:22:39] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:22:39] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:22:39] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:22:39] [DEBUG] None
+[2025-03-29 20:22:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:22:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 20:22:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:22:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:22:39] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 20:25:45] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 20:25:45] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 20:25:45] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 20:25:45] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 20:25:45] [DEBUG] None
+[2025-03-29 20:25:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 20:25:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 20:25:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 20:25:45] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 20:25:45] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 21:29:55] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 21:29:55] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 21:29:55] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 21:29:55] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 21:29:55] [DEBUG] None
+[2025-03-29 21:29:55] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:29:55] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 21:29:55] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:29:55] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:29:55] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 21:30:13] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 21:30:13] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 21:30:13] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 21:30:13] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 21:30:13] [DEBUG] None
+[2025-03-29 21:30:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:30:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 21:30:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:30:13] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:30:13] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 21:34:23] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 21:34:23] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 21:34:23] [DEBUG] Models/Friends->getFriendStatus(1, 2)
+[2025-03-29 21:34:23] [DEBUG] Models/Friends->isFriend(1, 2)
+[2025-03-29 21:34:23] [DEBUG] None
+[2025-03-29 21:34:23] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:34:23] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: not blocked
+[2025-03-29 21:34:23] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:34:23] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:34:23] [DEBUG] Models/Post->getProfilesPosts(1, 2): row: 1
+[2025-03-29 21:36:25] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:36:25] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:36:25] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:36:25] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:36:25] [DEBUG] None
+[2025-03-29 21:36:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:36:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:36:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:36:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:36:25] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:48:09] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:48:09] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:48:09] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:48:09] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:48:09] [DEBUG] None
+[2025-03-29 21:48:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:48:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:48:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:48:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:48:09] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:48:11] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:48:11] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:48:11] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:48:11] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:48:11] [DEBUG] None
+[2025-03-29 21:48:11] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:48:11] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:48:11] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:48:11] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:48:11] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:48:20] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:48:20] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:48:20] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:48:20] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:48:20] [DEBUG] None
+[2025-03-29 21:48:20] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:48:20] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:48:20] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:48:20] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:48:20] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:49:10] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:49:10] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:49:10] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:49:10] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:49:10] [DEBUG] None
+[2025-03-29 21:49:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:49:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:49:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:49:10] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:49:10] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:51:02] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:51:02] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:51:02] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:51:02] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:51:02] [DEBUG] None
+[2025-03-29 21:51:02] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:51:02] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:51:02] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:51:02] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:51:02] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:51:46] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:51:46] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:51:46] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:51:46] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:51:46] [DEBUG] None
+[2025-03-29 21:51:46] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:51:46] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:51:46] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:51:46] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:51:46] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:52:25] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:52:25] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:52:25] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:52:25] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:52:25] [DEBUG] None
+[2025-03-29 21:52:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:52:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:52:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:52:25] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:52:25] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 21:55:01] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 21:55:01] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 21:55:01] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 21:55:01] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 21:55:01] [DEBUG] None
+[2025-03-29 21:55:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 21:55:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 21:55:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 21:55:01] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 21:55:01] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 23:40:12] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 23:40:12] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 23:40:12] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 23:40:12] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 23:40:12] [DEBUG] None
+[2025-03-29 23:40:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 23:40:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 23:40:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 23:40:12] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 23:40:12] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 23:40:39] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-29 23:40:39] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-29 23:40:39] [DEBUG] Models/Friends->getFriendStatus(3, 1)
+[2025-03-29 23:40:39] [DEBUG] Models/Friends->isFriend(3, 1)
+[2025-03-29 23:40:39] [DEBUG] Friends
+[2025-03-29 23:40:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Checking if profile is blocked
+[2025-03-29 23:40:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Result: not blocked
+[2025-03-29 23:40:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Checking if profile is blocked
+[2025-03-29 23:40:39] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Result: not blocked
+[2025-03-29 23:40:39] [DEBUG] Models/Post->getProfilesPosts(3, 1): row: 3
+[2025-03-29 23:40:53] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-29 23:40:53] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-29 23:40:53] [DEBUG] Models/Friends->getFriendStatus(3, 1)
+[2025-03-29 23:40:53] [DEBUG] Models/Friends->isFriend(3, 1)
+[2025-03-29 23:40:53] [DEBUG] None
+[2025-03-29 23:40:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Checking if profile is blocked
+[2025-03-29 23:40:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Result: blocked
+[2025-03-29 23:40:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Checking if profile is blocked
+[2025-03-29 23:40:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Result: not blocked
+[2025-03-29 23:40:53] [DEBUG] Models/Post->getProfilesPosts(3, 1): row: 3
+[2025-03-29 23:41:57] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-29 23:41:57] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-29 23:41:57] [DEBUG] Models/Friends->getFriendStatus(6, 1)
+[2025-03-29 23:41:57] [DEBUG] Models/Friends->isFriend(6, 1)
+[2025-03-29 23:41:57] [DEBUG] Friends
+[2025-03-29 23:41:57] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Checking if profile is blocked
+[2025-03-29 23:41:57] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Result: not blocked
+[2025-03-29 23:41:57] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Checking if profile is blocked
+[2025-03-29 23:41:57] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Result: not blocked
+[2025-03-29 23:41:57] [DEBUG] Models/Post->getProfilesPosts(6, 1): row: 6
+[2025-03-29 23:42:00] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-29 23:42:00] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-29 23:42:00] [DEBUG] Models/Friends->getFriendStatus(6, 1)
+[2025-03-29 23:42:00] [DEBUG] Models/Friends->isFriend(6, 1)
+[2025-03-29 23:42:00] [DEBUG] Friends
+[2025-03-29 23:42:00] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Checking if profile is blocked
+[2025-03-29 23:42:00] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Result: not blocked
+[2025-03-29 23:42:00] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Checking if profile is blocked
+[2025-03-29 23:42:00] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Result: not blocked
+[2025-03-29 23:42:00] [DEBUG] Models/Post->getProfilesPosts(6, 1): row: 6
+[2025-03-29 23:43:06] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 23:43:06] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 23:43:06] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 1
+[2025-03-29 23:43:06] [DEBUG] Models/Post->getProfilesPosts(1, 1): row: 7
+[2025-03-29 23:43:09] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-29 23:43:09] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-29 23:43:09] [DEBUG] Models/Friends->getFriendStatus(6, 1)
+[2025-03-29 23:43:09] [DEBUG] Models/Friends->isFriend(6, 1)
+[2025-03-29 23:43:09] [DEBUG] Friends
+[2025-03-29 23:43:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Checking if profile is blocked
+[2025-03-29 23:43:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Result: not blocked
+[2025-03-29 23:43:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Checking if profile is blocked
+[2025-03-29 23:43:09] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Result: not blocked
+[2025-03-29 23:43:09] [DEBUG] Models/Post->getProfilesPosts(6, 1): row: 6
+[2025-03-29 23:43:14] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-29 23:43:14] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-29 23:43:14] [DEBUG] Models/Friends->getFriendStatus(3, 1)
+[2025-03-29 23:43:14] [DEBUG] Models/Friends->isFriend(3, 1)
+[2025-03-29 23:43:14] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 1,
+    "receiver_profile_id": 3
+}
+[2025-03-29 23:43:14] [DEBUG] Sent
+[2025-03-29 23:43:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Checking if profile is blocked
+[2025-03-29 23:43:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Result: not blocked
+[2025-03-29 23:43:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Checking if profile is blocked
+[2025-03-29 23:43:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Result: not blocked
+[2025-03-29 23:43:14] [DEBUG] Models/Post->getProfilesPosts(3, 1): row: 3
+[2025-03-29 23:43:16] [DEBUG] Models/Profile->getProfileInfo(2): Getting profile info for ID: 2
+[2025-03-29 23:43:16] [DEBUG] Models/Profile->getProfileInfo(2): Profile found: Mike Wazowski
+[2025-03-29 23:43:16] [DEBUG] Models/Friends->getFriendStatus(2, 1)
+[2025-03-29 23:43:16] [DEBUG] Models/Friends->isFriend(2, 1)
+[2025-03-29 23:43:16] [DEBUG] None
+[2025-03-29 23:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Checking if profile is blocked
+[2025-03-29 23:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 2): Result: not blocked
+[2025-03-29 23:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Checking if profile is blocked
+[2025-03-29 23:43:16] [DEBUG] Models/BlockedProfile->isProfileBlocked(2, 1): Result: blocked
+[2025-03-29 23:43:16] [DEBUG] Models/Post->getProfilesPosts(2, 1): row: 2
+[2025-03-29 23:48:14] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-29 23:48:14] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-29 23:48:14] [DEBUG] Models/Friends->getFriendStatus(6, 1)
+[2025-03-29 23:48:14] [DEBUG] Models/Friends->isFriend(6, 1)
+[2025-03-29 23:48:14] [DEBUG] Friends
+[2025-03-29 23:48:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Checking if profile is blocked
+[2025-03-29 23:48:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Result: not blocked
+[2025-03-29 23:48:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Checking if profile is blocked
+[2025-03-29 23:48:14] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Result: not blocked
+[2025-03-29 23:48:14] [DEBUG] Models/Post->getProfilesPosts(6, 1): row: 6
+[2025-03-29 23:51:43] [DEBUG] Models/Profile->getProfileInfo(6): Getting profile info for ID: 6
+[2025-03-29 23:51:43] [DEBUG] Models/Profile->getProfileInfo(6): Profile found: Roz
+[2025-03-29 23:51:43] [DEBUG] Models/Friends->getFriendStatus(6, 1)
+[2025-03-29 23:51:43] [DEBUG] Models/Friends->isFriend(6, 1)
+[2025-03-29 23:51:43] [DEBUG] Friends
+[2025-03-29 23:51:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Checking if profile is blocked
+[2025-03-29 23:51:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 6): Result: not blocked
+[2025-03-29 23:51:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Checking if profile is blocked
+[2025-03-29 23:51:43] [DEBUG] Models/BlockedProfile->isProfileBlocked(6, 1): Result: not blocked
+[2025-03-29 23:51:43] [DEBUG] Models/Post->getProfilesPosts(6, 1): row: 6
+[2025-03-29 23:51:53] [DEBUG] Models/Profile->getProfileInfo(3): Getting profile info for ID: 3
+[2025-03-29 23:51:53] [DEBUG] Models/Profile->getProfileInfo(3): Profile found: Sully
+[2025-03-29 23:51:53] [DEBUG] Models/Friends->getFriendStatus(3, 1)
+[2025-03-29 23:51:53] [DEBUG] Models/Friends->isFriend(3, 1)
+[2025-03-29 23:51:53] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 1,
+    "receiver_profile_id": 3
+}
+[2025-03-29 23:51:53] [DEBUG] Sent
+[2025-03-29 23:51:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Checking if profile is blocked
+[2025-03-29 23:51:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Result: not blocked
+[2025-03-29 23:51:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Checking if profile is blocked
+[2025-03-29 23:51:53] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Result: not blocked
+[2025-03-29 23:51:53] [DEBUG] Models/Post->getProfilesPosts(3, 1): row: 3
+[2025-03-29 23:52:05] [DEBUG] Models/Profile->getProfileInfo(1): Getting profile info for ID: 1
+[2025-03-29 23:52:05] [DEBUG] Models/Profile->getProfileInfo(1): Profile found: Randall
+[2025-03-29 23:52:05] [DEBUG] Models/Friends->getFriendStatus(1, 3)
+[2025-03-29 23:52:05] [DEBUG] Models/Friends->isFriend(1, 3)
+[2025-03-29 23:52:05] [DEBUG] {
+    "status": "pending",
+    "sender_profile_id": 1,
+    "receiver_profile_id": 3
+}
+[2025-03-29 23:52:05] [DEBUG] Received
+[2025-03-29 23:52:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Checking if profile is blocked
+[2025-03-29 23:52:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(3, 1): Result: not blocked
+[2025-03-29 23:52:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Checking if profile is blocked
+[2025-03-29 23:52:05] [DEBUG] Models/BlockedProfile->isProfileBlocked(1, 3): Result: not blocked
+[2025-03-29 23:52:05] [DEBUG] Models/Post->getProfilesPosts(1, 3): row: 1
