@@ -14,19 +14,17 @@ export async function createLike(postId) {
         credentials: 'same-origin'
       });
   
+      const responseBody = await response.json();
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        console.error(errorData?.message || `Error creating like: ${response.status}`);
-        return {};
+        throw new Error(responseBody.message || `Error creating like: ${response.status}`);
       }
-  
+
       // For 201 Created responses, return the response data
       // For 204 No Content responses, return an empty object
-      return response.status === 204 ? {} : await response.json();
+      return response.status === 204 ? {} : responseBody;
     } catch (error) {
-      alert(error);
       console.error('Create like request failed:', error);
-      return {};
+      throw error;
     }
   }
   
@@ -46,17 +44,15 @@ export async function createLike(postId) {
         credentials: 'same-origin'
       });
   
+      const responseBody = await response.json();
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        console.error(errorData?.message || `Error creating like: ${response.status}`);
-        return {};
+        throw new Error(responseBody.message || `Error deleting like: ${response.status}`);
       }
   
       // For successful deletion, return an empty object if no content is returned
-      return response.status === 204 ? {} : await response.json();
+      return response.status === 204 ? {} : responseBody;
     } catch (error) {
-      alert(error);
       console.error('Delete like request failed:', error);
-      return {};
+      throw error;
     }
   }

@@ -1,45 +1,59 @@
+import { showFeedbackMessage } from "../modules/feedback.js";
 import { createLike, deleteLike } from "../modules/likeCore.js";
 
-document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', likePost);
+// Add event listeners to all like buttons
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', likePost);
+    });
 });
 
-// Select all like buttons
+/**
+ * Handles the like/unlike functionality for a post.
+ * 
+ * @param {Event} e - The click event triggered on the like button.
+ * @returns {Promise<void>} - An asynchronous function that updates the like UI and sends requests.
+ */
 async function likePost(e) {
     const postId = this.dataset.postId;
     const counterLikeIcon = document.querySelector(`#like-counter-${postId}`).previousElementSibling;
-        
     const likeCounter = document.getElementById(`like-counter-${postId}`);
     const isLiked = counterLikeIcon.classList.contains('bi-heart-fill');
 
-    if(!isLiked){
-        //was not already liked -> like post
-        const liked = await createLike(postId);
-        console.log(liked)
-        if(liked.hasOwnProperty("success") && liked["success"]){
-            toggleLikeUI(counterLikeIcon, likeCounter, true);
+    try {
+        if (!isLiked) {
+            // If not already liked, send a like request
+            const liked = await createLike(postId);
+            if (liked.hasOwnProperty("success") && liked["success"]) {
+                toggleLikeUI(counterLikeIcon, likeCounter, true);
+            }
+        } else {
+            // If already liked, send an unlike request
+            const unLiked = await deleteLike(postId);
+            if (unLiked.hasOwnProperty("success") && unLiked["success"]) {
+                toggleLikeUI(counterLikeIcon, likeCounter, false);
+            }
         }
-    }else{
-        //was already liked -> unlike post
-        const unLiked = await deleteLike(postId);
-        console.log(unLiked)
-        if(unLiked.hasOwnProperty("success") && unLiked["success"]){
-            // Get icon in the counter area
-            // Toggle like UI
-            toggleLikeUI(counterLikeIcon, likeCounter, false);
-        }
+    } catch (error) {
+        showFeedbackMessage(error.message || 'Internal server error', 'danger');
     }
 };
 
-// Helper function to toggle UI based on like status
-function toggleLikeUI( counterIcon, counter, isLiked) {
+/**
+ * Updates the UI based on the like status.
+ * 
+ * @param {HTMLElement} counterIcon - The icon element representing the like button.
+ * @param {HTMLElement} counter - The counter element displaying the number of likes.
+ * @param {boolean} isLiked - Whether the post is being liked (true) or unliked (false).
+ */
+function toggleLikeUI(counterIcon, counter, isLiked) {
     if (isLiked) {
-        // Set to liked state        
+        // Set to liked state
         counterIcon.classList.remove('bi-heart');
         counterIcon.classList.add('bi-heart-fill', 'text-danger');
         counter.textContent = parseInt(counter.textContent) + 1;
     } else {
-        // Set to unliked state        
+        // Set to unliked state
         counterIcon.classList.remove('bi-heart-fill', 'text-danger');
         counterIcon.classList.add('bi-heart');
         counter.textContent = parseInt(counter.textContent) - 1;

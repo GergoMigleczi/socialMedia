@@ -46,7 +46,7 @@ class Like extends Model{
             
         } catch (\Exception $e) {
             $this->logger->error("Models/Like->likePost(): Error: " . $e->getMessage());
-            return false;
+            throw $e;
         }
     }
 
@@ -79,7 +79,7 @@ class Like extends Model{
             
         } catch (\Exception $e) {
             $this->logger->error("Models/Like->unlikePost(): Error: " . $e->getMessage());
-            return false;
+            throw $e;
         }
     }
 
@@ -91,15 +91,20 @@ class Like extends Model{
      * @return bool True if liked, false otherwise
      */
     public function isLikedByUser(int $postId, int $profileId): bool {
-        $sql = "SELECT COUNT(*) as count FROM LIKES WHERE post_id = :post_id AND profile_id = :profile_id";
+        try{
+            $sql = "SELECT COUNT(*) as count FROM LIKES WHERE post_id = :post_id AND profile_id = :profile_id";
         
-        $this->db->query($sql);
-        $this->db->bind(':post_id', $postId);
-        $this->db->bind(':profile_id', $profileId);
-        
-        $result = $this->db->single();
-        
-        return $result['count'] > 0;
+            $this->db->query($sql);
+            $this->db->bind(':post_id', $postId);
+            $this->db->bind(':profile_id', $profileId);
+            
+            $result = $this->db->single();
+            
+            return $result['count'] > 0;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Like->isLikedByUser(): Error: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     /**
@@ -111,7 +116,8 @@ class Like extends Model{
      * @return array Array of profiles who liked the post
      */
     public function getLikedByProfiles(int $postId, int $limit = 10, int $offset = 0): array {
-        $sql = "
+        try{
+            $sql = "
             SELECT 
                 p.id,
                 p.full_name,
@@ -121,14 +127,19 @@ class Like extends Model{
             WHERE l.post_id = :post_id
             ORDER BY l.created_at DESC
             LIMIT :limit OFFSET :offset
-        ";
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':post_id', $postId);
+            $this->db->bind(':limit', $limit, \PDO::PARAM_INT);
+            $this->db->bind(':offset', $offset, \PDO::PARAM_INT);
+            
+            return $this->db->resultSetAssoc();
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Like->getLikedByProfiles(): Error: " . $e->getMessage());
+            throw $e;
+        }
         
-        $this->db->query($sql);
-        $this->db->bind(':post_id', $postId);
-        $this->db->bind(':limit', $limit, \PDO::PARAM_INT);
-        $this->db->bind(':offset', $offset, \PDO::PARAM_INT);
-        
-        return $this->db->resultSetAssoc();
     }
     
     /**
@@ -138,13 +149,18 @@ class Like extends Model{
      * @return bool True if exists, false otherwise
      */
     private function postExists(int $postId): bool {
-        $sql = "SELECT id FROM POSTS WHERE id = :post_id AND is_deleted = FALSE";
+        try{
+            $sql = "SELECT id FROM POSTS WHERE id = :post_id AND is_deleted = FALSE";
         
-        $this->db->query($sql);
-        $this->db->bind(':post_id', $postId);
-        
-        $result = $this->db->single();
-        
-        return !empty($result);
+            $this->db->query($sql);
+            $this->db->bind(':post_id', $postId);
+            
+            $result = $this->db->single();
+            
+            return !empty($result);
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Like->postExists(): Error: " . $e->getMessage());
+            throw $e;
+        } 
     }
 }

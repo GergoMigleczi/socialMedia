@@ -65,13 +65,7 @@ class ProfileReportController extends Controller
             }
         } catch (\Exception $e) {
             $this->logger->error("Controllers/ProfileReportController->reportProfile(): Failed to report profile: " . $e->getMessage());
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Internal server error'
-            ]);
-            exit;
+            $this->sendInternalServerError();
         }
     }
 }

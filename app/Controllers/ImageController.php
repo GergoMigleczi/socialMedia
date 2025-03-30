@@ -11,6 +11,9 @@ class ImageController extends Controller
         parent::__construct('home.log');
     }
     public function getImage() {
+        $this->enforceRequestMethod('GET');
+        $this->apiAuthLoggedInProfile();
+        
         $filename = $_GET['url'] ?? null;
         if (!$filename) {
             http_response_code(400);

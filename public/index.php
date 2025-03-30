@@ -29,6 +29,8 @@ $router = new Core\Router();
 
 // Page Requests
 $router->get('/unauthorisedAccess', 'Controllers\AuthController@showUnAuth');
+$router->get('/500', 'Controllers\ErrorController@show500');
+
 
 $router->get('/', 'Controllers\AuthController@showLogin');
 $router->get('/login', 'Controllers\AuthController@showLogin');

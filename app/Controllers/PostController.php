@@ -18,26 +18,24 @@ class PostController extends Controller
     public function showAddPost(): void
     {
         $this->requireAuth(true);
-        
-        $visibilityOptions = $this->postModel->getPostVisibilityOptions();
-        // Render the login view
-        View::render('pages/addPost', [
-            'title' => 'Add Post',
-            'visibilityOptions' => $visibilityOptions
-        ]);
+        try{
+            $visibilityOptions = $this->postModel->getPostVisibilityOptions();
+            // Render the login view
+            View::render('pages/addPost', [
+                'title' => 'Add Post',
+                'visibilityOptions' => $visibilityOptions
+            ]);
+        }catch(\Exception $e){
+            $this->logger->error("Controllers/PostController->showAddPost(): " . $e->getMessage());
+            $this->redirect('500');
+        }
     }
 
     public function createPost(): void
     {
         $this->enforceRequestMethod('POST');
 
-        $profileId = $this->session->getProfileId() ?? null;
-        if (!$profileId) {
-            http_response_code(401);
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-            return;
-        }
+        $profileId = $this->apiAuthLoggedInProfile();
         
         // Verify content type
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
@@ -71,10 +69,12 @@ class PostController extends Controller
                 http_response_code(201);
                 header('Content-Type: application/json');
                 echo json_encode(['success' => true, 'message' => 'Post created successfully', 'post_id' => $postId]);
+                exit;
             } else {
                 http_response_code(500);
                 header('Content-Type: application/json');
                 echo json_encode(['success' => false, 'message' => 'Failed to create post']);
+                exit;
             }
         }catch(\Exception $e){
             $this->logger->error("Controllers/PostController->createPost(): Failed to create post: " . $e->getMessage());

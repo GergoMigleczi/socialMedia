@@ -40,22 +40,22 @@ class ChatController extends Controller
     {
       $this->requireAuth(true);
 
-      // Fetch all chats for the current logged-in profile
-      $chats = $this->chatModel->getChatsForProfile($this->session->getProfileId());
-
-      // Log each chat for debugging purposes
-      foreach ($chats as $chat) {
-        $this->logger->debug($chat->__toString());
+      try{
+        // Fetch all chats for the current logged-in profile
+        $chats = $this->chatModel->getChatsForProfile($this->session->getProfileId());
+        
+        // Render the chats list view
+        View::render(
+          'pages/chats',
+          [
+            'title' => 'Chats',
+            'chats' => $chats
+          ]
+        );
+      }catch(Exception $e){
+        $this->logger->error("Controllers/ChatController->showChats(): " . $e->getMessage());
+        $this->redirect('500');
       }
-      
-      // Render the chats list view
-      View::render(
-        'pages/chats',
-        [
-          'title' => 'Chats',
-          'chats' => $chats
-        ]
-      );
     }
 
     /**
@@ -68,36 +68,42 @@ class ChatController extends Controller
     {
       $this->requireAuth(true);
 
-      $loggedInProfileId = $this->session->getProfileId();
+      try{
+        $loggedInProfileId = $this->session->getProfileId();
       
-      // Get all messages for this chat
-      $messages = $this->chatModel->getMessagesForChat($chatId);
-      
-      // Validate that logged-in user is a participant and get the other participant
-      $validation = $this->chatModel->validateAndGetOtherParticipant($chatId, $loggedInProfileId);
-      if ($validation['isParticipant']) {
-        $profile = $validation['otherParticipant'];
-      } else {
-        // User is not authorized to view this chat
-        $this->denyAccess();
+        // Get all messages for this chat
+        $messages = $this->chatModel->getMessagesForChat($chatId);
+        
+        // Validate that logged-in user is a participant and get the other participant
+        $validation = $this->chatModel->validateAndGetOtherParticipant($chatId, $loggedInProfileId);
+        if ($validation['isParticipant']) {
+          $profile = $validation['otherParticipant'];
+        } else {
+          // User is not authorized to view this chat
+          $this->denyAccess();
+        }
+        
+        // Check blocking status in both directions
+        $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profile->id);
+        $iLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profile->id, $loggedInProfileId); 
+
+        // Render the chat view with all necessary data
+        View::render(
+          'pages/chat',
+          [
+            'title' => 'Chat',
+            'chatId' => $chatId,
+            'profile' => $profile,
+            'messages' => $messages,
+            'loggedInProfileId' => $loggedInProfileId,
+            'isBlocked' => $isBlockedByLoggedInProfile || $iLoggedInProfileBlocked
+          ]
+        );
+      }catch(Exception $e){
+            $this->logger->error("Controllers/ChatController->showChat(): " . $e->getMessage());
+            $this->redirect('500');
       }
       
-      // Check blocking status in both directions
-      $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profile->id);
-      $iLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profile->id, $loggedInProfileId); 
-
-      // Render the chat view with all necessary data
-      View::render(
-        'pages/chat',
-        [
-          'title' => 'Chat',
-          'chatId' => $chatId,
-          'profile' => $profile,
-          'messages' => $messages,
-          'loggedInProfileId' => $loggedInProfileId,
-          'isBlocked' => $isBlockedByLoggedInProfile || $iLoggedInProfileBlocked
-        ]
-      );
     }
 
     /**
@@ -116,6 +122,7 @@ class ChatController extends Controller
       $chatId = intval($chatId);
       if (!$chatId) {
         http_response_code(400); // Bad Request
+        header('Content-Type: application/json');
         echo json_encode([
           'success' => false,
           'error' => 'Invalid chat ID'
@@ -126,6 +133,7 @@ class ChatController extends Controller
       // Verify user is a participant in this chat
       if (!$this->chatModel->isProfileInChat($chatId, $loggedInProfileId)) {
         http_response_code(401); // Unauthorized
+        header('Content-Type: application/json');
         echo json_encode([
           'success' => false,
           'error' => 'User not authorised to add to this chat'
@@ -302,6 +310,7 @@ class ChatController extends Controller
         $profileId = intval($profileId);
         if (!$profileId) {
             http_response_code(400);
+            header('Content-Type: application/json');
             echo json_encode([
                 'success' => false,
                 'message' => 'Invalid profile ID'

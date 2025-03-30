@@ -18,8 +18,8 @@ class Friend extends Model{
      */
     public function getFriends(int $profileId) {
         $this->logger->debug("Models/Friends->getFriends($profileId)");
-        
-        $sql = "
+        try{
+            $sql = "
             SELECT 
                 p.id,
                 p.user_id,
@@ -30,98 +30,110 @@ class Friend extends Model{
             JOIN FRIENDSHIPS f ON 
                 (f.profile_id_1 = p.id AND f.profile_id_2 = :profile_id) OR
                 (f.profile_id_2 = p.id AND f.profile_id_1 = :profile_id)
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':profile_id', $profileId);
-        
-        // Execute the query and get the result
-        $this->db->execute();
-        $result = $this->db->resultSetAssoc();
-        
-        // Check if profile was found
-        if (empty($result)) {
-            $this->logger->debug("Models/Friends->getFriends($profileId): Friends not found");
-            return [];
-        }
-        
-        $friends = [];
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':profile_id', $profileId);
+            
+            // Execute the query and get the result
+            $this->db->execute();
+            $result = $this->db->resultSetAssoc();
+            
+            // Check if profile was found
+            if (empty($result)) {
+                $this->logger->debug("Models/Friends->getFriends($profileId): Friends not found");
+                return [];
+            }
+            
+            $friends = [];
 
-        foreach ($result as $friend){
-            $friends[] = new ProfileDTO(
-                $friend['id'],
-                $friend['full_name'],
-                $friend['profile_picture'],
-                $friend['user_id'],
-                $friend['date_of_birth']
-            );
+            foreach ($result as $friend){
+                $friends[] = new ProfileDTO(
+                    $friend['id'],
+                    $friend['full_name'],
+                    $friend['profile_picture'],
+                    $friend['user_id'],
+                    $friend['date_of_birth']
+                );
+            }
+            // Create and return a ProfileDTO instance
+            return $friends; 
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Friends->getFriends(): " . $e->getMessage());
+            throw $e;
         }
-        // Create and return a ProfileDTO instance
-        return $friends; 
     }   
 
     public function isFriend(int $profileId, int $friendProfileId): bool {
         $this->logger->debug("Models/Friends->isFriend($profileId, $friendProfileId)");
-        
-        $sql = "
+        try{
+            $sql = "
             SELECT 
                 'yes'
             FROM FRIENDSHIPS
             WHERE profile_id_1 = :smaller_id
             AND profile_id_2 = :larger_id
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':smaller_id',min($profileId, $friendProfileId));
-        $this->db->bind(':larger_id',max($profileId, $friendProfileId));
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':smaller_id',min($profileId, $friendProfileId));
+            $this->db->bind(':larger_id',max($profileId, $friendProfileId));
 
-        // Execute the query and get the result
-        $this->db->execute();
+            // Execute the query and get the result
+            $this->db->execute();
 
-        if ($this->db->rowCount() > 0){
-            return true;
+            if ($this->db->rowCount() > 0){
+                return true;
+            }
+            return false;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Friends->isFriend(): " . $e->getMessage());
+            throw $e;
         }
-        return false;
+        
     }   
     public function getFriendStatus(int $profileId, int $loggedInProfileId) {
         $this->logger->debug("Models/Friends->getFriendStatus($profileId, $loggedInProfileId)");
-        
-        
-        if ($this->isFriend($profileId, $loggedInProfileId)){
-            return 'Friends';
-        }
-        
-        // Check for pending or existing friend requests
-        $sql = "
-            SELECT 
-                status,
-                sender_profile_id,
-                receiver_profile_id
-            FROM FRIEND_REQUESTS
-            WHERE (sender_profile_id = :sender_id AND receiver_profile_id = :receiver_id)
-            OR (sender_profile_id = :receiver_id AND receiver_profile_id = :sender_id)
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':sender_id', $loggedInProfileId);
-        $this->db->bind(':receiver_id', $profileId);
-        $this->db->execute();
-        
-        $requestResult = $this->db->resultSetAssoc();
-        
-        if ($requestResult) {
-            $requestResult = $requestResult[0];
-            $this->logger->debug(json_encode($requestResult, JSON_PRETTY_PRINT));
-            if ($requestResult['status'] === 'pending') {
-                // Determine if the logged-in user sent or received the request
-                if ($requestResult['sender_profile_id'] === $loggedInProfileId) {
-                    return "Sent";
-                } else {
-                    return "Received";
+        try{
+            if ($this->isFriend($profileId, $loggedInProfileId)){
+                return 'Friends';
+            }
+            
+            // Check for pending or existing friend requests
+            $sql = "
+                SELECT 
+                    status,
+                    sender_profile_id,
+                    receiver_profile_id
+                FROM FRIEND_REQUESTS
+                WHERE (sender_profile_id = :sender_id AND receiver_profile_id = :receiver_id)
+                OR (sender_profile_id = :receiver_id AND receiver_profile_id = :sender_id)
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':sender_id', $loggedInProfileId);
+            $this->db->bind(':receiver_id', $profileId);
+            $this->db->execute();
+            
+            $requestResult = $this->db->resultSetAssoc();
+            
+            if ($requestResult) {
+                $requestResult = $requestResult[0];
+                $this->logger->debug(json_encode($requestResult, JSON_PRETTY_PRINT));
+                if ($requestResult['status'] === 'pending') {
+                    // Determine if the logged-in user sent or received the request
+                    if ($requestResult['sender_profile_id'] === $loggedInProfileId) {
+                        return "Sent";
+                    } else {
+                        return "Received";
+                    }
                 }
             }
+            return 'None';
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Friends->getFriendStatus(): " . $e->getMessage());
+            throw $e;
         }
-        return 'None';
     }
 
     public function sendFriendRequest(int $profileId, int $loggedInProfileId): bool {

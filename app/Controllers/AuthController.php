@@ -134,7 +134,7 @@ class AuthController extends Controller
                 echo json_encode(["success" => true, "message" => "Login successful"]);
             } else {
                 // Failed login - invalid credentials
-                $this->logger->error("Controllers/AuthController->login(): Login failed: " . $email);
+                $this->logger->debug("Controllers/AuthController->login(): Login failed: " . $email);
                 http_response_code(401);
                 header('Content-Type: application/json');
                 echo json_encode(["success" => false, "message" => "Invalid email or password"]);

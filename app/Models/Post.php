@@ -18,7 +18,8 @@ class Post extends Model{
      */
     public function getVisiblePosts(int $profileId): array {        
         // Get all public posts and posts from friends that are visible to friends
-        $sql = "
+        try{
+            $sql = "
             SELECT 
                 p.id as post_id,
                 p.content,
@@ -45,48 +46,53 @@ class Post extends Model{
                     p.profile_id = :profile_id
                 )
             ORDER BY p.created_at DESC
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':profile_id', $profileId);
-        $results = $this->db->resultSetAssoc();
-        
-        $posts = [];
-        
-        foreach ($results as $row) {
-            $this->logger->debug("Models/Post->getVisiblePosts($profileId): row: " . $row['post_id']);
-            // Get images for this post
-            $images = $this->getPostImages($row['post_id']);
+            ";
             
-            // Create ProfileDTO
-            $profileDto = new ProfileDTO(
-                $row['profile_id'],
-                $row['full_name'],
-                $row['profile_picture']
-            );
+            $this->db->query($sql);
+            $this->db->bind(':profile_id', $profileId);
+            $results = $this->db->resultSetAssoc();
             
-            // Create PostDTO
-            $postDto = new PostDTO(
-                $row['post_id'],
-                $profileDto,
-                $row['created_at'],
-                $row['content'],
-                $images,
-                (bool)$row['liked_by_user'],
-                (int)$row['likes_count'],
-                (int)$row['comments_count'],
-                $row['location_name'] ?? ''
-            );
+            $posts = [];
             
-            $posts[] = $postDto;
+            foreach ($results as $row) {
+                $this->logger->debug("Models/Post->getVisiblePosts($profileId): row: " . $row['post_id']);
+                // Get images for this post
+                $images = $this->getPostImages($row['post_id']);
+                
+                // Create ProfileDTO
+                $profileDto = new ProfileDTO(
+                    $row['profile_id'],
+                    $row['full_name'],
+                    $row['profile_picture']
+                );
+                
+                // Create PostDTO
+                $postDto = new PostDTO(
+                    $row['post_id'],
+                    $profileDto,
+                    $row['created_at'],
+                    $row['content'],
+                    $images,
+                    (bool)$row['liked_by_user'],
+                    (int)$row['likes_count'],
+                    (int)$row['comments_count'],
+                    $row['location_name'] ?? ''
+                );
+                
+                $posts[] = $postDto;
+            }
+            
+            return $posts;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Post->getVisiblePosts(): Error: " . $e->getMessage());
+            throw $e;
         }
-        
-        return $posts;
     }
 
     public function getProfilesPosts(int $profileId, int $requestingProfileId): array {        
         // Get all public posts and posts from friends that are visible to friends
-        $sql = "
+        try{
+            $sql = "
             SELECT 
                 p.id as post_id,
                 p.content,
@@ -114,45 +120,49 @@ class Post extends Model{
                     (p.visibility = 'private' AND :requesting_profile_id = :profile_id)
                 )
             ORDER BY p.created_at DESC
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':profile_id', $profileId);
-        $this->db->bind(':requesting_profile_id', $requestingProfileId);
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':profile_id', $profileId);
+            $this->db->bind(':requesting_profile_id', $requestingProfileId);
 
-        $results = $this->db->resultSetAssoc();
-        
-        $posts = [];
-        
-        foreach ($results as $row) {
-            $this->logger->debug("Models/Post->getProfilesPosts($profileId, $requestingProfileId): row: " . $row['post_id']);
-            // Get images for this post
-            $images = $this->getPostImages($row['post_id']);
+            $results = $this->db->resultSetAssoc();
             
-            // Create ProfileDTO
-            $profileDto = new ProfileDTO(
-                $row['profile_id'],
-                $row['full_name'],
-                $row['profile_picture']
-            );
+            $posts = [];
             
-            // Create PostDTO
-            $postDto = new PostDTO(
-                $row['post_id'],
-                $profileDto,
-                $row['created_at'],
-                $row['content'],
-                $images,
-                (bool)$row['liked_by_user'],
-                (int)$row['likes_count'],
-                (int)$row['comments_count'],
-                $row['location_name'] ?? ''
-            );
+            foreach ($results as $row) {
+                $this->logger->debug("Models/Post->getProfilesPosts($profileId, $requestingProfileId): row: " . $row['post_id']);
+                // Get images for this post
+                $images = $this->getPostImages($row['post_id']);
+                
+                // Create ProfileDTO
+                $profileDto = new ProfileDTO(
+                    $row['profile_id'],
+                    $row['full_name'],
+                    $row['profile_picture']
+                );
+                
+                // Create PostDTO
+                $postDto = new PostDTO(
+                    $row['post_id'],
+                    $profileDto,
+                    $row['created_at'],
+                    $row['content'],
+                    $images,
+                    (bool)$row['liked_by_user'],
+                    (int)$row['likes_count'],
+                    (int)$row['comments_count'],
+                    $row['location_name'] ?? ''
+                );
+                
+                $posts[] = $postDto;
+            }
             
-            $posts[] = $postDto;
+            return $posts;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Post->getProfilesPosts(): Error: " . $e->getMessage());
+            throw $e;
         }
-        
-        return $posts;
     }
     
     /**
@@ -162,23 +172,28 @@ class Post extends Model{
      * @return array Array of image URLs
      */
     private function getPostImages(int $postId): array {
-        $sql = "
+        try{
+            $sql = "
             SELECT media_url
             FROM POST_MEDIA
             WHERE post_id = :post_id AND media_type = 'image'
             ORDER BY position ASC
-        ";
-        
-        $this->db->query($sql);
-        $this->db->bind(':post_id', $postId);
-        $results = $this->db->resultSetAssoc();
-        
-        $images = [];
-        foreach ($results as $row) {
-            $images[] = $row['media_url'];
+            ";
+            
+            $this->db->query($sql);
+            $this->db->bind(':post_id', $postId);
+            $results = $this->db->resultSetAssoc();
+            
+            $images = [];
+            foreach ($results as $row) {
+                $images[] = $row['media_url'];
+            }
+            
+            return $images;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Post->getVisiblePosts(): Error: " . $e->getMessage());
+            throw $e;
         }
-        
-        return $images;
     }
 
     /**
@@ -186,33 +201,38 @@ class Post extends Model{
      * @return array Array of available visibility options
      */
     public function getPostVisibilityOptions(): array {
-        $sql = "
+        try{
+            $sql = "
             SELECT SUBSTRING(COLUMN_TYPE, 6, LENGTH(COLUMN_TYPE) - 6) AS enum_values
             FROM INFORMATION_SCHEMA.COLUMNS
             WHERE TABLE_SCHEMA = '" . DB_NAME . "'
             AND TABLE_NAME = 'POSTS'
             AND COLUMN_NAME = 'visibility'
-        ";
-        
-        $this->db->query($sql);
-        $result = $this->db->single();
-        
-        if (!$result) {
-            $this->logger->error("Models/Post->getPostVisibilityOptions(): Failed to retrieve visibility options");
-            return [];
+            ";
+            
+            $this->db->query($sql);
+            $result = $this->db->single();
+            
+            if (!$result) {
+                $this->logger->error("Models/Post->getPostVisibilityOptions(): Failed to retrieve visibility options");
+                return [];
+            }
+            
+            // The result will be in format: 'public','friends','private'
+            $enumString = $result->enum_values;
+            
+            // Remove the quotes and split by comma
+            $options = array_map(function($value) {
+                return trim($value, "'");
+            }, explode(',', $enumString));
+            
+            $this->logger->debug("Models/Post->getPostVisibilityOptions(): Retrieved options: " . implode(', ', $options));
+            
+            return $options;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Post->getVisiblePosts(): Error: " . $e->getMessage());
+            throw $e;
         }
-        
-        // The result will be in format: 'public','friends','private'
-        $enumString = $result->enum_values;
-        
-        // Remove the quotes and split by comma
-        $options = array_map(function($value) {
-            return trim($value, "'");
-        }, explode(',', $enumString));
-        
-        $this->logger->debug("Models/Post->getPostVisibilityOptions(): Retrieved options: " . implode(', ', $options));
-        
-        return $options;
     }
 
     /**
@@ -328,82 +348,88 @@ class Post extends Model{
         $position = 0;
         $totalFiles = count($files['media']['name']);
         
-        for ($i = 0; $i < $totalFiles; $i++) {
-            if ($files['media']['error'][$i] !== UPLOAD_ERR_OK) {
-                $this->logger->error("Models/Post->savePostMedia(): Upload error for file {$i}: {$files['media']['error'][$i]}");
-                continue;
+        try{
+            for ($i = 0; $i < $totalFiles; $i++) {
+                if ($files['media']['error'][$i] !== UPLOAD_ERR_OK) {
+                    $this->logger->error("Models/Post->savePostMedia(): Upload error for file {$i}: {$files['media']['error'][$i]}");
+                    continue;
+                }
+                
+                $tmpName = $files['media']['tmp_name'][$i];
+                $fileType = $files['media']['type'][$i];
+                $fileExtension = pathinfo($files['media']['name'][$i], PATHINFO_EXTENSION);
+                
+                // Determine media type
+                $mediaType = '';
+                if (in_array($fileType, $allowedImageTypes)) {
+                    $mediaType = 'image';
+                } elseif (in_array($fileType, $allowedVideoTypes)) {
+                    $mediaType = 'video';
+                } else {
+                    $this->logger->error("Models/Post->savePostMedia(): Unsupported file type: $fileType");
+                    continue;
+                }
+                
+                $newFileName = $postId . '_' . $i . '.' . $fileExtension;
+                $fullPath = $postUploadDir . $newFileName;
+                
+                // Move the uploaded file
+                if (!move_uploaded_file($tmpName, $fullPath)) {
+                    $this->logger->error("Models/Post->savePostMedia(): Failed to move uploaded file to $fullPath");
+                    return false;
+                }
+                
+                // Create relative URL for database (for web access)
+                $relativeUrl = 'posts/' . $newFileName;
+                
+                // Create thumbnail for videos if needed
+                $thumbnailUrl = null;
+                if ($mediaType === 'video') {
+                    // In a real implementation, you would generate a thumbnail
+                    // This would be implemented based on your video processing tools
+                }
+                
+                
+                // Insert media record
+                $sql = "
+                    INSERT INTO POST_MEDIA (
+                        post_id, 
+                        media_type, 
+                        media_url, 
+                        thumbnail_url, 
+                        position, 
+                        alt_text
+                    ) VALUES (
+                        :post_id, 
+                        :media_type, 
+                        :media_url, 
+                        :thumbnail_url, 
+                        :position, 
+                        :alt_text
+                    )
+                ";
+                
+                $this->db->query($sql);
+                $this->db->bind(':post_id', $postId);
+                $this->db->bind(':media_type', $mediaType);
+                $this->db->bind(':media_url', $relativeUrl);
+                $this->db->bind(':thumbnail_url', $thumbnailUrl);
+                $this->db->bind(':position', $position);
+                $this->db->bind(':alt_text', 'Media ' . ($position + 1)); // Generic alt text
+                
+                if (!$this->db->execute()) {
+                    $this->logger->error("Models/Post->savePostMedia(): Failed to insert media record");
+                    return false;
+                }
+                
+                $position++;
+                $this->logger->debug("Models/Post->savePostMedia(): Saved $mediaType file with GUID: $newFileName");
             }
             
-            $tmpName = $files['media']['tmp_name'][$i];
-            $fileType = $files['media']['type'][$i];
-            $fileExtension = pathinfo($files['media']['name'][$i], PATHINFO_EXTENSION);
-            
-            // Determine media type
-            $mediaType = '';
-            if (in_array($fileType, $allowedImageTypes)) {
-                $mediaType = 'image';
-            } elseif (in_array($fileType, $allowedVideoTypes)) {
-                $mediaType = 'video';
-            } else {
-                $this->logger->error("Models/Post->savePostMedia(): Unsupported file type: $fileType");
-                continue;
-            }
-            
-            $newFileName = $postId . '_' . $i . '.' . $fileExtension;
-            $fullPath = $postUploadDir . $newFileName;
-            
-            // Move the uploaded file
-            if (!move_uploaded_file($tmpName, $fullPath)) {
-                $this->logger->error("Models/Post->savePostMedia(): Failed to move uploaded file to $fullPath");
-                return false;
-            }
-            
-            // Create relative URL for database (for web access)
-            $relativeUrl = 'posts/' . $newFileName;
-            
-            // Create thumbnail for videos if needed
-            $thumbnailUrl = null;
-            if ($mediaType === 'video') {
-                // In a real implementation, you would generate a thumbnail
-                // This would be implemented based on your video processing tools
-            }
-            
-            // Insert media record
-            $sql = "
-                INSERT INTO POST_MEDIA (
-                    post_id, 
-                    media_type, 
-                    media_url, 
-                    thumbnail_url, 
-                    position, 
-                    alt_text
-                ) VALUES (
-                    :post_id, 
-                    :media_type, 
-                    :media_url, 
-                    :thumbnail_url, 
-                    :position, 
-                    :alt_text
-                )
-            ";
-            
-            $this->db->query($sql);
-            $this->db->bind(':post_id', $postId);
-            $this->db->bind(':media_type', $mediaType);
-            $this->db->bind(':media_url', $relativeUrl);
-            $this->db->bind(':thumbnail_url', $thumbnailUrl);
-            $this->db->bind(':position', $position);
-            $this->db->bind(':alt_text', 'Media ' . ($position + 1)); // Generic alt text
-            
-            if (!$this->db->execute()) {
-                $this->logger->error("Models/Post->savePostMedia(): Failed to insert media record");
-                return false;
-            }
-            
-            $position++;
-            $this->logger->debug("Models/Post->savePostMedia(): Saved $mediaType file with GUID: $newFileName");
+            return true;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/Post->getVisiblePosts(): Error: " . $e->getMessage());
+            throw $e;
         }
-        
-        return true;
     }
 }

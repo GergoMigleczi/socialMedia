@@ -25,13 +25,19 @@ class FriendController extends Controller
             $this->denyAccess();
         }
 
-        $friends = $this->friendModel->getFriends($profileId);
-        // Render the login view
-        View::render('pages/friends',
-        [
-            'title' => 'Friends',
-            'friends' => $friends
-        ]);
+        try{
+            $friends = $this->friendModel->getFriends($profileId);
+            // Render the login view
+            View::render('pages/friends',
+            [
+                'title' => 'Friends',
+                'friends' => $friends
+            ]);
+        }catch(\Exception $e){
+            $this->logger->error("Controllers/FriendController->showFriends(): " . $e->getMessage());
+            $this->redirect('500');
+        }
+        
     }
 
     public function handleFriendAction() {
@@ -45,50 +51,59 @@ class FriendController extends Controller
         $action = $input['action'];
         $profileId = $input['profileId'];
         $this->logger->debug("Action: $action, profileId: $profileId, loggedInProfileId: $loggedInProfileId");
+        try{
+            //Is blocked by target profile
+            if($this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId)){
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false,
+                'message' => "Failed to $action friend request"]);
+                exit;
+            }
+
+            switch($action) {
+                case 'Send':
+                    $response = $this->friendModel->sendFriendRequest($profileId, $loggedInProfileId);
+                    //$this->notificationService->createFriendRequestNotification($profileId);
+                    break;
+                case 'Accept':
+                    $response = $this->friendModel->acceptFriendRequest($profileId, $loggedInProfileId);
+                    //$this->notificationService->createFriendAcceptedNotification($profileId);
+                    break;
+                case 'Deny':
+                    $response = $this->friendModel->denyFriendRequest($profileId, $loggedInProfileId);
+                    //$this->notificationService->createFriendDeniedNotification($profileId);
+                    break;
+                case 'Cancel':
+                    $response = $this->friendModel->cancelFriendRequest($profileId, $loggedInProfileId);
+                    // No notification created on cancellation, as specified
+                    break;
+                case 'Unfriend':
+                    $response = $this->friendModel->unfriend($profileId, $loggedInProfileId);
+                    // No notification created on cancellation, as specified
+                    break;
+            }
+
+            if($response){
+                $newStatus = $this->determineNewStatus($action);
+                http_response_code(201);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true,
+                    'friendButtons' => $this->getFriendButtonHtml($profileId, $newStatus),
+                    'newStatus' => $newStatus
+                    ]);
+            }else{
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false,
+                'message' => "Failed to $action friend request"]);
+            }
+
+        }catch (\Exception $e) {
+            $this->logger->error('Controllers/FriendController->handleFriendAction():' . $e->getMessage());
+            $this->sendInternalServerError();
+        }
         
-        //Is blocked by target profile
-        if($this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId)){
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false,
-            'message' => "Failed to $action friend request"]);
-            exit;
-        }
-
-        switch($action) {
-            case 'Send':
-                $response = $this->friendModel->sendFriendRequest($profileId, $loggedInProfileId);
-                //$this->notificationService->createFriendRequestNotification($profileId);
-                break;
-            case 'Accept':
-                $response = $this->friendModel->acceptFriendRequest($profileId, $loggedInProfileId);
-                //$this->notificationService->createFriendAcceptedNotification($profileId);
-                break;
-            case 'Deny':
-                $response = $this->friendModel->denyFriendRequest($profileId, $loggedInProfileId);
-                //$this->notificationService->createFriendDeniedNotification($profileId);
-                break;
-            case 'Cancel':
-                $response = $this->friendModel->cancelFriendRequest($profileId, $loggedInProfileId);
-                // No notification created on cancellation, as specified
-                break;
-            case 'Unfriend':
-                $response = $this->friendModel->unfriend($profileId, $loggedInProfileId);
-                // No notification created on cancellation, as specified
-                break;
-        }
-
-        if($response){
-            $newStatus = $this->determineNewStatus($action);
-            http_response_code(201);
-            echo json_encode(['success' => true,
-                'friendButtons' => $this->getFriendButtonHtml($profileId, $newStatus),
-                'newStatus' => $newStatus
-                ]);
-        }else{
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => "Failed to $action friend request"]);
-        }
     }
 
     public function isFriend($profileId){

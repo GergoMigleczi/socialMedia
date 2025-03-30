@@ -95,7 +95,7 @@ class Controller
     }
 
     protected function enforceRequestMethod(string $expectedMethod){
-        if ($_SERVER['REQUEST_METHOD'] !== $expectedMethod) {
+        if ($_SERVER['REQUEST_METHOD'] !== strtoupper($expectedMethod)) {
             http_response_code(405);
             header('Content-Type: application/json');
             echo json_encode([

@@ -3,6 +3,8 @@ namespace Controllers;
 
 use Core\Controller;
 use Core\View;
+use ErrorException;
+use Exception;
 use Models\Friend;
 use Models\Post;
 use Models\Profile;
@@ -33,45 +35,50 @@ class ProfileController extends Controller
 
         $loggedInProfileId = $this->session->getProfileId();
         // Get profile info
-        $profile = $this->profileModel->getProfileInfo($profileId);
-        $isOwnProfile = $profileId == $loggedInProfileId;
+        try{
+            $profile = $this->profileModel->getProfileInfo($profileId);
+            $isOwnProfile = $profileId == $loggedInProfileId;
 
-        if (!$isOwnProfile){
-            $friendshipStatus = $this->friendModel->getFriendStatus($profileId, $loggedInProfileId);
-            $this->logger->debug($friendshipStatus);
-            $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profileId);
-            $isLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId);
-        
-            // Display chat button
-            if ($friendshipStatus == "Friends" && !$isBlockedByLoggedInProfile && !$isLoggedInProfileBlocked) {
-                $displayChatBtn = true;
-            } else {
-                $displayChatBtn = false;
+            if (!$isOwnProfile){
+                $friendshipStatus = $this->friendModel->getFriendStatus($profileId, $loggedInProfileId);
+                $this->logger->debug($friendshipStatus);
+                $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profileId);
+                $isLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId);
+            
+                // Display chat button
+                if ($friendshipStatus == "Friends" && !$isBlockedByLoggedInProfile && !$isLoggedInProfileBlocked) {
+                    $displayChatBtn = true;
+                } else {
+                    $displayChatBtn = false;
+                }
+                // Display friend buttons
+                if (!$isBlockedByLoggedInProfile && !$isLoggedInProfileBlocked) {
+                    $displayFriendBtn = true;
+                } else {
+                    $displayFriendBtn = false;
+                }
             }
-            // Display friend buttons
-            if (!$isBlockedByLoggedInProfile && !$isLoggedInProfileBlocked) {
-                $displayFriendBtn = true;
-            } else {
-                $displayFriendBtn = false;
-            }
+            // Get Posts
+            $posts = $this->postModel->getProfilesPosts($profileId, $this->session->getProfileId());
+            $reportOptions = $this->profileReportModel->getReportOptions();
+            
+            // Render the login view
+            View::render('pages/profile',
+            [
+                'title' => 'Profile',
+                'posts' => $posts,
+                'profile' => $profile,
+                'isOwnProfile' => $isOwnProfile,
+                'friendshipStatus' => $friendshipStatus ?? '',
+                'displayFriendBtn' => $displayFriendBtn ?? false,
+                'isBlockedByLoggedInProfile' => $isBlockedByLoggedInProfile ?? false,
+                'isLoggedInProfileBlocked' => $isLoggedInProfileBlocked ?? false,
+                'displayChatBtn' => $displayChatBtn ?? false,
+                'reportOptions' => $reportOptions
+            ]);
+        }catch(Exception $e){
+            $this->logger->error("Controllers/ProfileController->showProfile(): " . $e->getMessage());
+            $this->redirect('500');
         }
-        // Get Posts
-        $posts = $this->postModel->getProfilesPosts($profileId, $this->session->getProfileId());
-        $reportOptions = $this->profileReportModel->getReportOptions();
-        
-        // Render the login view
-        View::render('pages/profile',
-        [
-            'title' => 'Profile',
-            'posts' => $posts,
-            'profile' => $profile,
-            'isOwnProfile' => $isOwnProfile,
-            'friendshipStatus' => $friendshipStatus ?? '',
-            'displayFriendBtn' => $displayFriendBtn ?? false,
-            'isBlockedByLoggedInProfile' => $isBlockedByLoggedInProfile ?? false,
-            'isLoggedInProfileBlocked' => $isLoggedInProfileBlocked ?? false,
-            'displayChatBtn' => $displayChatBtn ?? false,
-            'reportOptions' => $reportOptions
-        ]);
     }
 }

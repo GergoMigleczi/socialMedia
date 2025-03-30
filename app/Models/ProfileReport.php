@@ -64,7 +64,7 @@ class ProfileReport extends Model
             ];
         } catch (\Exception $e) {
             $this->logger->error("Models/ProfileReport->createReport(): Exception: " . $e->getMessage());
-            return ['success' => false];
+            throw $e;
         }
     }
 
@@ -73,36 +73,40 @@ class ProfileReport extends Model
      * @return array Array of available reason type options
      */
     public function getReportOptions(): array {
-        $sql = "
+        try{
+            $sql = "
             SELECT SUBSTRING(COLUMN_TYPE, 6, LENGTH(COLUMN_TYPE) - 6) AS enum_values
             FROM INFORMATION_SCHEMA.COLUMNS
             WHERE TABLE_SCHEMA = '" . DB_NAME . "'
             AND TABLE_NAME = 'PROFILE_REPORTS'
             AND COLUMN_NAME = 'reason_type'
-        ";
-        
-        $this->db->query($sql);
-        $result = $this->db->single();
-        
-        if (!$result) {
-            $this->logger->error("Models/ProfileReport->getReportOptions(): Failed to retrieve reason type options");
-            return [];
+            ";
+            
+            $this->db->query($sql);
+            $result = $this->db->single();
+            
+            if (!$result) {
+                $this->logger->error("Models/ProfileReport->getReportOptions(): Failed to retrieve reason type options");
+                return [];
+            }
+            
+            // The result will be in format: 'spam','harassment','inappropriate_content'
+            $enumString = $result->enum_values;
+            
+            // Remove the quotes and split by comma
+            $options = array_map(function($value) {
+                return trim($value, "'");
+            }, explode(',', $enumString));
+            
+            $this->logger->debug("Models/ProfileReport->getReportOptions(): Retrieved options: " . implode(', ', $options));
+            
+            return $options;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/ProfileReport->getReportOptions(): " . $e->getMessage());
+            throw $e;
         }
-        
-        // The result will be in format: 'spam','harassment','inappropriate_content'
-        $enumString = $result->enum_values;
-        
-        // Remove the quotes and split by comma
-        $options = array_map(function($value) {
-            return trim($value, "'");
-        }, explode(',', $enumString));
-        
-        $this->logger->debug("Models/ProfileReport->getReportOptions(): Retrieved options: " . implode(', ', $options));
-        
-        return $options;
     }
-
-
+    
     /**
      * Get all reports made by a specific profile
      * 

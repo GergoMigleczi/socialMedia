@@ -55,38 +55,43 @@ class User extends Model{
      * @return mixed User object if authenticated, false otherwise
      */
     public function login($email, $password): bool|ProfileDTO {
-        // Find user by email
-        $this->db->query("SELECT u.*, p.id as profile_id, p.full_name, p.date_of_birth, p.profile_picture 
-                          FROM USERS u
-                          LEFT JOIN PROFILES p ON u.id = p.user_id
-                          WHERE u.email = :email");
-        
-        // Bind email value
-        $this->db->bind(':email', $email);
-        
-        // Get the user record
-        $row = $this->db->single();
-        
-        // If no user found
-        if (!$row) {
-            return false;
-        }
-        $this->logger->debug("Models/User->login: row: ". $row);
-        
-        // Verify password
-        if (password_verify($password, $row->password)) {
-            $this->logger->debug("Models/User->login($email, $password): login success");
-            // Set properties
-            $profileDTO = new ProfileDTO(id: $row->profile_id,
-                fullName: $row->full_name,
-                email: $row->email,
-                profilePicture: $row->profile_picture,
-                userId: $row->id
-            );
-            return $profileDTO;
-        } else {
-            return false;
-        }
+        $this->logger->debug("Models/User->login($email, $password)");
+        try{
+            // Find user by email
+            $this->db->query("SELECT u.*, p.id as profile_id, p.full_name, p.date_of_birth, p.profile_picture 
+            FROM USERS u
+            LEFT JOIN PROFILES p ON u.id = p.user_id
+            WHERE u.email = :email");
+
+            // Bind email value
+            $this->db->bind(':email', $email);
+
+            // Get the user record
+            $row = $this->db->single();
+
+            // If no user found
+            if (!$row) {
+                return false;
+            }
+
+            // Verify password
+            if (password_verify($password, $row->password)) {
+                $this->logger->debug("Models/User->login($email, $password): login success");
+                // Set properties
+                $profileDTO = new ProfileDTO(id: $row->profile_id,
+                    fullName: $row->full_name,
+                    email: $row->email,
+                    profilePicture: $row->profile_picture,
+                    userId: $row->id
+                );
+                return $profileDTO;
+            } else {
+                return false;
+            }
+        }catch(\Exception $e) {
+            $this->logger->error("Models/User->login(): Error: " . $e->getMessage());
+            throw $e;
+        }  
     }
     
     /**
