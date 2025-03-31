@@ -1,13 +1,18 @@
 import {
     sendMessage
 } from '../modules/chatCore.js';
+import { showFeedbackMessage } from '../modules/feedback.js';
 
-// Scroll to bottom on page load
-window.onload = function() {
-    scrollToBottom();
-};
+// Handle window resize
+window.addEventListener('resize', function() {
+  const headerHeight = document.querySelector('header.sticky-top').offsetHeight;
+  document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+});
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Adjust layout and scroll to bottom
+    scrollToBottom();  
+    
     const headerHeight = document.querySelector('header.sticky-top').offsetHeight;
     document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     
@@ -18,16 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Init message event handler
-    initChatMessageHandler();
-
-    // Adjust layout and scroll to bottom
-    scrollToBottom();
-});
-  
-// Handle window resize
-window.addEventListener('resize', function() {
-    const headerHeight = document.querySelector('header.sticky-top').offsetHeight;
-    document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+    const messageForm = document.getElementById('message-form');
+    if (messageForm) {
+      messageForm.addEventListener('submit', sendChatMessage);
+    }
 });
 
 // Function to scroll to the bottom of the chat
@@ -35,17 +34,6 @@ function scrollToBottom() {
     const chatMessages = document.getElementById('chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-
-/**
- * Set up message submission event handler
- */
-function initChatMessageHandler() {
-    const messageForm = document.getElementById('message-form');
-    
-    if (messageForm) {
-      messageForm.addEventListener('submit', sendChatMessage);
-    }
-  }
   
 /**
  * Handle message form submit event
@@ -73,8 +61,7 @@ async function sendChatMessage(e) {
       messageInput.value = '';
     } catch (error) {
       console.error('Failed to send message:', error);
-      // Optionally show an error to the user
-      // alert('Failed to send message. Please try again.');
+      showFeedbackMessage(error.message, 'danger')
     } finally {
       // Re-enable the submit button
       submitButton.disabled = false;

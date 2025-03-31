@@ -2,27 +2,43 @@ import {
   fetchCommentsHtml,
   submitComment
 } from "../modules/commentCore.js";
+import { showFeedbackMessage } from "../modules/feedback.js";
 
-document.querySelectorAll('.comment-btn').forEach(button => {
+/**
+ * Initializes event listeners for comment buttons and forms when DOM is loaded
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  // Comment Button
+  document.querySelectorAll('.comment-btn').forEach(button => {
     button.addEventListener('click', displayAllComments);
+  });
+
+  // Comment Form
+  document.querySelectorAll('.comment-form').forEach(button => {
+    button.addEventListener('submit', postComment);
+  });
 });
 
-document.querySelectorAll('.comment-form').forEach(button => {
-  button.addEventListener('submit', postComment);
-});
 
 /**
  * Handle comment form submit event
- * @param {Event} e - The click event
+ * @param {Event} e - The submit event
  */
 async function postComment(e) {
   e.preventDefault(); // Prevent standard form submission
   const commentText = this.querySelector('.comment-input').value;
   const postId = this.getAttribute('data-post-id');
   
-  const commentHtml = await submitComment(postId, commentText);
-  increaseCommentCounter(postId);
-  renderNewComment(postId, commentHtml);
+  try{
+    // Attempt to submit comment
+    const commentHtml = await submitComment(postId, commentText);
+    // Increase comment counter
+    increaseCommentCounter(postId);
+    // Render the new comment
+    renderNewComment(postId, commentHtml);
+  }catch(error){
+    showFeedbackMessage(error.message, 'danger');
+  }
   
   // Clear the input after submission
   this.querySelector('.comment-input').value = '';
@@ -30,7 +46,7 @@ async function postComment(e) {
 
 /**
  * Increase comment counter
- * @param {int} postId post id to identify container
+ * @param {number} postId - Post id to identify container
  */
 function increaseCommentCounter(postId){
   const commentCounter = document.getElementById('comment-counter-'+postId);
@@ -42,8 +58,8 @@ function increaseCommentCounter(postId){
 
 /**
  * Display new comment
- * @param {int} postId post id to identify container
- * @param {string} commentHtml html of the new comment
+ * @param {number} postId - Post id to identify container
+ * @param {string} commentHtml - HTML of the new comment
  */
 function renderNewComment(postId, commentHtml){
   const commentsSection = document.getElementById('comments-section-'+postId);
@@ -62,7 +78,7 @@ function renderNewComment(postId, commentHtml){
 }
 
 /**
- * Handle comment button click event
+ * Handle comment button click event to show/hide comments
  * @param {Event} e - The click event
  */
 async function displayAllComments(e) {
@@ -77,14 +93,17 @@ async function displayAllComments(e) {
     const commentContainer = commentsSection.querySelector('.comment-container')
     // Clear all comments
     commentContainer.innerHTML = '';
-    // Fetch the comment of the post
-    const comments = await fetchCommentsHtml(postId);
-    commentContainer.innerHTML = comments;
-    // Show the comment container
-    commentsSection.classList.remove('d-none')
+    try{
+      // Fetch the comment of the post
+      const comments = await fetchCommentsHtml(postId);
+      commentContainer.innerHTML = comments;
+      // Show the comment container
+      commentsSection.classList.remove('d-none')
+    }catch(error){
+      showFeedbackMessage(error.message, 'danger')
+    }
   }else{
     // Hide the comment container
     commentsSection.classList.add('d-none')
   }
 }
-

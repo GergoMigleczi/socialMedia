@@ -52,6 +52,10 @@ class PostController extends Controller
         // Debugging $_POST data
         $this->logger->debug("Controllers/PostController->createPost(): POST Data: " . json_encode($_POST, JSON_PRETTY_PRINT));
         
+        if(!$content){
+            $this->sendBadRequest('Missing required field: postContent');
+        }
+
         try{
             // Save post
             $postId = $this->postModel->createPost(
@@ -71,10 +75,7 @@ class PostController extends Controller
                 echo json_encode(['success' => true, 'message' => 'Post created successfully', 'post_id' => $postId]);
                 exit;
             } else {
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode(['success' => false, 'message' => 'Failed to create post']);
-                exit;
+                throw new \Exception();
             }
         }catch(\Exception $e){
             $this->logger->error("Controllers/PostController->createPost(): Failed to create post: " . $e->getMessage());

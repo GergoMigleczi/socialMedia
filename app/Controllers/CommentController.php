@@ -33,13 +33,7 @@ class CommentController extends Controller
         // Validate post ID
         $postId = intval($postId);
         if (!$postId) {
-            http_response_code(400); // Bad Request
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid post ID'
-            ]);
-            return;
+            $this->sendBadRequest('Invalid profile ID');
         }
 
         try{
@@ -93,13 +87,7 @@ class CommentController extends Controller
         // Validate post ID
         $postId = intval($postId);
         if (!$postId) {
-            http_response_code(400); // Bad Request
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid post ID'
-            ]);
-            return;
+            $this->sendBadRequest('Invalid profile ID');
         }
         
         // Verify content type
@@ -110,11 +98,7 @@ class CommentController extends Controller
         $content = $input['content'] ?? '';        
         
         if (!$content) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false,
-            'message' => 'Missing required fields']);
-            return;
+            $this->sendBadRequest('Content of the comment cannot be empty');
         }
         
         try{

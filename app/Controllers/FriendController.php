@@ -3,6 +3,7 @@ namespace Controllers;
 use Components\FriendButtonComponent;
 use Core\Controller;
 use Core\View;
+use ErrorException;
 use Models\Friend;
 use Models\ProfileBlocking;
 
@@ -48,17 +49,17 @@ class FriendController extends Controller
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
         $input = $this->extractInput($contentType);
 
-        $action = $input['action'];
-        $profileId = $input['profileId'];
+        $action = $input['action'] ?? '';
+        $profileId = intval($input['profileId'] ?? '');
+        if(!$action || !$profileId){
+            $this->sendBadRequest('Missing required fields');
+        }
+
         $this->logger->debug("Action: $action, profileId: $profileId, loggedInProfileId: $loggedInProfileId");
         try{
             //Is blocked by target profile
             if($this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId)){
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode(['success' => false,
-                'message' => "Failed to $action friend request"]);
-                exit;
+                $this->sendForbidden("Failed to $action friend request");
             }
 
             switch($action) {
@@ -93,10 +94,7 @@ class FriendController extends Controller
                     'newStatus' => $newStatus
                     ]);
             }else{
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode(['success' => false,
-                'message' => "Failed to $action friend request"]);
+                throw new \Exception();
             }
 
         }catch (\Exception $e) {
@@ -112,13 +110,7 @@ class FriendController extends Controller
         // Validate input
         $profileId = intval($profileId);
         if (!$profileId) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid profile ID'
-            ]);
-            exit;
+            $this->sendBadRequest('Invalid profile ID');
         }
 
         try{

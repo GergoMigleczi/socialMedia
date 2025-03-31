@@ -1,3 +1,10 @@
+/**
+ * Displays a feedback message in a notification box.
+ *
+ * @param {string} message - The message to display.
+ * @param {"success" | "danger" | "warning"} [type="success"] - The type of message, which determines the alert style.
+ * @param {number} [duration=3000] - The duration (in milliseconds) before the message disappears.
+ */
 export function showFeedbackMessage(message, type = "success", duration = 3000) {
     const feedbackBox = document.getElementById("feedbackBox");
     const feedbackMessage = document.getElementById("feedbackMessage");

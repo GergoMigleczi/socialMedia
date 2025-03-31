@@ -113,10 +113,7 @@ class AuthController extends Controller
         
         // Validate input - both email and password must be provided
         if (!$email || !$password) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode(["success" => false, "message" => "Missing credentials"]);
-            exit;
+            $this->sendBadRequest("Missing credentials");
         }
         
         try{
@@ -135,9 +132,7 @@ class AuthController extends Controller
             } else {
                 // Failed login - invalid credentials
                 $this->logger->debug("Controllers/AuthController->login(): Login failed: " . $email);
-                http_response_code(401);
-                header('Content-Type: application/json');
-                echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+                $this->sendForbidden("Invalid email or password");
             }
         }catch(Exception $e){
             // Log any exceptions and return a generic error
@@ -195,9 +190,7 @@ class AuthController extends Controller
             } else {
                 // Registration failed - return error with specific message
                 $message = $newUser['message'] ?? 'Failed to register';
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode(['success' => false, 'message' => $message]);
+                $this->sendInternalServerError($message);
             }
         } catch (Exception $e) {
             // Log any exceptions and return a generic error

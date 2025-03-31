@@ -121,24 +121,12 @@ class ChatController extends Controller
       // Validate chat ID
       $chatId = intval($chatId);
       if (!$chatId) {
-        http_response_code(400); // Bad Request
-        header('Content-Type: application/json');
-        echo json_encode([
-          'success' => false,
-          'error' => 'Invalid chat ID'
-        ]);
-        exit;
+        $this->sendBadRequest('Invalid chat ID');
       }
 
       // Verify user is a participant in this chat
       if (!$this->chatModel->isProfileInChat($chatId, $loggedInProfileId)) {
-        http_response_code(401); // Unauthorized
-        header('Content-Type: application/json');
-        echo json_encode([
-          'success' => false,
-          'error' => 'User not authorised to add to this chat'
-        ]);
-        exit;
+        $this->sendForbidden('User not authorised to add to this chat');
       }
 
       try{
@@ -148,20 +136,12 @@ class ChatController extends Controller
         
         // Check if logged-in user is blocked by the other user
         if($this->profileBlockingModel->isProfileBlocked($otherParticipant->id, $loggedInProfileId)){
-          http_response_code(500);
-          header('Content-Type: application/json');
-          echo json_encode(['success' => false,
-          'message' => "Failed to send message. You are blocked by this user."]);
-          exit;
+          $this->sendForbidden("Failed to send message. You are blocked by this user.");
         }
         
         // Check if logged-in user is blocking the other user
         if($this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $otherParticipant->id)){
-          http_response_code(500);
-          header('Content-Type: application/json');
-          echo json_encode(['success' => false,
-          'message' => "Failed to send message. You are blocking this user."]);
-          exit;
+          $this->sendForbidden("Failed to send message. You are blocking this user.");
         }
       }catch(Exception $e){
         $this->logger->error("Controllers/ChatController->createMessage(): Failed to get block status between the profiles: " . $e->getMessage());
@@ -177,13 +157,7 @@ class ChatController extends Controller
 
       // Validate message content
       if (!$content) {
-        http_response_code(400);
-        header('Content-Type: application/json');
-        echo json_encode([
-          'success' => false,
-          'error' => 'Missing required fields'
-        ]);
-        exit;
+        $this->sendBadRequest('Missing required fields');
       }
 
       // Get requested return format (html or json)
@@ -247,13 +221,7 @@ class ChatController extends Controller
         // Validate input profile ID
         $profileId = intval($profileId);
         if (!$profileId) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'error' => 'Invalid profile ID'
-            ]);
-            exit;
+            $this->sendBadRequest('Invalid profile ID');
         }
 
         $this->logger->debug("Controllers/ChatController->getPrivateChat(): profileId: $profileId, currentProfileId: $currentProfileId");
@@ -309,26 +277,14 @@ class ChatController extends Controller
         // Validate target profile ID
         $profileId = intval($profileId);
         if (!$profileId) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid profile ID'
-            ]);
-            exit;
+          $this->sendBadRequest('Invalid profile ID');
         }
 
         try {
             // Verify users are friends (required to start a chat)
             $isFriend = $this->friendModel->isFriend($profileId, $currentProfileId);
             if(!$isFriend){
-                http_response_code(401);
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Not friends, cannot open chat'
-                ]);
-                exit;
+                $this->sendForbidden('Chats are only allowed between friends');
             }
             
             // Check if chat already exists (prevent duplicates)

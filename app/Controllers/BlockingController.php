@@ -71,13 +71,7 @@ class BlockingController extends Controller
         // Validate the profile ID (must be a valid integer)
         $profileId = intval($profileId);
         if (!$profileId) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid profile ID'
-            ]);
-            exit;
+            $this->sendBadRequest('Invalid profile ID');
         }
 
         try{
@@ -112,12 +106,7 @@ class BlockingController extends Controller
                 ]);
             }else{
                 // Return error response if blocking failed
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => $blocking['message'] ?? 'Failed to block profile'
-                ]);
+                $this->sendInternalServerError($blocking['message'] ?? 'Failed to block profile');
             }
         }catch(\Exception $e) {
             // Log any uncaught exceptions and return a generic error
@@ -149,13 +138,7 @@ class BlockingController extends Controller
         // Validate the profile ID (must be a valid integer)
         $profileId = intval($profileId);
         if (!$profileId) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid profile ID'
-            ]);
-            exit;
+            $this->sendBadRequest('Invalid profile ID');
         }
 
         try{
@@ -177,12 +160,7 @@ class BlockingController extends Controller
                 ]);
             }else{
                 // Return error response if unblocking failed
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => $unblocking['message'] ?? 'Failed to unblock profile'
-                ]);
+                $this->sendInternalServerError($unblocking['message'] ?? 'Failed to unblock profile');
             }
         }catch(\Exception $e) {
             // Log any uncaught exceptions and return a generic error

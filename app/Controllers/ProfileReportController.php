@@ -7,48 +7,60 @@ use Models\Profile;
 
 class ProfileReportController extends Controller
 {
+    // Log file name for this controller's operations
     private $logFile = 'profile_report.log';
+    
+    // Instance of ProfileReport model for database operations
     private $profileReportModel;
+    
+    // Instance of Profile model for profile-related operations
     private $profileModel;
 
     public function __construct()
     {
+        // Initialize parent Controller with logging
         parent::__construct($this->logFile);
+        
+        // Initialize models with the same log file
         $this->profileReportModel = new ProfileReport($this->logFile);
         $this->profileModel = new Profile($this->logFile);
     }
 
+    /**
+     * Handles profile reporting functionality
+     */
     public function reportProfile()
     {
-        // Get current logged-in user's profile ID
+        // Authenticate and get current user's profile ID
         $loggedInProfileId = $this->apiAuthLoggedInProfile();
 
-        // Verify content type
+        // Check and process request content type
         $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
         $input = $this->extractInput($contentType);
 
-        // Get POST body data
+        // Extract and validate required fields from input
         $profileId = $input['profileId'] ?? '';
         $reason = $input['reason'] ?? '';
         $details = $input['details'] ?? '';
 
-        // Validate input
-        $profileId = intval($profileId);
+        // Validate input data
+        $profileId = intval($profileId); // Ensure profileId is an integer
         if (!$profileId || !$reason) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid profile ID or missing reason'
-            ]);
-            exit;
+            $this->sendBadRequest('Invalid profile ID or missing report reason');
         }
 
         try {
-            // Report the profile
-            $report = $this->profileReportModel->createReport($loggedInProfileId, $profileId, $reason, $details);
+            // Attempt to create the profile report
+            $report = $this->profileReportModel->createReport(
+                $loggedInProfileId, 
+                $profileId, 
+                $reason, 
+                $details
+            );
 
+            // Handle report creation response
             if ($report['success']) {
+                // Success response
                 http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -56,15 +68,15 @@ class ProfileReportController extends Controller
                     'message' => 'Profile reported successfully.'
                 ]);
             } else {
-                http_response_code(500);
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => $report['message'] ?? 'Failed to report profile'
-                ]);
+                // Report creation failed
+                $this->sendInternalServerError($report['message'] ?? 'Failed to report profile');
             }
         } catch (\Exception $e) {
-            $this->logger->error("Controllers/ProfileReportController->reportProfile(): Failed to report profile: " . $e->getMessage());
+            // Log and handle any exceptions
+            $this->logger->error(
+                "Controllers/ProfileReportController->reportProfile(): " . 
+                "Failed to report profile: " . $e->getMessage()
+            );
             $this->sendInternalServerError();
         }
     }

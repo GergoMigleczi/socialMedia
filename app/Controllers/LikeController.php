@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use Core\Controller;
+use ErrorException;
 use Models\Like;
 
 class LikeController extends Controller
@@ -27,13 +28,7 @@ class LikeController extends Controller
         // Validate post ID
         $postId = intval($postId);
         if (!$postId) {
-            http_response_code(400); // Bad Request
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'error' => 'Invalid post ID'
-            ]);
-            return;
+            $this->sendBadRequest('Invalid profile ID');
         }
         
         try{
@@ -49,12 +44,7 @@ class LikeController extends Controller
                     'message' => 'Post liked successfully'
                 ]);
             } else {
-                http_response_code(400); // Bad Request
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Could not like post'
-                ]);
+                throw new \Exception();
             }
         }catch (\Exception $e) {
             $this->logger->error('Controllers/LikeController->createLike():' . $e->getMessage());
@@ -77,12 +67,7 @@ class LikeController extends Controller
         // Validate post ID
         $postId = intval($postId);
         if (!$postId) {
-            http_response_code(400); // Bad Request
-            echo json_encode([
-                'success' => false,
-                'error' => 'Invalid post ID'
-            ]);
-            return;
+            $this->sendBadRequest('Invalid profile ID');
         }
         
         try{
@@ -95,11 +80,7 @@ class LikeController extends Controller
                     'message' => 'Post unliked successfully'
                 ]);
             } else {
-                http_response_code(500); // Internal Server Error
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Could not unlike post'
-                ]);
+                throw new \Exception();
             }
         }catch (\Exception $e) {
             $this->logger->error('Controllers/LikeController->createLike():' . $e->getMessage());
