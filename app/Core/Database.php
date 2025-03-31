@@ -41,7 +41,7 @@ class Database {
             PDO::ATTR_PERSISTENT => true,          // Persistent connection
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Throw exceptions on errors
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, // Default fetch mode
-            PDO::ATTR_EMULATE_PREPARES => false    // Use real prepared statements
+            PDO::ATTR_EMULATE_PREPARES => true    // Allow for using the same parameter mutliple times
         ];
 
         try {

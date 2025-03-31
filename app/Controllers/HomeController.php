@@ -28,7 +28,7 @@ class HomeController extends Controller
                 'posts' => $posts
             ]);
         }catch(\Exception $e){
-            $this->logger->error("Controllers/PostController->createPost(): Failed to create post: " . $e->getMessage());
+            $this->logger->error("Controllers/HomeController->showHome(): " . $e->getMessage());
             $this->redirect('500');
         }
     }

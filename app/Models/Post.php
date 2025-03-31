@@ -317,7 +317,7 @@ class Post extends Model{
             // Commit the transaction
             $this->db->commit();
             
-            return $postId;
+            return intval($postId);
         } catch (\Exception $e) {
             $this->logger->error("Models/Post->createPost(): Exception: " . $e->getMessage());
             $this->db->rollBack();
