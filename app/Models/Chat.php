@@ -483,7 +483,7 @@ class Chat extends Model
             
             $this->db->commit();
             
-            return $chatId;
+            return intval($chatId);
             
         } catch (\Exception $e) {
             $this->db->rollBack();
