@@ -106,6 +106,7 @@ class Controller
         
         // Unsupported content type
         $this->sendUnsupportedMediaType();
+        return [];
     }
 
     /**
