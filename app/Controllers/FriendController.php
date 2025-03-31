@@ -1,11 +1,10 @@
 <?php
-namespace Controllers;
-use Components\FriendButtonComponent;
-use Core\Controller;
-use Core\View;
-use ErrorException;
-use Models\Friend;
-use Models\ProfileBlocking;
+namespace App\Controllers;
+use App\Components\FriendButtonComponent;
+use App\Core\Controller;
+use App\Core\View;
+use App\Models\Friend;
+use App\Models\ProfileBlocking;
 
 class FriendController extends Controller
 {    

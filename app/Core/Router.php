@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace App\Core;
 
 class Router
 {
@@ -145,9 +145,16 @@ class Router
             // Parse controller and method from handler string
             list($controller, $action) = explode('@', $route['handler']);
             
-            // If controller doesn't have namespace, assume it's in Controllers namespace
+           // Determine if this is an admin route or not
+            $isAdminRoute = strpos($url, '/admin') === 0;
+
+            // If controller doesn't have namespace, add the appropriate one
             if (strpos($controller, '\\') === false) {
-                $controller = "Controllers\\$controller";
+                if ($isAdminRoute) {
+                    $controller = "Admin\\Controllers\\$controller";
+                } else {
+                    $controller = "App\\Controllers\\$controller";
+                }
             }
             
             // Check if controller class exists

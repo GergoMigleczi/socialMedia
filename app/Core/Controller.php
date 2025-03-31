@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace App\Core;
 
 /**
  * Base Controller class that provides common functionality for all controllers
@@ -56,6 +56,16 @@ class Controller
         }
         return true;
     }
+
+    /**
+     * Deny access if logged in user is not admin
+     */
+    protected function denyIfNotAdmin(): void
+    {
+        if (!$this->session->isAdmin()) {
+            $this->denyAccess();
+        }
+    }
     
     /**
      * Redirect to specified URL
@@ -63,10 +73,10 @@ class Controller
      * @param string $url Relative or absolute URL to redirect to
      * @return void
      */
-    protected function redirect(string $url): void
+    protected function redirect(string $url, string $baseUrl = BASE_URL): void
     {
         // Construct full URL from base URL and provided path
-        $fullUrl = rtrim(BASE_URL, '/') . '/' . ltrim($url, '/');
+        $fullUrl = rtrim($baseUrl, '/') . '/' . ltrim($url, '/');
         
         header("Location: $fullUrl");
         exit;

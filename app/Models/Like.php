@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
+use App\Core\Model;
 
 class Like extends Model{
     public function __construct($log_file = "like.log") {

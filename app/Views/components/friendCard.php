@@ -1,9 +1,8 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Components\ChatButtonComponent;
-use Components\FriendButtonComponent;
-use Components\ProfileComponent;
-use Controllers\FriendController;
+use App\Components\ChatButtonComponent;
+use App\Components\FriendButtonComponent;
+use App\Components\ProfileComponent;
 // Pre-initialize all components
 ProfileComponent::init();
 FriendButtonComponent::init();

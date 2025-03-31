@@ -1,7 +1,6 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Components\PostComponent;
-use Core\AssetManager;
+use App\Components\PostComponent;
 
 // Pre-initialize all components
 PostComponent::init();

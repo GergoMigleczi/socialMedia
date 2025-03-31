@@ -1,5 +1,5 @@
 <?php 
-namespace Components;
+namespace App\Components;
 
 class CommentComponent {
     public static $initialized = false;

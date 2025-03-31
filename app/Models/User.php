@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\ProfileDTO;
+use App\Core\Model;
+use App\DTOs\ProfileDTO;
 
 
 class User extends Model{
@@ -82,7 +82,8 @@ class User extends Model{
                     fullName: $row->full_name,
                     email: $row->email,
                     profilePicture: $row->profile_picture,
-                    userId: $row->id
+                    userId: $row->id,
+                    isAdmin: $row->is_admin
                 );
                 return $profileDTO;
             } else {

@@ -1,8 +1,8 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Core\AssetManager;
-use Components\MessageComponent;
-use Components\ProfileComponent;
+use App\Core\AssetManager;
+use App\Components\MessageComponent;
+use App\Components\ProfileComponent;
 
 // Add Page's styles and scripts
 AssetManager::addStyle('chat-style', '/socialMedia/public/assets/css/chat.css');

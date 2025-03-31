@@ -1,13 +1,14 @@
 <?php
-namespace Controllers;
-use Core\Controller;
-use Core\View;
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Core\View;
 use Exception;
-use Models\Chat;
-use Components\MessageComponent;
-use DTOs\MessageDTO;
-use Models\Friend;
-use Models\ProfileBlocking;
+use App\Models\Chat;
+use App\Components\MessageComponent;
+use App\DTOs\MessageDTO;
+use App\Models\Friend;
+use App\Models\ProfileBlocking;
 
 /**
  * ChatController handles all chat-related functionality including displaying chats,

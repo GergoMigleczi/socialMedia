@@ -1,6 +1,6 @@
 <?php 
 
-use Core\AssetManager;
+use App\Core\AssetManager;
 // Add Page's styles and scripts
 AssetManager::addScript('register-script', '/socialMedia/public/assets/js/pages/register.js');
 AssetManager::addStyle('auth-style', '/socialMedia/public/assets/css/auth.css');

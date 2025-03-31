@@ -1,9 +1,8 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use ErrorException;
-use Models\Like;
+use App\Core\Controller;
+use App\Models\Like;
 
 class LikeController extends Controller
 {    

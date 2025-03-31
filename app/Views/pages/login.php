@@ -1,6 +1,6 @@
 <?php 
 
-use Core\AssetManager;
+use App\Core\AssetManager;
 
 // Add Page's styles and scripts
 AssetManager::addScript('login-script', '/socialMedia/public/assets/js/pages/login.js');

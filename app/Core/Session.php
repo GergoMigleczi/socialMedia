@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace App\Core;
 
 class Session {
     /**
@@ -23,6 +23,8 @@ class Session {
         $_SESSION['profileId'] = $profileDTO->id;
         //profilePicture
         $_SESSION['profilePicture'] = $profileDTO->profilePicture;
+        $_SESSION['userId'] = $profileDTO->userId;
+        $_SESSION['isAdmin'] = $profileDTO->isAdmin;
         $_SESSION['loginTime'] = time();
     }
     
@@ -44,6 +46,16 @@ class Session {
     public function getProfileId() {
         $this->ensureStarted();
         return $_SESSION['profileId'] ?? null;
+    }
+
+    /**
+     * Get if user is admin from session
+     * 
+     * @return bool isAdmin if exists, false otherwise
+     */
+    public function isAdmin() {
+        $this->ensureStarted();
+        return $_SESSION['isAdmin'] ?? false;
     }
     
     /**

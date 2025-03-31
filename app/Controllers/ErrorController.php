@@ -1,9 +1,8 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Core\View;
-use Models\Post;
+use App\Core\Controller;
+use App\Core\View;
 
 class ErrorController extends Controller
 {    

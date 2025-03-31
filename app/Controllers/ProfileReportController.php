@@ -1,9 +1,9 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Models\ProfileReport;
-use Models\Profile;
+use App\Core\Controller;
+use App\Models\ProfileReport;
+use App\Models\Profile;
 
 class ProfileReportController extends Controller
 {

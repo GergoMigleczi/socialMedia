@@ -1,7 +1,5 @@
 <?php 
-namespace Components;
-
-use Core\AssetManager;
+namespace App\Components;
 
 class FriendButtonComponent {
     public static $initialized = false;

@@ -1,7 +1,5 @@
 <?php 
-namespace Components;
-
-use Core\Logger;
+namespace App\Components;
 
 class MessageComponent {
     public static $initialized = false;

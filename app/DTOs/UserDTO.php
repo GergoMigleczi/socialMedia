@@ -1,7 +1,5 @@
 <?php
-namespace DTOs;
-
-use Core\Logger;
+namespace App\DTOs;
 
 class UserDTO {
     public $id;

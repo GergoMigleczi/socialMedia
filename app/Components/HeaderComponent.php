@@ -1,6 +1,7 @@
 <?php 
-namespace Components;
-use Core\AssetManager;
+namespace App\Components;
+
+use App\Core\AssetManager;
 
 class HeaderComponent {
     public static $initialized = false;
@@ -16,7 +17,7 @@ class HeaderComponent {
         AssetManager::addStyle('profileComponent-style', '/socialMedia/public/assets/css/profileComponent.css');
     }
     
-    public static function renderHeader() {
+    public static function renderHeader($isAdmin = false) {
         // Post rendering html
         include VIEWS_PATH .'/components/header.php';
     }

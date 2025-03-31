@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\PostDTO;
-use DTOs\ProfileDTO;
+use App\Core\Model;
+use App\DTOs\PostDTO;
+use App\DTOs\ProfileDTO;
 
 class Post extends Model{
     public function __construct($log_file = "posts.log") {

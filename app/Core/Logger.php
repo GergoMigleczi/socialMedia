@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace App\Core;
 
 /**
  * A comprehensive logging utility that handles various log levels and output methods.

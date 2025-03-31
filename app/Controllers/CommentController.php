@@ -1,10 +1,10 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Components\CommentComponent;
-use Core\Controller;
-use Models\Comment;
-use DTOs\CommentDTO;
+use App\Components\CommentComponent;
+use App\Core\Controller;
+use App\Models\Comment;
+use App\DTOs\CommentDTO;
 
 class CommentController extends Controller
 {     

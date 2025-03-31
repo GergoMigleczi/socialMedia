@@ -1,7 +1,7 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
+use App\Core\Controller;
 
 class ImageController extends Controller
 {    

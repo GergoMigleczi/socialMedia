@@ -1,9 +1,9 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Core\View;
-use Models\Post;
+use App\Core\Controller;
+use App\Core\View;
+use App\Models\Post;
 
 class PostController extends Controller
 {   

@@ -1,13 +1,14 @@
 DELETE FROM USERS;
 ALTER TABLE USERS AUTO_INCREMENT = 1;
 -- Insert into USERS
-INSERT INTO USERS (email, password) VALUES
-('randall@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G'), 
-('mike@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G'), 
-('sully@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G'), 
-('boo@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G'),
-('celia@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G'), 
-('roz@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G');
+INSERT INTO USERS (email, password, is_admin) VALUES
+('randall@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE), 
+('mike@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE), 
+('sully@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE), 
+('boo@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE),
+('celia@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE), 
+('roz@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', FALSE),
+('admin@example.com', '$2y$10$I15bifkEKmHeRqqnxE/GWuWBC9w/BSmERBD.DgcBBH/0IS/j4Pe8G', TRUE);
 
 DELETE FROM PROFILES;
 ALTER TABLE PROFILES AUTO_INCREMENT = 1;
@@ -18,7 +19,8 @@ INSERT INTO PROFILES (user_id, full_name, profile_picture) VALUES
 (3, 'Sully', 'sully.png'),
 (4, 'Boo', 'boo.png'),
 (5, 'Celia Mae', 'profile_picture_placeholder.png'),
-(6, 'Roz', 'roz.png');
+(6, 'Roz', 'roz.png'),
+(7, 'Admin', 'profile_picture_placeholder.png');
 
 DELETE FROM FRIENDSHIPS;
 ALTER TABLE FRIENDSHIPS AUTO_INCREMENT = 1;

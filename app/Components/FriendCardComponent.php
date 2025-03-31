@@ -1,7 +1,7 @@
 <?php 
-namespace Components;
+namespace App\Components;
 
-use Core\AssetManager;
+use App\Core\AssetManager;
 
 class FriendCardComponent {
     public static $initialized = false;

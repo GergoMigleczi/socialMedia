@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\ProfileDTO;
+use App\Core\Model;
+use App\DTOs\ProfileDTO;
 
 class Profile extends Model{
     public function __construct($log_file = "profile.log") {

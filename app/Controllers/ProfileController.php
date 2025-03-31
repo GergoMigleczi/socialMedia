@@ -1,14 +1,14 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Core\View;
+use App\Core\Controller;
+use App\Core\View;
 use Exception;
-use Models\Friend;
-use Models\Post;
-use Models\Profile;
-use Models\ProfileBlocking;
-use Models\ProfileReport;
+use App\Models\Friend;
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\ProfileBlocking;
+use App\Models\ProfileReport;
 
 class ProfileController extends Controller
 {        
@@ -48,7 +48,7 @@ class ProfileController extends Controller
         $loggedInProfileId = $this->session->getProfileId();
         
         try {
-            // Step 1: Get basic profile information
+            //Get basic profile information
             $profile = $this->profileModel->getProfileInfo($profileId);
             
             // Check if this is the user's own profile
@@ -56,15 +56,15 @@ class ProfileController extends Controller
 
             // Only check relationships if viewing someone else's profile
             if (!$isOwnProfile) {
-                // Step 2: Check friendship status between profiles
+                //Check friendship status between profiles
                 $friendshipStatus = $this->friendModel->getFriendStatus($profileId, $loggedInProfileId);
                 $this->logger->debug("Friendship status: " . $friendshipStatus);
                 
-                // Step 3: Check blocking status in both directions
+                //Check blocking status in both directions
                 $isBlockedByLoggedInProfile = $this->profileBlockingModel->isProfileBlocked($loggedInProfileId, $profileId);
                 $isLoggedInProfileBlocked = $this->profileBlockingModel->isProfileBlocked($profileId, $loggedInProfileId);
             
-                // Step 4: Determine UI element visibility
+                // Determine UI element visibility
                 // Show chat button only if friends and neither has blocked the other
                 $displayChatBtn = ($friendshipStatus == "Friends" && 
                                  !$isBlockedByLoggedInProfile && 
@@ -75,13 +75,13 @@ class ProfileController extends Controller
                                     !$isLoggedInProfileBlocked);
             }
 
-            // Step 5: Get profile's posts (filtered for current viewer)
+            // Get profile's posts (filtered for current viewer)
             $posts = $this->postModel->getProfilesPosts($profileId, $this->session->getProfileId());
             
-            // Step 6: Get available reporting options (for report dropdown)
+            // Get available reporting options (for report dropdown)
             $reportOptions = $this->profileReportModel->getReportOptions();
             
-            // Step 7: Render the profile view with all collected data
+            // Render the profile view with all collected data
             View::render('pages/profile', [
                 'title' => 'Profile',
                 'posts' => $posts,

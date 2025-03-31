@@ -1,10 +1,10 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Models\Friend;
-use Models\ProfileBlocking;
+use App\Core\Controller;
+use App\Models\Friend;
+use App\Models\ProfileBlocking;
 
 /**
  * BlockingController - Handles user profile blocking and unblocking functionality

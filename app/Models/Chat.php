@@ -1,11 +1,11 @@
 <?php
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\ChatDTO;
-use DTOs\ProfileDTO;
-use DTOs\MessageDTO;
-use Models\Profile;
+use App\Core\Model;
+use App\DTOs\ChatDTO;
+use App\DTOs\ProfileDTO;
+use App\DTOs\MessageDTO;
+use App\Models\Profile;
 
 class Chat extends Model
 {

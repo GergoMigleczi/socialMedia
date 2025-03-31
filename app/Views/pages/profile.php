@@ -1,9 +1,9 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Components\ChatButtonComponent;
-use Components\PostComponent;
-use Components\FriendButtonComponent;
-use Core\AssetManager;
+use App\Components\ChatButtonComponent;
+use App\Components\PostComponent;
+use App\Components\FriendButtonComponent;
+use App\Core\AssetManager;
 
 // Add Page's styles and scripts
 //AssetManager::addScript('profile-script', '/socialMedia/public/assets/js/pages/home.js');

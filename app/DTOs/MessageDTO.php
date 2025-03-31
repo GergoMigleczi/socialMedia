@@ -1,7 +1,7 @@
 <?php
-namespace DTOs;
+namespace App\DTOs;
 
-use DTOs\ProfileDTO;
+use App\DTOs\ProfileDTO;
 class MessageDTO {
     public int $id;
     public ProfileDTO $senderProfile;

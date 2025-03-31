@@ -1,7 +1,6 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Components\ChatCardComponent;
-use Core\AssetManager;
+use App\Components\ChatCardComponent;
 
 // Pre-initialize all components
 ChatCardComponent::init();

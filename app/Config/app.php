@@ -7,6 +7,7 @@
 define('APP_NAME', 'Social Media App');
 define('APP_URL', 'http://localhost/socialMedia'); // Base URL of your application
 define('BASE_URL', '/socialMedia/public');
+define('ADMIN_BASE_URL', '/socialMedia/admin');
 define('APP_VERSION', '1.0.0');
 define('APP_ENV', 'development'); // Options: development, testing, production
 

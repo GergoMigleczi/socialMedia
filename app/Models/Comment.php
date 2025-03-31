@@ -1,10 +1,10 @@
 <?php
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\CommentDTO;
-use DTOs\ProfileDTO;
-use Models\Profile;
+use App\Core\Model;
+use App\DTOs\CommentDTO;
+use App\DTOs\ProfileDTO;
+use App\Models\Profile;
 
 class Comment extends Model{
     public function __construct($log_file = "comments.log") {

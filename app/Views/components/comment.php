@@ -1,6 +1,6 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Components\ProfileComponent;
+use App\Components\ProfileComponent;
 
 // Pre-initialize all components
 ProfileComponent::init();

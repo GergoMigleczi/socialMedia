@@ -47,6 +47,10 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="/socialMedia/public/profile/<?=$_SESSION['profileId']?>">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <?php if($isAdmin): ?>
+                                <li><a class="dropdown-item" href="/socialMedia/admin/home">Admin Page</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            <?php endif; ?>
                             <li><a class="dropdown-item" href="/socialMedia/public/logout">Logout</a></li>
                         </ul>
                     </div>

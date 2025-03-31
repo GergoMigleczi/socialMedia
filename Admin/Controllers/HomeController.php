@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+namespace Admin\Controllers;
 
 use App\Core\Controller;
 use App\Core\View;
@@ -7,7 +7,7 @@ use App\Models\Post;
 
 class HomeController extends Controller
 {    
-    private $logFile = 'home.log';
+    private $logFile = 'adminHome.log';
     private $postModel;
     public function __construct()
     {
@@ -19,16 +19,15 @@ class HomeController extends Controller
     public function showHome()
     {
         $this->requireAuth(true);
+        $this->denyIfNotAdmin();
 
         try{
-            $posts = $this->postModel->getVisiblePosts($this->session->getProfileId());
-            // Render the login view
+            // Render the home view
             View::render('pages/home', [
-                'title' => 'Home',
-                'posts' => $posts
-            ]);
+                'title' => 'Admin Home'
+            ], context: 'admin');
         }catch(\Exception $e){
-            $this->logger->error("Controllers/HomeController->showHome(): " . $e->getMessage());
+            $this->logger->error("Controllers/Admin/HomeController->showHome(): " . $e->getMessage());
             $this->redirect('500');
         }
     }

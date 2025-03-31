@@ -1,10 +1,10 @@
 <?php
-namespace Controllers;
+namespace App\Controllers;
 
-use Core\Controller;
-use Core\View;
+use App\Core\Controller;
+use App\Core\View;
 use Exception;
-use Models\User;
+use App\Models\User;
 
 /**
  * AuthController - Handles user authentication functionality

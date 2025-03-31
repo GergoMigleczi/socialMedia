@@ -1,8 +1,7 @@
 
 <?php 
 // At the top of home.php, before any HTML output
-use Core\AssetManager;
-use Components\FriendCardComponent;
+use App\Components\FriendCardComponent;
 
 // Pre-initialize all components
 FriendCardComponent::init();

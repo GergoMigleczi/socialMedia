@@ -1,6 +1,6 @@
 <?php 
 // At the top of home.php, before any HTML output
-use Core\AssetManager;
+use App\Core\AssetManager;
 
 // Add Page's styles and scripts
 AssetManager::addStyle('carousel-style', '/socialMedia/public/assets/css/carousel.css');

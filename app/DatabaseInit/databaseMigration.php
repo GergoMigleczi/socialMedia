@@ -1,7 +1,7 @@
 <?php
-namespace DabaseInit;
+namespace App\DabaseInit;
 
-use Core\Logger;
+use App\Core\Logger;
 
 class DatabaseMigration {
     private $conn;

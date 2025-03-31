@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use Core\Model;
-use DTOs\ProfileReportDTO;
+use App\Core\Model;
+use App\DTOs\ProfileReportDTO;
 
 class ProfileReport extends Model
 {

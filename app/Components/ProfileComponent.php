@@ -1,6 +1,7 @@
 <?php 
-namespace Components;
-use Core\AssetManager;
+namespace App\Components;
+
+use App\Core\AssetManager;
 
 class ProfileComponent {
     public static $initialized = false;

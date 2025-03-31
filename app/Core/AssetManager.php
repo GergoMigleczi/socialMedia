@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace App\Core;
 
 /**
  * Asset Manager for handling CSS and JavaScript assets

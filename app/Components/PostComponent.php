@@ -1,7 +1,7 @@
 <?php 
-namespace Components;
+namespace App\Components;
 
-use Core\AssetManager;
+use App\Core\AssetManager;
 
 class PostComponent {
     public static $initialized = false;

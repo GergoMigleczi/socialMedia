@@ -1,6 +1,6 @@
 <?php
-use Core\AssetManager;
-use Components\HeaderComponent;
+use App\Core\AssetManager;
+use App\Components\HeaderComponent;
 
 HeaderComponent::init();
 
@@ -23,7 +23,7 @@ HeaderComponent::init();
 <body>
     <!-- Header -->
     <?php if ($showHeader): ?>
-        <?php HeaderComponent::renderHeader() ?>
+        <?php HeaderComponent::renderHeader($_SESSION['isAdmin'] ?? false) ?>
     <?php endif; ?>
     
     <!-- Main -->
