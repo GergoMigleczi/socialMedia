@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use App\DTOs\ProfileDTO;
+use Exception;
 
 class Profile extends Model{
     public function __construct($log_file = "profile.log") {
@@ -40,7 +41,7 @@ class Profile extends Model{
             // Check if profile was found
             if (empty($result)) {
                 $this->logger->warning("Models/Profile->getProfileInfo($profileId): Profile not found");
-                return null;
+                throw new Exception("Profile with id: $profileId not found");
             }
             
             $profileData = $result[0];
@@ -54,7 +55,7 @@ class Profile extends Model{
                 $profileData['user_id'],
                 $profileData['date_of_birth']
             );
-        }catch (\Exception $e) {
+        }catch (Exception $e) {
             $this->logger->error("Models/Profile->getProfileInfo(): Error: " . $e->getMessage());
             throw $e;
         }

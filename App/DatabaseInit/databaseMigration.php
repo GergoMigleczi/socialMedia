@@ -44,6 +44,41 @@ class DatabaseMigration {
         }
         
     }
+
+    public function generateRandomPosts() {
+        $visibilityOptions = ['public', 'friends', 'private'];
+        $totalPosts = 500;
+        $profileId = 2;
+    
+        $startTimestamp = strtotime('2024-04-04 00:00:00');
+        $endTimestamp = strtotime('2025-04-04 23:59:59');
+    
+        $stmt = $this->conn->prepare(
+            "INSERT INTO POSTS (profile_id, content, visibility, created_at) VALUES (?, ?, ?, ?)"
+        );
+    
+        if (!$stmt) {
+            $this->logger->error("Failed to prepare statement: " . $this->conn->error);
+            return;
+        }
+    
+        for ($i = 0; $i < $totalPosts; $i++) {
+            $randomTimestamp = rand($startTimestamp, $endTimestamp);
+            $createdAt = date('Y-m-d H:i:s', $randomTimestamp);
+            $visibility = $visibilityOptions[array_rand($visibilityOptions)];
+            $content = "Generated post #" . ($i + 1);
+    
+            $stmt->bind_param("isss", $profileId, $content, $visibility, $createdAt);
+    
+            if (!$stmt->execute()) {
+                $this->logger->error("Insert failed for post #" . ($i + 1) . ": " . $stmt->error);
+            } else {
+                $this->logger->info("Inserted post #" . ($i + 1));
+            }
+        }
+    
+        $stmt->close();
+    }   
 }
 
 // Run the migration
@@ -52,5 +87,5 @@ $migration->runSQLFile(__DIR__ . '/database.sql');
 $migration->logger->debug("Database setup completed successfully!");
 $migration->runSQLFile(__DIR__ . '/testData.sql');
 $migration->logger->debug("Database test data inserted successfully!");
-
+$migration->generateRandomPosts();
 

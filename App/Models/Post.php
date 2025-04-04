@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Core\Model;
 use App\DTOs\PostDTO;
 use App\DTOs\ProfileDTO;
+use Exception;
 
 class Post extends Model{
     public function __construct($log_file = "posts.log") {
@@ -427,9 +428,215 @@ class Post extends Model{
             }
             
             return true;
-        }catch (\Exception $e) {
+        }catch (Exception $e) {
             $this->logger->error("Models/Post->getVisiblePosts(): Error: " . $e->getMessage());
             throw $e;
         }
+    }
+
+    /**
+     * Get post statistics for a specific user across different time periods
+     * 
+     * @param int $profileId User profile ID
+     * @param string $period Time period ('week', 'month', '3months', '6months', 'year', '5years')
+     * @return array Array of date => count pairs
+     */
+    public function getPostStatistics(int $profileId, string $period): array
+    {
+        $result = [];
+        $now = new \DateTime();
+        $format = '';
+        $groupBy = '';
+        $interval = null;
+        
+        // Configure query parameters based on period
+        switch ($period) {
+            case 'week':
+                // Last 7 days, grouped by day
+                $interval = new \DateInterval('P7D');
+                $unit = 'day';
+                $format = '%Y-%m-%d';
+                $groupBy = 'DATE(created_at)';
+                break;
+                
+            case 'month':
+                // Last 30 days, grouped by day
+                $interval = new \DateInterval('P30D');
+                $unit = 'day';
+                $format = '%Y-%m-%d';
+                $groupBy = 'DATE(created_at)';
+                break;
+
+            case '6months':
+                // Last 180 days, grouped by month
+                $interval = new \DateInterval('P180D');
+                $unit = 'month';
+                $format = '%Y-%m';
+                $groupBy = 'DATE_FORMAT(created_at, "%Y-%m")'; // ISO week
+                break;
+                
+            case '1year':
+                // Last 365 days, grouped by month
+                $interval = new \DateInterval('P1Y');
+                $unit = 'month';
+                $format = '%Y-%m';
+                $groupBy = 'DATE_FORMAT(created_at, "%Y-%m")';
+                break;
+                
+            case '5years':
+                // Last 5 years, grouped by year
+                $interval = new \DateInterval('P5Y');
+                $unit = 'year';
+                $format = '%Y';
+                $groupBy = 'YEAR(created_at)';
+                break;
+                
+            default:
+                throw new \InvalidArgumentException("Invalid period: $period");
+        }
+        
+        // Start date for the query
+        $startDate = clone $now;
+        $startDate->sub($interval);
+        $startDate = $startDate->format('Y-m-d');
+        
+        try{
+            // Query for actual post counts
+            $sql = "
+            SELECT 
+                DATE_FORMAT(created_at, :format) as date,
+                visibility,
+                COUNT(*) as count
+            FROM 
+                POSTS
+            WHERE 
+                profile_id = :profile_id
+                AND created_at >= :start_date
+                AND is_deleted = FALSE
+            GROUP BY 
+                $groupBy, visibility
+            ORDER BY 
+                date ASC
+            ";
+            $this->db->query($sql);
+            $this->db->bind(':format', $format);
+            $this->db->bind(':profile_id', $profileId);
+            $this->db->bind(':start_date', $startDate);
+            
+            
+            // Fetch results
+            $posts = $this->db->resultSetAssoc();
+            
+            // Generate complete date range with zeros for missing dates
+            $dateRange = $this->generateDateRange($period, $format);
+            
+            $visibilityOptions = $this->getPostVisibilityOptions(); // ['public', 'friends', 'private']
+            $postsMap = [];              // total count per date
+            $visibilityMaps = [];        // map of visibility => [date => count]
+            $totalNumOfPosts = 0;
+
+            // Initialise visibility maps
+            foreach ($visibilityOptions as $visibility) {
+                $visibilityMaps[$visibility] = [];
+            }
+
+            // Aggregate posts
+            foreach ($posts as $post) {
+                $date = $post['date'];
+                $count = (int)$post['count'];
+                $visibility = $post['visibility'];
+
+                // Total map
+                if (!isset($postsMap[$date])) {
+                    $postsMap[$date] = 0;
+                }
+                $postsMap[$date] += $count;
+                $totalNumOfPosts += $count;
+
+                // Per-visibility map
+                if (!isset($visibilityMaps[$visibility][$date])) {
+                    $visibilityMaps[$visibility][$date] = 0;
+                }
+                $visibilityMaps[$visibility][$date] += $count;
+            }
+
+            // Build result with full date range
+            $result = [];
+            foreach ($dateRange as $date) {
+                $resultItem = [
+                    'date' => $date,
+                    'All Posts' => $postsMap[$date] ?? 0,
+                ];
+
+                // Add per-visibility counts
+                foreach ($visibilityOptions as $visibility) {
+                    $resultItem[$visibility] = $visibilityMaps[$visibility][$date] ?? 0;
+                }
+
+                $result[] = $resultItem;
+            }
+
+    
+            return ['unit' => $unit, 'dataset' => $result, 'total' => $totalNumOfPosts];
+        }catch(Exception $e){
+            $this->logger->error("Models/Post->getPostStatistics(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Generate a complete date range for the given period
+     * 
+     * @param string $period Time period
+     * @param string $format Date format string
+     * @return array Array of dates
+     */
+    private function generateDateRange(string $period, string $format): array
+    {
+        $dates = [];
+        $now = new \DateTime();
+        $interval = null;
+        $dateInterval = null;
+        
+        switch ($period) {
+            case 'week':
+                $interval = new \DateInterval('P7D');
+                $dateInterval = new \DateInterval('P1D');
+                break;
+                
+            case 'month':
+                $interval = new \DateInterval('P30D');
+                $dateInterval = new \DateInterval('P1D');
+                break;
+                
+            case '6months':
+                $interval = new \DateInterval('P6M');
+                $dateInterval = new \DateInterval('P1M');
+                break;
+                
+            case '1year':
+                $interval = new \DateInterval('P1Y');
+                $dateInterval = new \DateInterval('P1M');
+                break;
+                
+            case '5years':
+                $interval = new \DateInterval('P5Y');
+                $dateInterval = new \DateInterval('P1Y');
+                break;
+        }
+        
+        $startDate = clone $now;
+        $startDate->sub($interval);
+        
+        $current = clone $startDate;
+        
+        while ($current <= $now) {
+            // For other periods, use the format directly
+            $dates[] = $current->format(str_replace(['%Y-', '%Y', '%m', '%d', '%u'], ['Y-', 'Y', 'm', 'd', 'W'], $format));
+            
+            $current->add($dateInterval);
+        }
+        
+        return $dates;
     }
 }

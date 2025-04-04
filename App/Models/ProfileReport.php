@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use App\DTOs\ProfileReportDTO;
+use App\DTOs\ProfileDTO;
 
 class ProfileReport extends Model
 {
@@ -115,51 +116,60 @@ class ProfileReport extends Model
      */
     public function getReportsByProfile(int $profileId): array
     {
-        $sql = "
-            SELECT
-                r.id as report_id,
-                r.reporter_profile_id,
-                r.reported_profile_id,
-                r.reason_type,
-                r.description,
-                r.status,
-                r.admin_notes,
-                r.created_at,
-                r.updated_at,
-                reported.full_name as reported_full_name,
-                reported.profile_picture as reported_profile_picture
-            FROM PROFILE_REPORTS r
-            JOIN PROFILES reported ON r.reported_profile_id = reported.id
-            WHERE r.reporter_profile_id = :profile_id
-            ORDER BY r.created_at DESC
-        ";
+        try{
 
-        $this->db->query($sql);
-        $this->db->bind(':profile_id', $profileId);
-        $results = $this->db->resultSetAssoc();
+            
+            $sql = "
+                SELECT
+                    r.id as report_id,
+                    r.reporter_profile_id,
+                    r.reported_profile_id,
+                    r.reason_type,
+                    r.description,
+                    r.status,
+                    r.created_at,
+                    r.updated_at,
+                    reported.full_name as reported_full_name,
+                    reported.profile_picture as reported_profile_picture
+                FROM PROFILE_REPORTS r
+                JOIN PROFILES reported ON r.reported_profile_id = reported.id
+                WHERE r.reporter_profile_id = :profile_id
+                ORDER BY r.created_at DESC
+            ";
 
-        $reports = [];
+            $this->db->query($sql);
+            $this->db->bind(':profile_id', $profileId);
+            $results = $this->db->resultSetAssoc();
 
-        foreach ($results as $row) {
-            $this->logger->debug("Models/ProfileReport->getReportsByProfile($profileId): row: " . $row['report_id']);
+            $reports = [];
 
-            // Create ProfileReportDTO
-            $reportDto = new ProfileReportDTO(
-                $row['report_id'],
-                $row['reporter_profile_id'],
-                $row['reported_profile_id'],
-                $row['reason_type'],
-                $row['description'],
-                $row['status'],
-                $row['admin_notes'],
-                $row['created_at'],
-                $row['updated_at']
-            );
+            foreach ($results as $row) {
+                $this->logger->debug("Models/ProfileReport->getReportsByProfile($profileId): row: " . $row['report_id']);
 
-            $reports[] = $reportDto;
+                // Create ProfileReportDTO
+                $reportDto = new ProfileReportDTO(
+                    $row['report_id'],
+                    new ProfileDTO(
+                        $row['reporter_profile_id'],
+                        $row['reporter_full_name'],
+                        $row['reporter_profile_picture']
+                    ),
+                    $row['reported_profile_id'],
+                    $row['reason_type'],
+                    $row['description'],
+                    $row['status'],
+                    $row['created_at'],
+                    $row['updated_at']
+                );
+
+                $reports[] = $reportDto;
+            }
+
+            return $reports;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/ProfileReport->getReportsByProfile($profileId): " . $e->getMessage());
+            throw $e;
         }
-
-        return $reports;
     }
 
     /**
@@ -170,50 +180,57 @@ class ProfileReport extends Model
      */
     public function getReportsForProfile(int $profileId): array
     {
-        $sql = "
-            SELECT
-                r.id as report_id,
-                r.reporter_profile_id,
-                r.reported_profile_id,
-                r.reason_type,
-                r.description,
-                r.status,
-                r.admin_notes,
-                r.created_at,
-                r.updated_at,
-                reporter.full_name as reporter_full_name,
-                reporter.profile_picture as reporter_profile_picture
-            FROM PROFILE_REPORTS r
-            JOIN PROFILES reporter ON r.reporter_profile_id = reporter.id
-            WHERE r.reported_profile_id = :profile_id
-            ORDER BY r.created_at DESC
-        ";
+        try{
+            $sql = "
+                SELECT
+                    r.id as report_id,
+                    r.reporter_profile_id,
+                    r.reported_profile_id,
+                    r.reason_type,
+                    r.description,
+                    r.status,
+                    r.created_at,
+                    r.updated_at,
+                    reporter.full_name as reporter_full_name,
+                    reporter.profile_picture as reporter_profile_picture
+                FROM PROFILE_REPORTS r
+                JOIN PROFILES reporter ON r.reporter_profile_id = reporter.id
+                WHERE r.reported_profile_id = :profile_id
+                ORDER BY r.created_at DESC
+            ";
 
-        $this->db->query($sql);
-        $this->db->bind(':profile_id', $profileId);
-        $results = $this->db->resultSetAssoc();
+            $this->db->query($sql);
+            $this->db->bind(':profile_id', $profileId);
+            $results = $this->db->resultSetAssoc();
 
-        $reports = [];
+            $reports = [];
 
-        foreach ($results as $row) {
-            $this->logger->debug("Models/ProfileReport->getReportsForProfile($profileId): row: " . $row['report_id']);
+            foreach ($results as $row) {
+                $this->logger->debug("Models/ProfileReport->getReportsForProfile($profileId): row: " . $row['report_id']);
 
-            // Create ProfileReportDTO
-            $reportDto = new ProfileReportDTO(
-                $row['report_id'],
-                $row['reporter_profile_id'],
-                $row['reported_profile_id'],
-                $row['reason_type'],
-                $row['description'],
-                $row['status'],
-                $row['admin_notes'],
-                $row['created_at'],
-                $row['updated_at']
-            );
+                // Create ProfileReportDTO
+                $reportDto = new ProfileReportDTO(
+                    $row['report_id'],
+                    new ProfileDTO(
+                        $row['reporter_profile_id'],
+                        $row['reporter_full_name'],
+                        $row['reporter_profile_picture']
+                    ),
+                    $row['reported_profile_id'],
+                    $row['reason_type'],
+                    $row['description'],
+                    $row['status'],
+                    $row['created_at'],
+                    $row['updated_at']
+                );
 
-            $reports[] = $reportDto;
+                $reports[] = $reportDto;
+            }
+
+            return $reports;
+        }catch (\Exception $e) {
+            $this->logger->error("Models/ProfileReport->getReportsForProfile($profileId): " . $e->getMessage());
+            throw $e;
         }
-
-        return $reports;
     }
 }

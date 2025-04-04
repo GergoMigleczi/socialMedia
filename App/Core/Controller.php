@@ -135,6 +135,19 @@ class Controller
     }
 
     /**
+     * Verify API authentication and return current profile ID
+     * 
+     * @return int Authenticated admin's profile ID
+     * @throws \RuntimeException If not authenticated
+     */
+    protected function apiAuthAdmin(): void
+    {
+        if (!$this->session->isAdmin()) {
+            $this->sendUnauthorized();
+        }
+    }
+
+    /**
      * Enforce specific HTTP request method
      * 
      * @param string $expectedMethod The required HTTP method (e.g., 'POST', 'GET')

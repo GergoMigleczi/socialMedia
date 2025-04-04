@@ -43,6 +43,10 @@ $router = new App\Core\Router();
 
 // Page Requests
 $router->get('/home', 'Admin\Controllers\HomeController@showHome');
+$router->get('/users', 'Admin\Controllers\UsersController@showUsers');
+$router->get('/user/{userId}', 'Admin\Controllers\UsersController@showUser');
+
+$router->get('/api/postStatistics', 'Admin\Controllers\PostController@getPostStatistics');
 
 // Process the request
 $router->dispatch();

@@ -31,21 +31,29 @@ class MessageDTO {
         );
     }
 
-    private function formatTimestamp($timestamp): string{
+    public static function formatTimestamp($timestamp): string {
         // Get the current timestamp for comparison
         $now = time();
         $messageTime = strtotime($timestamp);
-        $daysDiff = floor(($now - $messageTime) / (60 * 60 * 24));
-
+        $diff = $now - $messageTime;
+        
+        // Calculate time differences
+        $daysDiff = floor($diff / (60 * 60 * 24));
+        $hoursDiff = floor($diff / (60 * 60));
+        
         // Format based on how old the message is
-        if ($daysDiff < 1 && date('d/m/Y', $now) === date('d/m/Y', $messageTime)) {
-            // Today - just show time
-            return date('H:i', $messageTime);
+        if ($daysDiff < 1 && date('Y-m-d', $now) === date('Y-m-d', $messageTime)) {
+            // Today - show hours ago
+            if ($hoursDiff < 1) {
+                $minutesDiff = floor($diff / 60);
+                return $minutesDiff <= 1 ? 'just now' : $minutesDiff . ' minutes ago';
+            }
+            return $hoursDiff <= 1 ? '1 hour ago' : $hoursDiff . ' hours ago';
         } elseif ($daysDiff < 4) {
             // In the last 3 days - show day name and time
             return date('l, H:i', $messageTime);
         } else {
-            // Older than 3 days - keep the original format
+            // Older than 3 days - show date and time
             return date('d/m/Y H:i', $messageTime);
         }
     }

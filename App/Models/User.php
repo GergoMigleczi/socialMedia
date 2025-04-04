@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use App\DTOs\ProfileDTO;
+use Exception;
 
 
 class User extends Model{
@@ -118,19 +119,42 @@ class User extends Model{
      * @return mixed User object if found, false otherwise
      */
     public function getUserById($id) {
-        $this->db->query("SELECT u.*, p.id as profile_id, p.full_name, p.date_of_birth, p.profile_picture 
-                          FROM USERS u
-                          LEFT JOIN PROFILES p ON u.id = p.user_id
-                          WHERE u.id = :id");
-        
-        $this->db->bind(':id', $id);
-        
-        $row = $this->db->single();
-        
-        if ($row) {
-            return $this->setUserProperties($row);
-        } else {
-            return false;
+        try{
+            $this->db->query("SELECT u.*
+                            , p.id as profile_id
+                            , p.full_name
+                            , p.date_of_birth
+                            , p.profile_picture 
+                            FROM USERS u
+                            LEFT JOIN PROFILES p ON u.id = p.user_id
+                            WHERE u.id = :id");
+            
+            $this->db->bind(':id', $id);
+            
+            // Execute the query and get the result
+            $this->db->execute();
+            $result = $this->db->resultSetAssoc();
+            
+            // Check if profile was found
+            if (empty($result)) {
+                $this->logger->warning("Models/User->getUserById($id): User not found");
+                throw new Exception("User with id: $id not found");
+            }
+            
+            $userData = $result[0];
+            $this->logger->debug("Models/Profile->getUserById($id): User found: " . $userData['full_name']);
+            
+            // Create and return a ProfileDTO instance
+            return new ProfileDTO(
+                $userData['profile_id'],
+                $userData['full_name'],
+                $userData['profile_picture'],
+                $userData['id'],
+                $userData['date_of_birth']
+            );
+        }catch (Exception $e) {
+            $this->logger->error("Models/Profile->getUserById(): Error: " . $e->getMessage());
+            throw $e;
         }
     }
     
@@ -142,60 +166,6 @@ class User extends Model{
     private function setUserProperties($row) {
         $this->id = $row->id;
 
-    }
-    
-    /**
-     * Create or update user profile
-     * 
-     * @param array $data Profile data
-     * @return bool Success or failure
-     */
-    public function updateProfile($data) {
-        // Check if profile exists
-        $this->db->query("SELECT id FROM PROFILES WHERE user_id = :user_id");
-        $this->db->bind(':user_id', $this->id);
-        $existingProfile = $this->db->single();
-        
-        if ($existingProfile) {
-            // Update existing profile
-            $this->db->query("UPDATE PROFILES SET 
-                              full_name = :full_name, 
-                              date_of_birth = :date_of_birth, 
-                              profile_picture = :profile_picture 
-                              WHERE user_id = :user_id");
-        } else {
-            // Create new profile
-            $this->db->query("INSERT INTO PROFILES 
-                             (user_id, full_name, date_of_birth, profile_picture) 
-                             VALUES 
-                             (:user_id, :full_name, :date_of_birth, :profile_picture)");
-        }
-        
-        // Bind values
-        $this->db->bind(':user_id', $this->id);
-        $this->db->bind(':full_name', $data['full_name']);
-        $this->db->bind(':date_of_birth', $data['date_of_birth']);
-        $this->db->bind(':profile_picture', $data['profile_picture'] ?? null);
-        
-        // Execute query
-        if ($this->db->execute()) {
-            // Update object properties
-            $this->full_name = $data['full_name'];
-            $this->date_of_birth = $data['date_of_birth'];
-            $this->profile_picture = $data['profile_picture'] ?? null;
-            
-            if (!$existingProfile) {
-                // Get the new profile ID
-                $this->db->query("SELECT id FROM PROFILES WHERE user_id = :user_id");
-                $this->db->bind(':user_id', $this->id);
-                $newProfile = $this->db->single();
-                $this->profile_id = $newProfile->id;
-            }
-            
-            return true;
-        } else {
-            return false;
-        }
     }
     
     /**
@@ -387,4 +357,80 @@ class User extends Model{
             return false;
         }
     }
+
+    /**
+     * Retrieve a list of user profiles based on a search phrase and sorting criteria.
+     *
+     * This method searches for profiles whose full names match the provided search phrase
+     * (partial matching supported). It also retrieves the total number of posts and reports
+     * associated with each profile. The results can be sorted by full name, total posts,
+     * or total reports in ascending order.
+     *
+     * @param string $searchPhrase The search term to filter profiles by full name.
+     * @param string $sort The sorting field ('full_name', 'totalPosts', 'totalReports').
+     * @return array An array of ProfileDTO objects representing matching profiles.
+     * @throws \Exception If an error occurs during database operations.
+     */
+    public function getUsers(string $searchPhrase = '', string $sort = 'full_name', string $sortDirection = 'ASC'): array {
+        $this->logger->debug("Models/User->getUsers($searchPhrase, $sort, $sortDirection)");
+        
+        // Validate sort parameter
+        $validSortFields = ['full_name', 'totalPosts', 'totalReports', 'profile_id'];
+        $sortField = in_array($sort, $validSortFields) ? $sort : 'full_name';
+        
+        try {
+            // Query to fetch users and their profile details
+            $sortDirection = strtoupper(trim($sortDirection));
+            if($sortDirection != 'ASC' && $sortDirection != 'DESC'){
+                $sortDirection = 'ASC';
+            }
+            $this->logger->debug("Models/User->getUsers() sortDirection: $sortDirection");
+
+            $this->db->query("
+                SELECT 
+                    p.id AS profile_id, 
+                    p.full_name, 
+                    p.profile_picture, 
+                    u.id AS user_id, 
+                    u.email, 
+                    u.is_admin, 
+                    p.date_of_birth,
+                    (SELECT COUNT(*) FROM POSTS WHERE profile_id = p.id AND is_deleted = FALSE) AS totalPosts,
+                    (SELECT COUNT(*) FROM PROFILE_REPORTS WHERE reported_profile_id = p.id) AS totalReports
+                FROM PROFILES p
+                LEFT JOIN USERS u ON p.user_id = u.id
+                WHERE LOWER(p.full_name) LIKE :searchPhrase
+                ORDER BY $sortField $sortDirection
+            ");
+            
+            // Bind search phrase with wildcard for partial matching
+            $searchPhrase = strtolower(str_replace(' ', '%', trim($searchPhrase)));
+            $this->db->bind(':searchPhrase', "%$searchPhrase%");
+            
+            // Execute and fetch results
+            $rows = $this->db->resultSetObj();
+            
+            // Convert results into ProfileDTO objects
+            $profiles = [];
+            foreach ($rows as $row) {
+                $profiles[] = new ProfileDTO(
+                    id: $row->profile_id,
+                    fullName: $row->full_name,
+                    profilePicture: $row->profile_picture,
+                    userId: $row->user_id,
+                    email: $row->email,
+                    isAdmin: $row->is_admin,
+                    dateOfBirth: $row->date_of_birth,
+                    totalPosts: $row->totalPosts,
+                    totalReports: $row->totalReports
+                );
+            }
+            
+            return $profiles;
+        } catch (\Exception $e) {
+            $this->logger->error("Models/User->getUsers(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
+    
 }

@@ -2,22 +2,24 @@
 
 namespace App\DTOs;
 
+use App\DTOs\ProfileDTO;
+use App\DTOs\MessageDTO;
+
 class ProfileReportDTO {
-    private int $id;
-    private int $reporterProfileId;
-    private int $reportedProfileId;
-    private string $reasonType;
-    private ?string $description;
-    private string $status;
-    private ?string $adminNotes;
-    private string $createdAt;
-    private string $updatedAt;
+    public int $id;
+    public ProfileDTO $reporterProfileDTO;
+    public int $reportedProfileId;
+    public string $reasonType;
+    public ?string $description;
+    public string $status;
+    public string $createdAt;
+    public string $updatedAt;
 
     /**
      * Constructor for ProfileReportDTO
      * 
      * @param int $id
-     * @param int $reporterProfileId
+     * @param ProfileDTO $reporterProfileDTO
      * @param int $reportedProfileId
      * @param string $reasonType
      * @param string|null $description
@@ -28,61 +30,21 @@ class ProfileReportDTO {
      */
     public function __construct(
         int $id,
-        int $reporterProfileId,
+        ProfileDTO $reporterProfileDTO,
         int $reportedProfileId,
         string $reasonType,
         ?string $description,
         string $status,
-        ?string $adminNotes,
         string $createdAt,
         string $updatedAt
     ) {
         $this->id = $id;
-        $this->reporterProfileId = $reporterProfileId;
+        $this->reporterProfileDTO = $reporterProfileDTO;
         $this->reportedProfileId = $reportedProfileId;
         $this->reasonType = $reasonType;
         $this->description = $description;
         $this->status = $status;
-        $this->adminNotes = $adminNotes;
-        $this->createdAt = $createdAt;
+        $this->createdAt = MessageDTO::formatTimestamp($createdAt);
         $this->updatedAt = $updatedAt;
-    }
-
-    // Getters
-
-    public function getId(): int {
-        return $this->id;
-    }
-
-    public function getReporterProfileId(): int {
-        return $this->reporterProfileId;
-    }
-
-    public function getReportedProfileId(): int {
-        return $this->reportedProfileId;
-    }
-
-    public function getReasonType(): string {
-        return $this->reasonType;
-    }
-
-    public function getDescription(): ?string {
-        return $this->description;
-    }
-
-    public function getStatus(): string {
-        return $this->status;
-    }
-
-    public function getAdminNotes(): ?string {
-        return $this->adminNotes;
-    }
-
-    public function getCreatedAt(): string {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): string {
-        return $this->updatedAt;
     }
 }

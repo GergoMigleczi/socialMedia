@@ -10,6 +10,8 @@ class ProfileDTO
     public ?int $userId = null;
     public ?string $dateOfBirth = null;
     public ?bool $isAdmin = false;
+    public ?int $totalPosts = 0;
+    public ?int $totalReports = 0;
     public function __construct(
         int $id, 
         string $fullName, 
@@ -17,7 +19,9 @@ class ProfileDTO
         ?int $userId = null,
         ?string $dateOfBirth = null,
         ?string $email = null,
-        ?bool $isAdmin = false
+        ?bool $isAdmin = false,
+        ?int $totalPosts = 0,
+        ?int $totalReports = 0
         ) {
         $this->id = $id;
         $this->fullName = $fullName;
@@ -29,6 +33,8 @@ class ProfileDTO
         }
         $this->email = $email;
         $this->isAdmin = $isAdmin;
+        $this->totalPosts = $totalPosts;
+        $this->totalReports = $totalReports;
     }
 
     public function __toString(): string 
