@@ -1,5 +1,5 @@
 import {showFeedbackMessage} from '../../js/modules/feedback.js';
-import { blockUser , unblockUser} from '../modules/userCore.js';
+import { blockUser , deleteUser, unblockUser} from '../modules/userCore.js';
 
 // Execute when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {    
@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (unblockUserBtn) {
         unblockUserBtn.addEventListener('click', handleUnblockButtonClick);
     }
+
+    // Delete User Event Listener
+    const deleteUserBtn = document.getElementById('delete-user-btn');
+    if (deleteUserBtn) {
+        deleteUserBtn.addEventListener('click', handleDeleteUserButtonClick);
+    }
+    
 });
 
 /**
@@ -43,7 +50,7 @@ async function handleBlockFormSubmit(e) {
 }
 
 /**
- * Handles the block user form submission
+ * Handles the unblock user button click
  * @param {Event} e - Form submission event
  */
 async function handleUnblockButtonClick(e) {
@@ -57,6 +64,26 @@ async function handleUnblockButtonClick(e) {
         
         // Refresh the page or update UI
         location.reload();
+    } catch (error) {
+        showFeedbackMessage(error.message, 'danger');
+    }
+}
+
+/**
+ * Handles the delete user button click
+ * @param {Event} e - Form submission event
+ */
+async function handleDeleteUserButtonClick(e) {
+    
+    const button = e.target;
+    const userId = button.getAttribute('data-user-id'); // Assuming user ID is stored somewhere
+    
+    try {
+        // Attemt to block the user
+        await deleteUser(userId);
+        
+        // Go back to 
+        window.location.href = "/socialMedia/admin/users";
     } catch (error) {
         showFeedbackMessage(error.message, 'danger');
     }

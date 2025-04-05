@@ -558,4 +558,53 @@ class User extends Model{
             throw $e;
         }
     }
+
+    /**
+     * Delete a user and their associated profile
+     * 
+     * @param int $userId The ID of the user to delete
+     * @return bool True if successful, false otherwise
+     * @throws \Exception If an error occurs during the operation
+     */
+    public function deleteUser(int $userId): bool {
+        $this->logger->debug("Models/User->deleteUser($userId)");
+        
+        try {
+            // Check if user exists
+            $this->db->query("SELECT id FROM USERS WHERE id = :id");
+            $this->db->bind(':id', $userId);
+            $user = $this->db->single();
+            
+            if (!$user) {
+                $this->logger->warning("Models/User->deleteUser(): User not found with ID: $userId");
+                throw new \Exception("User not found with ID: $userId");
+            }
+            
+            // Begin transaction for atomicity
+            $this->db->beginTransaction();
+            
+            try {
+                // Delete the user - this should cascade to PROFILES and other tables
+                // due to ON DELETE CASCADE foreign key constraint
+                $this->db->query("DELETE FROM USERS WHERE id = :id");
+                $this->db->bind(':id', $userId);
+                
+                if (!$this->db->execute()) {
+                    throw new \Exception("Failed to delete user");
+                }
+                
+                // Commit the transaction
+                $this->db->commit();
+                $this->logger->info("Models/User->deleteUser(): User $userId deleted successfully");
+                return true;
+            } catch (\Exception $e) {
+                // Rollback on error
+                $this->db->rollback();
+                throw $e;
+            }
+        } catch (\Exception $e) {
+            $this->logger->error("Models/User->deleteUser(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
 }

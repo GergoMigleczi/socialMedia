@@ -36,7 +36,7 @@ AssetManager::addScript('user-script', '/socialMedia/public/assets/adminjs/pages
             <?php else: ?>
                 <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#blockUserModal">Block User</button>
             <?php endif ?>
-            <button class="btn btn-outline-dark">Delete User</button>
+            <button id="delete-user-btn" class="btn btn-outline-dark" data-user-id="<?=$profile->userId?>">Delete User</button>
         </div>
     </div>
     <div class="card p-4 my-4">

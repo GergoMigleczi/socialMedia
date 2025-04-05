@@ -83,9 +83,9 @@ class DatabaseMigration {
 
 // Run the migration
 $migration = new DatabaseMigration();
-$migration->runSQLFile(__DIR__ . '/database.sql');
+//$migration->runSQLFile(__DIR__ . '/database.sql');
 $migration->logger->debug("Database setup completed successfully!");
 $migration->runSQLFile(__DIR__ . '/testData.sql');
 $migration->logger->debug("Database test data inserted successfully!");
-$migration->generateRandomPosts();
+//$migration->generateRandomPosts();
 

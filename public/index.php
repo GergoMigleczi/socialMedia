@@ -36,7 +36,7 @@ spl_autoload_register(function($className) {
 });
 
 // Initialise database
-// require_once APP_ROOT . '/DatabaseInit/databaseMigration.php';
+//require_once APP_ROOT . '/DatabaseInit/databaseMigration.php';
 
 // Initialise router
 $router = new App\Core\Router();

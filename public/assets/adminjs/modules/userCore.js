@@ -35,7 +35,7 @@ export async function blockUser(userId, blockUntilDate) {
     }
   }
 
-  /**
+/**
  * Makes an API call to unblock a user
  * @param {number} userId - The ID of the user to unblock
  * @returns {Promise<Object>} - Response from the server
@@ -66,6 +66,37 @@ export async function unblockUser(userId) {
       }
     } catch (error) {
       console.error('Error in unblockUser:', error);
+      throw error; // Re-throw to allow handling in the calling function
+    }
+  }
+
+/**
+ * Makes an API call to delete a user
+ * @param {number} userId - The ID of the user to delete
+ * @returns {Promise<Object>} - Response from the server
+ */
+export async function deleteUser(userId) {
+    try {
+      const response = await fetch(`/socialMedia/admin/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Error deleting user');
+      }
+      
+      if(data['success']){
+        return data['success'];
+      }else{
+        throw new Error('Failed to delete user');
+      }
+    } catch (error) {
+      console.error('Error in deleteUser:', error);
       throw error; // Re-throw to allow handling in the calling function
     }
   }

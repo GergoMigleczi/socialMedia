@@ -161,4 +161,30 @@ class UsersController extends Controller
             $this->sendInternalServerError($e->getMessage());
         }
     }
+
+    public function deleteUser(int $userId){
+        $this->enforceRequestMethod('DELETE');
+        $this->apiAuthLoggedInProfile();
+        $this->apiAuthAdmin();
+
+        if(!$userId){
+            $this->sendBadRequest('Missing user ID');
+        }
+        
+        try{
+            $deletionResult = $this->userModel->deleteUser($userId);
+
+            if($deletionResult){
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true]);
+                exit;
+            }else{
+                throw new \Exception('Failed to delete user');
+            }
+        }catch(\Exception $e){
+            $this->logger->error("Admin/Controllers/UsersController->unblockUser($userId): error: " . $e->getMessage());
+            $this->sendInternalServerError($e->getMessage());
+        }
+    }
 }
