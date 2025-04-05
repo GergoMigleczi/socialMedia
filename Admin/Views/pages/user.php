@@ -10,6 +10,7 @@ PostChartComponent::init();
 
 //AssetManager::addScript('user-script', '/socialMedia/public/assets/adminjs/pages/user.js');
 AssetManager::addStyle('profile-style', '/socialMedia/public/assets/css/profile.css');
+AssetManager::addScript('user-script', '/socialMedia/public/assets/adminjs/pages/user.js');
 
 ?>
 <div class="container-fluid px-3 mt-3 top" style="max-width: 900px;">
@@ -24,9 +25,17 @@ AssetManager::addStyle('profile-style', '/socialMedia/public/assets/css/profile.
             alt="Profile image">
 
         <h2 class="mb-3 text-center text-md-start d-inline-block"><?=$profile->fullName?></h2>
-        <div class="my-3">
+
+        <?php if($isBlocked): ?>
+            <small class="text-danger">Blocked Until: <?=$blockedUntil?></small>
+        <?php endif ?>
+        <div class=" d-flex my-3">
             <a role="button" href="/socialMedia/public/profile/<?=$profile->id?>" class="btn btn-outline-primary me-2">View Profile</a>
-            <button class="btn btn-outline-danger me-2">Block User</button>
+            <?php if($isBlocked): ?>
+                <button id="unblock-user-btn" type="button" class="btn btn-outline-secondary me-2" data-user-id="<?=$profile->userId?>">Unblock User</button>
+            <?php else: ?>
+                <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#blockUserModal">Block User</button>
+            <?php endif ?>
             <button class="btn btn-outline-dark">Delete User</button>
         </div>
     </div>
@@ -47,4 +56,29 @@ AssetManager::addStyle('profile-style', '/socialMedia/public/assets/css/profile.
             ?>
         </div>
     </div>
+</div>
+
+<!-- Modal with Calendar -->
+<div class="modal fade" id="blockUserModal" tabindex="-1" aria-labelledby="blockUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blockUserModalLabel">Block User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="blockUserForm" data-user-id="<?=$profile->userId?>">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="blockUntilDate" class="form-label">Block Until:</label>
+                <input type="date" class="form-control" id="blockUntilDate" min="<?php echo date('Y-m-d');?>" required>
+                <small class="text-muted">Select the date until which the user will be blocked</small>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger">Confirm Block</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

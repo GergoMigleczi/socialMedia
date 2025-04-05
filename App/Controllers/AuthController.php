@@ -121,6 +121,13 @@ class AuthController extends Controller
             $profileDTO = $this->userModel->login($email, $password);
 
             if ($profileDTO && isset($profileDTO->id)) {
+                $isBlocked = $this->userModel->isUserBlocked($profileDTO->userId);
+                if($isBlocked['isBlocked']){
+                    http_response_code(200);
+                    header('Content-Type: application/json');
+                    echo json_encode(["success" => false, "message" => "You are blocked unti " . $isBlocked['blockedUntil']]);
+                    exit;
+                }
                 // Successful login - create session with profile data
                 $this->logger->debug("Controllers/AuthController->login(): Login successful: " . $profileDTO->id);
                 $this->session->create($profileDTO);

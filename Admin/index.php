@@ -47,6 +47,8 @@ $router->get('/users', 'Admin\Controllers\UsersController@showUsers');
 $router->get('/user/{userId}', 'Admin\Controllers\UsersController@showUser');
 
 $router->get('/api/postStatistics', 'Admin\Controllers\PostController@getPostStatistics');
+$router->post('/api/users/block', 'Admin\Controllers\UsersController@blockUser');
+$router->post('/api/users/unblock', 'Admin\Controllers\UsersController@unblockUser');
 
 // Process the request
 $router->dispatch();

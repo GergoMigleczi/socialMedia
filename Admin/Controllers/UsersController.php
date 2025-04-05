@@ -5,6 +5,7 @@ use App\Core\Controller;
 use App\Core\View;
 use App\Models\ProfileReport;
 use App\Models\User;
+use Exception;
 
 class UsersController extends Controller
 {    
@@ -82,16 +83,82 @@ class UsersController extends Controller
         $this->logger->debug("Admin/Controllers/UsersController->showUser($userId)");
         try{
             $profileDTO = $this->userModel->getUserById($userId);
+            $isBlocked = $this->userModel->isUserBlocked($userId);
             $reports = $this->profileReportModel->getReportsForProfile($profileDTO->id);
             // Render the home view
             View::render('pages/user', [
                 'title' => 'Users',
                 'profile' => $profileDTO,
-                'reports' => $reports
+                'reports' => $reports,
+                'isBlocked' =>$isBlocked['isBlocked'],
+                'blockedUntil' => $isBlocked['blockedUntil']
             ], context: 'admin');
         }catch(\Exception $e){
             $this->logger->error("Controllers/Admin/HomeController->showUsers(): " . $e->getMessage());
             $this->redirect('500');
+        }
+    }
+
+    public function blockUser(){
+        $this->enforceRequestMethod('POST');
+        $this->apiAuthLoggedInProfile();
+        $this->apiAuthAdmin();
+
+        // Verify content type
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+        $input = $this->extractInput($contentType);
+
+        $userId = intval($input['userId']) ?? 0;
+        $blockUnitDate = $input['blockedUntil'] ?? '';
+        if(!$userId || !$blockUnitDate){
+            $this->sendBadRequest('Missing required fields');
+        }
+        
+        try{
+            $userBlockResult = $this->userModel->blockUser($userId, $blockUnitDate);
+
+            if($userBlockResult){
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true]);
+                exit;
+            }else{
+                throw new \Exception('Failed to block user');
+            }
+        }catch(\Exception $e){
+            $this->logger->error("Admin/Controllers/UsersController->blockUser($userId): error: " . $e->getMessage());
+            $this->sendInternalServerError($e->getMessage());
+        }
+    }
+
+    public function unblockUser(){
+        $this->enforceRequestMethod('POST');
+        $this->apiAuthLoggedInProfile();
+        $this->apiAuthAdmin();
+
+        // Verify content type
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+        $input = $this->extractInput($contentType);
+
+        $userId = intval($input['userId']) ?? 0;
+        if(!$userId){
+            $this->sendBadRequest('Missing required fields');
+        }
+        
+        try{
+            $userUnblockResult = $this->userModel->unblockUser($userId);
+
+            if($userUnblockResult){
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(['success' => true]);
+                exit;
+            }else{
+                throw new \Exception('Failed to unblock user');
+            }
+        }catch(\Exception $e){
+            $this->logger->error("Admin/Controllers/UsersController->unblockUser($userId): error: " . $e->getMessage());
+            $this->sendInternalServerError($e->getMessage());
         }
     }
 }

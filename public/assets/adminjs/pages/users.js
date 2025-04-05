@@ -1,3 +1,4 @@
+
 // Execute when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {    
     // Add event listener to the search button
@@ -5,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener to the sort selection dropdown
     document.getElementById('users-sort-selection').addEventListener('change', handleSearchAndSort);
+    
+    // Block User Event Listener
+    const blockUserForm = document.getElementById('blockUserForm');
+    if (blockUserForm) {
+      blockUserForm.addEventListener('submit', handleBlockFormSubmit);
+    }
 });
 
 // Function to handle search and sort

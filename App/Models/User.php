@@ -433,4 +433,129 @@ class User extends Model{
         }
     }
     
+    /**
+     * Block a user until a specified date
+     * 
+     * @param int $userId The ID of the user to block
+     * @param string $blockedUntil Date until which the user will be blocked (YYYY-MM-DD format)
+     * @return bool True if successful, false otherwise
+     * @throws \Exception If an error occurs during the operation
+     */
+    public function blockUser(int $userId, string $blockedUntil): bool {
+        $this->logger->debug("Models/User->blockUser($userId, $blockedUntil)");
+        
+        try {
+            // Validate the date format
+            $date = \DateTime::createFromFormat('Y-m-d', $blockedUntil);
+            if (!$date || $date->format('Y-m-d') !== $blockedUntil) {
+                $this->logger->warning("Models/User->blockUser(): Invalid date format: $blockedUntil");
+                throw new \Exception("Invalid date format. Expected YYYY-MM-DD.");
+            }
+            
+            // Check if the date is in the future
+            $today = new \DateTime();
+            if ($date < $today) {
+                $this->logger->warning("Models/User->blockUser(): Block date must be in the future");
+                throw new \Exception("Block date must be in the future.");
+            }
+            
+            // Check if user exists
+            $this->db->query("SELECT id FROM USERS WHERE id = :id");
+            $this->db->bind(':id', $userId);
+            $user = $this->db->single();
+            
+            if (!$user) {
+                $this->logger->warning("Models/User->blockUser(): User not found with ID: $userId");
+                throw new \Exception("User not found with ID: $userId");
+            }
+            
+            // Update the blocked_until field
+            $this->db->query("UPDATE USERS SET blocked_until = :blocked_until WHERE id = :id");
+            $this->db->bind(':blocked_until', $blockedUntil);
+            $this->db->bind(':id', $userId);
+            
+            if ($this->db->execute()) {
+                $this->logger->info("Models/User->blockUser(): User $userId blocked until $blockedUntil");
+                return true;
+            } else {
+                $this->logger->warning("Models/User->blockUser(): Failed to update database");
+                return false;
+            }
+        } catch (\Exception $e) {
+            $this->logger->error("Models/User->blockUser(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Unblock a user by clearing their blocked_until date
+     * 
+     * @param int $userId The ID of the user to unblock
+     * @return bool True if successful, false otherwise
+     * @throws \Exception If an error occurs during the operation
+     */
+    public function unblockUser(int $userId): bool {
+        $this->logger->debug("Models/User->unblockUser($userId)");
+        
+        try {
+            // Check if user exists
+            $this->db->query("SELECT id FROM USERS WHERE id = :id");
+            $this->db->bind(':id', $userId);
+            $user = $this->db->single();
+            
+            if (!$user) {
+                $this->logger->warning("Models/User->unblockUser(): User not found with ID: $userId");
+                throw new \Exception("User not found with ID: $userId");
+            }
+            
+            // Set blocked_until to NULL to unblock the user
+            $this->db->query("UPDATE USERS SET blocked_until = NULL WHERE id = :id");
+            $this->db->bind(':id', $userId);
+            
+            if ($this->db->execute()) {
+                $this->logger->info("Models/User->unblockUser(): User $userId has been unblocked");
+                return true;
+            } else {
+                $this->logger->warning("Models/User->unblockUser(): Failed to update database");
+                return false;
+            }
+        } catch (\Exception $e) {
+            $this->logger->error("Models/User->unblockUser(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Check if a user is currently blocked
+     * 
+     * @param int $userId The ID of the user to check
+     * @return array Information about the user's block status
+     * @throws \Exception If an error occurs during the operation
+     */
+    public function isUserBlocked(int $userId): array {
+        $this->logger->debug("Models/User->isUserBlocked($userId)");
+        
+        try {
+            $this->db->query("SELECT blocked_until FROM USERS WHERE id = :id");
+            $this->db->bind(':id', $userId);
+            $user = $this->db->single();
+            
+            if (!$user) {
+                $this->logger->warning("Models/User->isUserBlocked(): User not found with ID: $userId");
+                throw new \Exception("User not found with ID: $userId");
+            }
+            
+            $today = date('Y-m-d');
+            $isBlocked = !empty($user->blocked_until) && $user->blocked_until > $today;
+            
+            return [
+                'isBlocked' => $isBlocked,
+                'blockedUntil' => $user->blocked_until ?? null,
+                'remainingDays' => $isBlocked ? (strtotime($user->blocked_until) - strtotime($today)) / (60 * 60 * 24) : 0
+            ];
+        } catch (\Exception $e) {
+            $this->logger->error("Models/User->isUserBlocked(): Error: " . $e->getMessage());
+            throw $e;
+        }
+    }
 }

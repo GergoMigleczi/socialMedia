@@ -20,12 +20,16 @@ async function login(event) {
         // Attempt to authenticate the user
         const loginSuccessful = await authenticateLogin(email, password);
 
-        if (loginSuccessful) {
+        if (loginSuccessful['success']) {
             // Redirect to the home page on success
             window.location.pathname = window.location.pathname.replace("/login", "/home");
         } else {
             // Show feedback message for incorrect credentials
-            showFeedbackMessage('Invalid email or password', 'danger');
+            if(loginSuccessful['message']){
+                showFeedbackMessage(loginSuccessful['message'], 'danger');
+            }else{
+                showFeedbackMessage('Invalid email or password', 'danger');
+            }
         }
     } catch (error) {
         // Show feedback message for an error
