@@ -55,7 +55,7 @@ class User extends Model{
      * @param string $password User password (plain text)
      * @return mixed User object if authenticated, false otherwise
      */
-    public function login($email, $password): bool|ProfileDTO {
+    public function login($email, $password) {
         $this->logger->debug("Models/User->login($email, $password)");
         try{
             // Find user by email
