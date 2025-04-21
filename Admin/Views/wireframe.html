@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Wireframes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .page { margin-bottom: 40px; border: 1px solid #ddd; padding: 20px; max-width: 800px; }
+        h1 { margin-top: 0; }
+        .chart { 
+            height: 150px; 
+            border: 1px dashed #ccc; 
+            margin: 10px 0; 
+            display: flex; 
+            align-items: flex-end;
+            padding: 10px;
+        }
+        .bar { 
+            background: #eee; 
+            margin: 0 5px; 
+            flex-grow: 1; 
+            min-width: 30px; 
+            border: 1px solid #999;
+        }
+        .user-card { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+        .profile-pic { width: 40px; height: 40px; border-radius: 50%; background: #ddd; margin-right: 10px; }
+        .controls { margin: 10px 0; display: flex; gap: 10px; }
+        button { padding: 5px 10px; cursor: pointer; }
+        select, input { padding: 5px; }
+        .report-item { padding: 8px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<!-- Dashboard Page -->
+<div class="page">
+    <h1>Admin Dashboard</h1>
+    <div class="controls">
+        <select>
+            <option>Week</option>
+            <option>Month</option>
+            <option>Year</option>
+        </select>
+        <input type="text" placeholder="Search...">
+    </div>
+    <h3>Post Activity</h3>
+    <div class="chart">
+        <div class="bar" style="height: 70%;"></div>
+        <div class="bar" style="height: 30%;"></div>
+        <div class="bar" style="height: 50%;"></div>
+        <div class="bar" style="height: 80%;"></div>
+        <div class="bar" style="height: 20%;"></div>
+        <div class="bar" style="height: 40%;"></div>
+        <div class="bar" style="height: 60%;"></div>
+    </div>
+    <div style="text-align: center;">Mon Tue Wed Thu Fri Sat Sun</div>
+</div>
+
+<!-- User List Page -->
+<div class="page">
+    <h1>User Management</h1>
+    <input type="text" placeholder="Search users..." style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    <div class="user-card">
+        <div class="profile-pic"></div>
+        <div>
+            <strong>John Doe</strong><br>
+            ID: 12345
+        </div>
+    </div>
+    <div class="user-card">
+        <div class="profile-pic"></div>
+        <div>
+            <strong>Jane Smith</strong><br>
+            ID: 67890
+        </div>
+    </div>
+    <div class="user-card">
+        <div class="profile-pic"></div>
+        <div>
+            <strong>Alex Johnson</strong><br>
+            ID: 54321
+        </div>
+    </div>
+    <div style="text-align: center; padding: 10px; color: #666;">... more users ...</div>
+</div>
+
+<!-- User Report Page -->
+<div class="page">
+    <h1>User Report: John Doe (ID: 12345)</h1>
+    <div class="controls">
+        <button>BLOCK USER</button>
+        <button>DELETE USER</button>
+    </div>
+    
+    <h3>Post Activity</h3>
+    <select>
+        <option>Month</option>
+        <option>Week</option>
+        <option>Year</option>
+    </select>
+    <div class="chart">
+        <div class="bar" style="height: 40%;"></div>
+        <div class="bar" style="height: 60%;"></div>
+        <div class="bar" style="height: 30%;"></div>
+        <div class="bar" style="height: 80%;"></div>
+        <div class="bar" style="height: 20%;"></div>
+        <div class="bar" style="height: 50%;"></div>
+    </div>
+    <div style="text-align: center;">Jan Feb Mar Apr May Jun</div>
+    
+    <h3>Report Activity</h3>
+    <select>
+        <option>Month</option>
+        <option>Week</option>
+        <option>Year</option>
+    </select>
+    <div class="chart">
+        <div class="bar" style="height: 10%;"></div>
+        <div class="bar" style="height: 30%;"></div>
+        <div class="bar" style="height: 5%;"></div>
+        <div class="bar" style="height: 20%;"></div>
+        <div class="bar" style="height: 5%;"></div>
+        <div class="bar" style="height: 15%;"></div>
+    </div>
+    <div style="text-align: center;">Jan Feb Mar Apr May Jun</div>
+    
+    <h3>Report List</h3>
+    <div class="report-item">
+        <strong>User: Alice</strong> - Reason: Spam
+    </div>
+    <div class="report-item">
+        <strong>User: Bob</strong> - Reason: Harassment
+    </div>
+    <div class="report-item">
+        <strong>User: Carol</strong> - Reason: Inappropriate content
+    </div>
+    <div style="text-align: center; padding: 10px; color: #666;">... more reports ...</div>
+</div>
+
+</body>
+</html>

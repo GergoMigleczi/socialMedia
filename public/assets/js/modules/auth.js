@@ -22,7 +22,7 @@ export async function authenticateLogin(email, password) {
         const data = await response.json();
         console.log(data); // Log response data for debugging
         
-        return data["success"]; // Return success status from response
+        return data; // Return success status from response
     } catch (error) {
         console.error('Error:', error); // Log error details to the console
         throw error;
