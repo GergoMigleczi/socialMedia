@@ -5,7 +5,7 @@
 
 // Application settings
 define('APP_NAME', 'Social Media App');
-define('APP_URL', 'https://s4413759-ctxxxx.uogs.co.uk/socialMedia/'); // Base URL of your application
+define('APP_URL', getenv('APP_URL'));
 define('BASE_URL', '/socialMedia/public');
 define('ADMIN_BASE_URL', '/socialMedia/admin');
 define('APP_VERSION', '1.0.0');
