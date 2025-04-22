@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS USERS (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  email TEXT UNIQUE,
-  password TEXT,
+  email VARCHAR(255) UNIQUE,
+  password VARCHAR(255),
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
   blocked_until DATE DEFAULT NULL
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -10,9 +10,9 @@ CREATE TABLE IF NOT EXISTS USERS (
 CREATE TABLE IF NOT EXISTS PROFILES (
   id INT PRIMARY KEY AUTO_INCREMENT,
   user_id INT UNIQUE,
-  full_name TEXT,
+  full_name VARCHAR(255),
   date_of_birth DATE,
-  profile_picture TEXT,
+  profile_picture VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE
 );
 
@@ -56,9 +56,9 @@ CREATE TABLE IF NOT EXISTS PROFILE_REPORTS (
   reporter_profile_id INT NOT NULL,
   reported_profile_id INT NOT NULL,
   reason_type ENUM('spam', 'harassment', 'inappropriate_content') NOT NULL,
-  description TEXT,
+  description VARCHAR(255),
   status ENUM('pending', 'reviewed', 'resolved', 'dismissed') NOT NULL DEFAULT 'pending',
-  admin_notes TEXT,
+  admin_notes VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (reporter_profile_id) REFERENCES PROFILES(id) ON DELETE CASCADE,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS MESSAGES (
   id INT PRIMARY KEY AUTO_INCREMENT,
   chat_id INT NOT NULL,
   sender_profile_id INT NOT NULL,
-  content TEXT NOT NULL,
+  content VARCHAR(255) NOT NULL,
   message_type ENUM('text', 'image', 'video', 'file') NOT NULL DEFAULT 'text',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   edited_at TIMESTAMP,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS MESSAGES (
 CREATE TABLE IF NOT EXISTS POSTS (
   id INT PRIMARY KEY AUTO_INCREMENT,
   profile_id INT NOT NULL,
-  content TEXT,
+  content VARCHAR(255),
   latitude DECIMAL(10,8),
   longitude DECIMAL(11,8),
   location_name VARCHAR(255),
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS COMMENTS (
   id INT PRIMARY KEY AUTO_INCREMENT,
   post_id INT NOT NULL,
   profile_id INT NOT NULL,
-  content TEXT NOT NULL,
+  content VARCHAR(255) NOT NULL,
   parent_comment_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS NOTIFICATIONS (
   actor_profile_id INT,
   related_item_id INT,
   related_item_type VARCHAR(255),
-  content TEXT,
+  content VARCHAR(255),
   is_read BOOLEAN NOT NULL DEFAULT FALSE,
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
