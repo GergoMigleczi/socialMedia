@@ -24,7 +24,7 @@ function handleSearchAndSort(e) {
     const sortValue = document.getElementById('users-sort-selection').value;
     
     // Construct the URL with the search and sort parameters
-    const url = `/socialMedia/admin/users?search=${encodeURIComponent(searchValue)}&sort=${encodeURIComponent(sortValue)}`;
+    const url = `/socialMedia/Admin/users?search=${encodeURIComponent(searchValue)}&sort=${encodeURIComponent(sortValue)}`;
     
     // Redirect to the constructed URL
     window.location.href = url;
