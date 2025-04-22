@@ -47,7 +47,7 @@ ProfileComponent::init();
                     <?php foreach($post->images as $index => $image): ?>
                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                         <div class="carousel-image-container">
-                            <img src="<?= base_url('/public/getImage?url=' . $image) ?>" class="d-block" alt="Post image">
+                            <img src="<?= APP_URL . '/public/getImage?url=' . $image ?>" class="d-block" alt="Post image">
                         </div>
                     </div>
                     <?php endforeach; ?>

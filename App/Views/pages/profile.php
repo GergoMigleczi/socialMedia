@@ -21,7 +21,7 @@ ChatButtonComponent::init();
     <div class="card mb-3">
         <div class="card-body text-center text-md-start d-md-flex align-items-center justify-content-between">
             <img class="profile-picture d-block mx-auto mx-md-0" 
-                src="<?= base_url('/public/getImage?url=' . $profile->profilePicture) ?>" 
+                src="<?= APP_URL . '/public/getImage?url=' . $profile->profilePicture ?>" 
                 alt="Profile image">
 
             <h2 class="mb-3 mb-md-0 text-center text-md-start"><?=$profile->fullName?></h2>

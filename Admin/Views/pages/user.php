@@ -21,7 +21,7 @@ AssetManager::addScript('user-script', '/socialMedia/public/assets/adminjs/pages
     </div>
     <div class="card p-4 my-2 d-flex flex-column align-items-center justify-content-center">
         <img class="profile-picture d-block mx-auto mx-md-0" 
-            src="<?= base_url('/public/getImage?url=' . $profile->profilePicture) ?>" 
+            src="<?= APP_URL . '/public/getImage?url=' . $profile->profilePicture ?>" 
             alt="Profile image">
 
         <h2 class="mb-3 text-center text-md-start d-inline-block"><?=$profile->fullName?></h2>
