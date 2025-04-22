@@ -7,7 +7,7 @@ ProfileComponent::init();
 ?>
 <div class="card my-2"
     role="button"
-    onclick="window.location.href='/socialMedia/admin/user/<?=$profile->userId?>';"
+    onclick="window.location.href='/socialMedia/Admin/user/<?=$profile->userId?>';"
 >
     <div class="d-flex align-items-center">
         <?php ProfileComponent::renderProfilePicture($profile);?>
