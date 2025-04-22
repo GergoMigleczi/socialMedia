@@ -42,13 +42,13 @@
                             class="btn" 
                             data-bs-toggle="dropdown"
                         >
-                            <img class="small-profile-picture" src="<?= base_url('/public/getImage?url=' . $_SESSION['profilePicture']) ?>" class="d-block" alt="Profile image">
+                            <img class="small-profile-picture" src="<?= APP_URL . '/public/getImage?url=' . $_SESSION['profilePicture'] ?>" class="d-block" alt="Profile image">
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="/socialMedia/public/profile/<?=$_SESSION['profileId']?>">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <?php if($isAdmin): ?>
-                                <li><a class="dropdown-item" href="/socialMedia/admin/users">Admin Page</a></li>
+                                <li><a class="dropdown-item" href="/socialMedia/Admin/users">Admin Page</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             <?php endif; ?>
                             <li><a class="dropdown-item" href="/socialMedia/public/logout">Logout</a></li>
