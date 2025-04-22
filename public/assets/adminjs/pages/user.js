@@ -83,7 +83,7 @@ async function handleDeleteUserButtonClick(e) {
         await deleteUser(userId);
         
         // Go back to 
-        window.location.href = "/socialMedia/admin/users";
+        window.location.href = "/socialMedia/Admin/users";
     } catch (error) {
         showFeedbackMessage(error.message, 'danger');
     }

@@ -1,8 +1,8 @@
 // Function to fetch statistics
 export async function fetchPostStatistics(profileId, period) {
     try {
-        console.log(`/socialMedia/admin/api/postStatistics?profileId=${profileId}&period=${period}`)
-        const response = await fetch(`/socialMedia/admin/api/postStatistics?profileId=${profileId}&period=${period}`, {
+        console.log(`/socialMedia/Admin/api/postStatistics?profileId=${profileId}&period=${period}`)
+        const response = await fetch(`/socialMedia/Admin/api/postStatistics?profileId=${profileId}&period=${period}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
