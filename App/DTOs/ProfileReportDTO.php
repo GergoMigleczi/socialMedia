@@ -45,6 +45,6 @@ class ProfileReportDTO {
         $this->description = $description;
         $this->status = $status;
         $this->createdAt = MessageDTO::formatTimestamp($createdAt);
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt ?? "";
     }
 }
