@@ -34,3 +34,17 @@ export function showFeedbackMessage(message, type = "success", duration = 3000) 
         feedbackBox.classList.add("d-none");
     }, duration);
 }
+
+/**
+ * Hides the feedback message in a notification box.
+ *
+ */
+export function hideFeedbackMessage() {
+    const feedbackBox = document.getElementById('feedbackBox');
+    if (!feedbackBox) return;
+
+    feedbackBox.classList.remove('show');
+    setTimeout(() => {
+        feedbackBox.classList.add('d-none');
+    }, 150); // Match Bootstrap fade-out
+}
