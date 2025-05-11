@@ -41,6 +41,7 @@ export function showFeedbackMessage(message, type = "success", duration = 3000) 
  */
 export function hideFeedbackMessage() {
     const feedbackBox = document.getElementById('feedbackBox');
+    console.log('close feeback box');
     if (!feedbackBox) return;
 
     feedbackBox.classList.remove('show');

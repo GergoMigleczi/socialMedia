@@ -39,7 +39,7 @@ HeaderComponent::init();
     <!-- Feedback Alert -->
     <div id="feedbackBox" class="alert alert-dismissible fade position-fixed bottom-0 start-0 m-3 d-none" role="alert" style="z-index: 1050;">
         <span id="feedbackMessage"></span>
-        <button type="button" class="btn-close" aria-label="Close"></button>
+        <button id="feedbackCloseBtn" type="button" class="btn-close" aria-label="Close"></button>
     </div>
     
     <!-- Bootstrap JS and dependencies -->
