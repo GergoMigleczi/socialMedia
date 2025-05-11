@@ -44,7 +44,5 @@ export function hideFeedbackMessage() {
     if (!feedbackBox) return;
 
     feedbackBox.classList.remove('show');
-    setTimeout(() => {
-        feedbackBox.classList.add('d-none');
-    }, 150); // Match Bootstrap fade-out
+    feedbackBox.classList.add('d-none');
 }
