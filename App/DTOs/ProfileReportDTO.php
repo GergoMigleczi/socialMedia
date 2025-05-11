@@ -36,7 +36,7 @@ class ProfileReportDTO {
         ?string $description,
         string $status,
         string $createdAt,
-        string $updatedAt
+        ?string $updatedAt
     ) {
         $this->id = $id;
         $this->reporterProfileDTO = $reporterProfileDTO;
