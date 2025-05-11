@@ -28,6 +28,7 @@ class Chat extends Model
             $this->db->beginTransaction();
             
             // Get all chats the profile is part of
+            /* Doesn't work with MariaDB 5.8 ->
             $sql = "SELECT 
                         c.id as chat_id,
                         c.name as chat_name,
@@ -51,7 +52,28 @@ class Chat extends Model
                     ) m ON m.chat_id = c.id AND m.rn = 1
                     WHERE pic.profile_id = :profileId
                     ORDER BY COALESCE(m.created_at, c.created_at) DESC";
-            
+            */
+            $sql = "SELECT 
+                    c.id AS chat_id,
+                    c.name AS chat_name,
+                    c.is_group_chat,
+                    c.created_at,
+                    pic.last_read_at,
+                    m.content AS last_message,
+                    m.created_at AS last_message_date,
+                    m.sender_profile_id
+                FROM CHATS c
+                JOIN PROFILES_IN_CHAT pic ON c.id = pic.chat_id
+                LEFT JOIN MESSAGES m ON m.id = (
+                    SELECT m2.id
+                    FROM MESSAGES m2
+                    WHERE m2.chat_id = c.id AND m2.is_deleted = FALSE
+                    ORDER BY m2.created_at DESC
+                    LIMIT 1
+                )
+                WHERE pic.profile_id = :profileId
+                ORDER BY COALESCE(m.created_at, c.created_at) DESC;
+                ";
             $this->db->query($sql);
             $this->db->bind(':profileId', $profileId);
             $chats = $this->db->resultSetAssoc();
